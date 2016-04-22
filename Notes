@@ -1,0 +1,17 @@
+These are my notes from the Workshop 22.04.2016
+
+- The Phone for the Busdriver is assumed to be stationary.
+- The System should know about the registered driver( but not priority number one for iteration#1)
+- Residents of Weilerbach usually call the Office to get picked up at the next day and the office tells the driver.
+- There are multiple routes the busdriver can take.
+- Recently a second bus was purchased so the Busdriver should choose the Bus he is driving at the start of the trip.(Costumer maybe can see info about the bus like number of seats and color of the bus for recognition.)
+- Bus is mostly empty which is not so efficient, but the scenario that a bus is full doesnt happen often.
+- It is possible for the drivers phone to loose internet connection while driving.
+- In the future it should be possible to manage the seats in the bus to see if one is available.
+- In the future the busdriver gets an alert where to pick someone up and can accept or decline like uber :)
+- Update frequency should also be considered maybe every 20 sec and only if the gps position has changed by min. 20meters.
+- The Driver can only use the phone during breaks or stops.
+- There are Bus stops on the route.
+- One Route takes appx. 45 min. 
+
+Further Information you can find in the Requirements document like Stakeholder, Persona, Functions and Scenarios.
