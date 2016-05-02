@@ -66,12 +66,12 @@
         <value>5</value>
       </counter>
       <counter>
-        <item-type type="UmlCommentConnector" />
+        <item-type stereotype="" type="UmlCommentConnector" />
         <value>2</value>
       </counter>
       <counter>
         <item-type type="AbstractElementGroup" />
-        <value>21</value>
+        <value>27</value>
       </counter>
     </entity-ids>
     <diagrams>
@@ -274,7 +274,7 @@
       </meta>
       <abstract-items />
       <sub-models />
-      <diagram type="uml-component" id="p45f8bbec7e114e5aaff51b9472996699_395983617" name="BusDrive Components" order-index="1" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" view-location="-144,-161" zoom="0.8">
+      <diagram type="uml-component" id="p45f8bbec7e114e5aaff51b9472996699_395983617" name="BusDrive Components" order-index="1" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" view-location="-181,-202">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -381,9 +381,9 @@
             </style>
             <comment>CurrentInfo:
 	- BusID
-	- RouteID
+	- LineID
 	- GPSPosition
-	- Timestamp
+	- Timestamp of GPSPosition
 	- ( NumberOfCitizen )
 	- ( LastPassedStop )
 </comment>
@@ -464,8 +464,8 @@
             </style>
             <comment>Author: Mher Ter-Tovmasyan
 Status: Complete
-Reviewer:
-Review status: </comment>
+Reviewer: Sascha Müller, Charel Irrthum
+Review status: Complete, Complete</comment>
           </item>
           <item id="di534510315705181272" cid="CMT004" type="comment" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="04/30/2016 01:59:53">
             <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#32000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" margin="1" glow-color="#FFFFFFFF" accuracy="0.9" name-use-defaults="false" name-color="#FF000000" name-font="Verdana;10;B" name-horizontal-alignment="center" name-vertical-alignment="center" part-header-use-defaults="false" part-header-color="#FF1E1E1E" part-header-font="Verdana;9;I" part-header-horizontal-alignment="center" part-header-vertical-alignment="center" text-use-defaults="false" text-color="#FF000000" text-font="Verdana;9;" text-horizontal-alignment="left" text-vertical-alignment="center" tagged-value-use-defaults="false" tagged-value-color="#FF1E1E1E" tagged-value-font="Verdana;9;I" tagged-value-horizontal-alignment="center" tagged-value-vertical-alignment="center" stereotype-use-defaults="false" stereotype-color="#FF1E1E1E" stereotype-font="Verdana;9;I" stereotype-horizontal-alignment="center" stereotype-vertical-alignment="center">
@@ -499,9 +499,9 @@ Review status: </comment>
               </alternate-styles>
             </style>
             <comment>Functions of Component Running:
-	- getLine, getBusID and getRouteID from SetUp
+	- getLine, getBusID and getLineID from SetUp
 	- getGoogleMaps from GoogleMaps
-	- showMap
+	- showMap with Line
 	- getGPSPos from Device
 	- postCurrentInfo to Server</comment>
           </item>
@@ -563,7 +563,7 @@ Review status: </comment>
             <layout ax="198.5" ay="68.875" awidth="126.75" aheight="84" x="198.5" y="68.875" width="126.75" height="84" />
           </item>
           <item id="di260286074824701633" iid="35485522b2bb4f67a0742b2ee5e0ab62" creation-date="04/29/2016 16:12:28" order-index="52" type="entity">
-            <layout ax="398" ay="274" awidth="172.5" aheight="132" x="398" y="274" width="172.5" height="132" />
+            <layout ax="398" ay="274" awidth="183.5" aheight="132" x="398" y="274" width="183.5" height="132" />
           </item>
           <item id="di331259087632424010" iid="237056d2716945fe9177e1914ca25e31" container="di261210940504712907" container-iid="a985c993f14849799f0a34f235138ecd" show-name="true" creation-date="04/29/2016 16:17:59" order-index="53" type="entity">
             <layout ax="58.5" ay="219" awidth="22.5" aheight="20" x="58.5" y="219" width="22.5" height="20" name-position="30,-10" />
@@ -572,10 +572,10 @@ Review status: </comment>
             <layout ax="354.75" ay="219" awidth="22.5" aheight="20" x="354.75" y="219" width="22.5" height="20" name-position="30,-10" />
           </item>
           <item id="di995108602514896675" iid="08493be2c0e84361ab94f5a5ea1770f6" container="di770067433553998103" container-iid="89ec2c8163764d28919a0f1d132ebadc" show-name="true" creation-date="04/29/2016 16:18:26" order-index="55" type="entity">
-            <layout ax="57.25" ay="417" awidth="25" aheight="20" x="57.25" y="414" width="21.25" height="25" name-position="30,-10" />
+            <layout ax="57.25" ay="417" awidth="25" aheight="20" x="57.25" y="417" width="25" height="20" name-position="30,-10" />
           </item>
           <item id="di688916349350232689" iid="f666806ddfe14024951c8394e64bed63" container="di770067433553998103" container-iid="89ec2c8163764d28919a0f1d132ebadc" show-name="true" creation-date="04/29/2016 16:18:31" order-index="56" type="entity">
-            <layout ax="354.25" ay="417" awidth="21.25" aheight="20" x="354.25" y="414.5" width="21.25" height="20" name-position="30,-10" />
+            <layout ax="354.25" ay="417" awidth="21.25" aheight="20" x="354.25" y="417" width="21.25" height="20" name-position="30,-10" />
           </item>
           <item id="di260296873337347795" iid="aeb0ce09923b43c19547944248ae178e" creation-date="04/29/2016 16:18:51" order-index="57" type="relation">
             <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" auto-path="" x1="366" y1="239" x2="366" y2="310" start-border-pos="0.625" end-border-pos="0.125" name-position="0,0">
@@ -658,10 +658,10 @@ Review status: </comment>
             </interface>
           </item>
           <item id="di837388599924331737" iid="e822a63e907348a1854b071956531d85" container="di971447226154954906" container-iid="7c287f856690470591ac944d5d596524" show-name="true" creation-date="04/30/2016 01:37:20" order-index="65" type="entity">
-            <layout ax="468" ay="219" awidth="22.5" aheight="20" x="468" y="206.5" width="25" height="22.5" name-position="30,-10" />
+            <layout ax="468" ay="219" awidth="22.5" aheight="20" x="468" y="219" width="22.5" height="20" name-position="30,-10" />
           </item>
           <item id="di873008354359419238" iid="eb0f78d77f9847518feeee67912e7d49" container="di971447226154954906" container-iid="7c287f856690470591ac944d5d596524" show-name="true" creation-date="04/30/2016 01:37:41" order-index="66" type="entity">
-            <layout ax="469.25" ay="160" awidth="21.25" aheight="20" x="469.25" y="161.5" width="21.25" height="20" name-position="30,-10" />
+            <layout ax="469.25" ay="160" awidth="21.25" aheight="20" x="469.25" y="160" width="21.25" height="20" name-position="30,-10" />
           </item>
           <item id="di993872908267868377" iid="cf1267a5501d4986b845db0b5483a2fb" creation-date="04/30/2016 01:37:50" order-index="67" type="relation">
             <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" auto-path="" x1="490" y1="170" x2="552" y2="169" start-border-pos="0.373579597473145" end-border-pos="0.876377452503551" name-position="471,-87">
@@ -756,7 +756,7 @@ Review status: </comment>
             </interface>
           </item>
           <item id="di969628860665376674" iid="5aa274b36237479e96089be35f4b2a34" creation-date="04/30/2016 01:59:53" order-index="77" type="entity">
-            <layout ax="566.5" ay="545" awidth="231" aheight="100" x="566.5" y="545" width="231" height="100" />
+            <layout ax="566.5" ay="545" awidth="263" aheight="100" x="566.5" y="545" width="263" height="100" />
           </item>
           <item id="di534510315705181272" iid="887541ef275b41718efbd96b953bf20f" creation-date="04/30/2016 01:59:53" order-index="77" type="entity">
             <layout ax="-77" ay="-98.5" awidth="259" aheight="73" x="-77" y="-98.5" width="259" height="73" />
