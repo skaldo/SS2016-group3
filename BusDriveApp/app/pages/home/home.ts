@@ -5,6 +5,8 @@ import {BusListPage} from '../buslist/buslist';
   templateUrl: 'build/pages/home/home.html'
 })
 export class HomePage {
+    private platform;
+    private nav;
   
   constructor(platform: Platform, nav: NavController) {
         this.platform = platform;

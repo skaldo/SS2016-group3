@@ -4,6 +4,9 @@ import {TabsPage} from '../tabs/tabs';
   templateUrl: 'build/pages/linelist/linelist.html'
 })
 export class LineListPage {
+    private platform;
+    private nav;
+    private firstParam;
   constructor(platform: Platform, nav: NavController,  navParams: NavParams) {
         this.platform = platform;
         this.nav = nav;
