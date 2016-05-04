@@ -6,18 +6,20 @@ import {TabsPage} from '../tabs/tabs';
 export class LineListPage {
     private platform;
     private nav;
-    private firstParam;
+    private linelist;
+    private stoplist;
   constructor(platform: Platform, nav: NavController,  navParams: NavParams) {
         this.platform = platform;
         this.nav = nav;
-        this.firstParam = navParams.get("firstPassed");
+        this.linelist = navParams.get("linelist");
+        this.stoplist = navParams.get("stoplist");
     }
  
       navigate() {
         console.log("Here we go!!");
         this.nav.push(TabsPage, {
-            firstPassed: "value 1",
-            secondPassed: "value 2"
+            linelist: this.linelist,
+            stoplist: this.stoplist
         });
     }
 }
