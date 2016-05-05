@@ -6,6 +6,6 @@
 
 <ion-content class="buslist">
     <ion-list>
-        <ion-item ion-item *ngFor="#item of buslist" (click)="navigate()">{{item.title}}</ion-item>
+        <ion-item ion-item *ngFor="#item of buslist" (click)="navigate()">{{item.id.toString()}} NumberPlate: {{item.numberPlate.toString()}}</ion-item>
     </ion-list>
 </ion-content>

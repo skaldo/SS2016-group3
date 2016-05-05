@@ -15,6 +15,7 @@ export class BusListPage {
         this.buslist = navParams.get("buslist");
         this.linelist = navParams.get("linelist");
         this.stoplist = navParams.get("stoplist");
+      console.log(this.buslist[0].numberPlate.toString())
     }
  
       navigate() {
