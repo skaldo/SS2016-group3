@@ -1,8 +1,10 @@
 import {Page,Platform, NavController} from 'ionic-angular';
 import {BusListPage} from '../buslist/buslist';
+import {Lists} from '../../Services/lists';
 
 @Page({
-  templateUrl: 'build/pages/home/home.html'
+  templateUrl: 'build/pages/home/home.html',
+    providers: [Lists]
 })
 export class HomePage {
     private platform;
@@ -10,23 +12,60 @@ export class HomePage {
     private buslist = [];
     private linelist = [];
     private stoplist = [];
+    public foundbuslist;
+    public foundlinelist;
+    public foundstoplist;
+    private mess;
 
   
-  constructor(platform: Platform, nav: NavController) {
+  constructor(platform: Platform, nav: NavController, private lists: Lists) {
         this.platform = platform;
         this.nav = nav;
-        this.buslist = [{'title':"Bus 1"},{'title':'Bus 2'},{'title':'Bus 3'},{'title':'Bus 4'}];
-        this.linelist = [{'title':'Line 1'},{'title':'Line 2'},{'title':'Line 3'},{'title':'Line 4'}]
-        this.stoplist = [{'title':'Stop 1'},{'title':'Stop 2'},{'title':'Stop 3'},{'title':'Stop 4'}]
+        this.getbuslist();
+        this.getlinelist();
+        this.getstoplist();
+        //this.buslist = [{'title':"Bus 1"},{'title':'Bus 2'},{'title':'Bus 3'},{'title':'Bus 4'}];
+        //this.linelist = [{'title':'Line 1'},{'title':'Line 2'},{'title':'Line 3'},{'title':'Line 4'}]
+        //this.stoplist = [{'title':'Stop 1'},{'title':'Stop 2'},{'title':'Stop 3'},{'title':'Stop 4'},{'title':'Stop 5'}]
 
     }
+    
+    getbuslist() {
+        this.lists.getBusses().subscribe(
+            data => {
+                this.foundbuslist = data.json();
+            },
+            err => console.error(err),
+            () => console.log('getBusses completed')
+        );
+    }
+    
+   getlinelist() {
+        this.lists.getLines().subscribe(
+            data => {
+                this.foundlinelist = data.json();
+            },
+            err => console.error(err),
+            () => console.log('getLines completed')
+        );
+    }
+    
+    getstoplist() {
+        this.lists.getStops().subscribe(
+            data => {
+                this.foundstoplist = data.json();
+            },
+            err => console.error(err),
+            () => console.log('getLines completed')
+        );
+    }
  
-      navigate() {
+   navigate() {
         console.log("Here we go!!");
         this.nav.push(BusListPage, {
-            buslist: this.buslist,
-            linelist: this.linelist,
-            stoplist: this.stoplist
+            buslist: this.foundbuslist,
+            linelist: this.foundlinelist,
+            stoplist: this.foundstoplist
         });
     }
 }

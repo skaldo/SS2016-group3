@@ -8,18 +8,26 @@ export class LineListPage {
     private nav;
     private linelist;
     private stoplist;
+    private selectedbus;
   constructor(platform: Platform, nav: NavController,  navParams: NavParams) {
         this.platform = platform;
         this.nav = nav;
         this.linelist = navParams.get("linelist");
         this.stoplist = navParams.get("stoplist");
+        this.selectedbus = navParams.get("selectedbus");
     }
  
-      navigate() {
+    navigate(item) {
         console.log("Here we go!!");
-        this.nav.push(TabsPage, {
-            linelist: this.linelist,
-            stoplist: this.stoplist
-        });
+         for (var index = 0; index < this.linelist.length; index++) {
+            if(this.linelist[index] == item){
+                this.nav.push(TabsPage, {
+                    selectedline: item,
+                    selectedbus: this.selectedbus,
+                    linelist: this.linelist,
+                    stoplist: this.stoplist
+                });
+            }
+         }
+      }
     }
-}
