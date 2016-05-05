@@ -1,0 +1,36 @@
+{
+  "busses": [
+    {
+      "id": "1",
+      "numberPlate": "KL-DD001",
+      "color": "blue",
+      "picture": "string"
+    },
+    {
+      "id": "2",
+      "numberPlate": "KL-DD002",
+      "color": "red",
+      "picture": "string"
+    }
+  ],
+  "lines": [
+    {
+      "id": "1",
+      "name": "Linie 1",
+      "routeRef": "1",
+      "busses": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Linie 2",
+      "routeRef": "2",
+      "busses": [
+        "1",
+        "2"
+      ]
+    }
+  ]
+}

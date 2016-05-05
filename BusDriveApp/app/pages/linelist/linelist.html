@@ -6,6 +6,6 @@
 
 <ion-content class="linelist">
     <ion-list>
-      <ion-item ion-item *ngFor="#item of linelist" (click)="navigate()">{{item.title}}</ion-item>
+      <ion-item ion-item *ngFor="#item of linelist" (click)="navigate()">{{item.id.toString()}}  Name: {{item.name.toString()}}</ion-item>
     </ion-list>
 </ion-content>
