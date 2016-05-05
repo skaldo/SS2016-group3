@@ -8,7 +8,7 @@ export class StopsPage {
   private stoplist;
   constructor(platform: Platform, navParams: NavParams) {
     this.stoplist = navParams.data;
-    console.log(this.stoplist.toString());
+    console.log(this.stoplist);
   }
   
 }

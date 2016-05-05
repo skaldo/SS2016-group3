@@ -17,17 +17,12 @@ export class BusListPage {
         this.stoplist = navParams.get("stoplist");
     }
  
-      navigate(item) {
+      navigate() {
         console.log("Here we go!!");
-         for (var index = 0; index < this.buslist.length; index++) {
-            if(this.buslist[index] == item){
-                this.nav.push(LineListPage, {
-                    selectedbus: item,
-                    buslist: this.buslist,
-                    linelist: this.linelist,
-                    stoplist: this.stoplist
-                });
-            }
-        }
-      }
+        this.nav.push(LineListPage, {
+            buslist: this.buslist,
+            linelist: this.linelist,
+            stoplist: this.stoplist
+        });
     }
+}
