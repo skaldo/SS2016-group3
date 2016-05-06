@@ -7,6 +7,8 @@ import {Geolocation} from 'ionic-native';
 export class MapPage {
   private map;
   private stoplist;
+  directionsService = new google.maps.DirectionsService;
+  directionsDisplay = new google.maps.DirectionsRenderer;
   constructor(navParams: NavParams) {
     this.stoplist = navParams.data;
     this.loadMap()
@@ -15,7 +17,6 @@ export class MapPage {
 loadMap(){
     
     let options = {timeout: 10000, enableHighAccuracy: true};
-    
     navigator.geolocation.getCurrentPosition((position) => {
             
             let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -43,11 +44,39 @@ loadMap(){
                 map: this.map,
                 });            
             }
-              
+            
+            this.directionsDisplay.setMap(this.map);
+            this.route(this.directionsService,this.directionsDisplay,latLng);              
            }, 
            (error) => {
              console.log(error);
            }, options
     );
   }
+  
+  route(directionsService, directionsDisplay, myPos){
+    let stops = [];
+    for (var index = 0; index < this.stoplist.length; index++) {
+      stops.push({
+        location: new google.maps.LatLng (this.stoplist[index].latitude, this.stoplist[index].longitude ),
+        stopover: true       
+      });    
+    }         
+    let start = myPos;
+    let end =  myPos;    
+    let request = {
+        origin: start,
+        destination: end,
+        waypoints: stops,
+        optimizeWaypoints: true,
+        travelMode: google.maps.TravelMode.DRIVING
+    };   
+    directionsService.route(request, function (response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+            var route = response.routes[0];
+        }
+    });  
+  }
 }
+  
