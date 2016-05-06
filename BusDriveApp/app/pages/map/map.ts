@@ -1,4 +1,4 @@
-import {Page} from 'ionic-angular';
+import {Page, NavParams} from 'ionic-angular';
 import {Geolocation} from 'ionic-native';
 
 @Page({
@@ -6,8 +6,9 @@ import {Geolocation} from 'ionic-native';
 })
 export class MapPage {
   private map;
-  private marker;
-  constructor() {
+  private stoplist;
+  constructor(navParams: NavParams) {
+    this.stoplist = navParams.data;
     this.loadMap()
   }
 
@@ -25,10 +26,23 @@ loadMap(){
                 zoomControl: true               
             }
             this.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-            this.marker = new google.maps.Marker({
+            let marker = new google.maps.Marker({
+              icon: 'http://maps.google.com/mapfiles/ms/icons/bus.png',
               position: latLng,
               map: this.map,
             }); 
+            
+            // show stops on map
+            for (var index = 0; index < this.stoplist.length; index++) {
+              // let stopLatLng = this.stoplist[index].location doesnt work :(
+                
+              let stopLatLng = new google.maps.LatLng (this.stoplist[index].latitude, this.stoplist[index].longitude );
+              console.log(this.stoplist[index].location);
+              let stopmarker = new google.maps.Marker({
+                position: stopLatLng,
+                map: this.map,
+                });            
+            }
               
            }, 
            (error) => {
