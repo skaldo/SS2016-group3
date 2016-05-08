@@ -8,17 +8,17 @@ export class Lists {
 
 // Hier wird die Methode deklariert die die Busse anfragt, später kommen noch ein paar mehr hinzu
     getBusses() {
-        let busses = this.http.get(`http://192.168.178.76:3000/busses`);
+        let busses = this.http.get(`http://localhost:3000/busses`);
         return busses;
     }
 
     getLines() {
-        let lines = this.http.get(`http://192.168.178.76:3000/lines`);
+        let lines = this.http.get(`http://localhost:3000/lines`);
         return lines;
     }
 
     getStops() {
-        let stops = this.http.get(`http://192.168.178.76:3000/stops`);
+        let stops = this.http.get(`http://localhost:3000/stops`);
         return stops;
     }
 }
