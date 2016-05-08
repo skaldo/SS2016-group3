@@ -1,7 +1,19 @@
 <ion-navbar *navbar>
-  <ion-title>Drive</ion-title>
+    <ion-title>Drive</ion-title>
 </ion-navbar>
 
-<ion-content padding class="drive">
-
+<ion-content class="drive" padding>
+    <center>
+        <p>
+            <button large (click)="decrease()">
+                <ion-icon name="remove"></ion-icon>
+            </button>           
+            <button clear> Number of Passengers:
+                {{counter}}
+            </button>
+            <button large (click)="increase()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </p>
+    </center>
 </ion-content>

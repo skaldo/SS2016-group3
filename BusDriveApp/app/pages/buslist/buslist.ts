@@ -1,33 +1,41 @@
-import {Page, Platform, NavController, NavParams} from 'ionic-angular';
+import {Page, NavController, NavParams} from 'ionic-angular';
 import {LineListPage} from '../linelist/linelist';
+import {Lists} from '../../Services/lists';
+
 @Page({
-  templateUrl: 'build/pages/buslist/buslist.html'
+    templateUrl: 'build/pages/buslist/buslist.html',
+    providers: [Lists]
 })
+
 export class BusListPage {
-    private platform;
     private nav;
     private buslist;
-    private linelist;
-    private stoplist;
-  constructor(platform: Platform, nav: NavController,  navParams: NavParams) {
-        this.platform = platform;
+
+    constructor(nav:NavController, navParams:NavParams, private lists:Lists) {
         this.nav = nav;
-        this.buslist = navParams.get("buslist");
-        this.linelist = navParams.get("linelist");
-        this.stoplist = navParams.get("stoplist");
+        setInterval(this.getbuslist(),30000);        
     }
- 
-      navigate(item) {
-        console.log("Here we go!!");
-         for (var index = 0; index < this.buslist.length; index++) {
-            if(this.buslist[index] == item){
+
+    // Holt die Busliste vom Server
+    getbuslist() {
+        this.lists.getBusses().subscribe(
+            data => {
+                this.buslist = data.json();
+            },
+            err => console.error(err),
+            () => console.log('getBusses completed')
+        );
+    }
+
+    // Übergibt den gewählten Bus an LineListPage und wechselt die GUI auf LineListPage
+    navigate(item) {
+        console.log("-> LineListPage");
+        for (var index = 0; index < this.buslist.length; index++) {
+            if (this.buslist[index] == item) {
                 this.nav.push(LineListPage, {
                     selectedbus: item,
-                    buslist: this.buslist,
-                    linelist: this.linelist,
-                    stoplist: this.stoplist
                 });
             }
         }
-      }
     }
+}

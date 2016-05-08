@@ -11,6 +11,12 @@
       "numberPlate": "KL-DD002",
       "color": "red",
       "picture": "string"
+    },
+    {
+      "id": "3",
+      "numberPlate": "KL-DD003",
+      "color": "red",
+      "picture": "string"
     }
   ],
   "lines": [
@@ -27,6 +33,15 @@
       "id": "2",
       "name": "Linie 2",
       "routeRef": "2",
+      "busses": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Linie 3",
+      "routeRef": "3",
       "busses": [
         "1",
         "2"

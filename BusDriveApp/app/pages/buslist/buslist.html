@@ -1,11 +1,17 @@
 <ion-navbar *navbar>
-  <ion-title>
-    Bus List
-  </ion-title>
+    <ion-title>
+        Bus List
+    </ion-title>
 </ion-navbar>
 
 <ion-content class="buslist">
     <ion-list>
-        <ion-item ion-item *ngFor="#item of buslist" (click)="navigate(item)">{{item.id.toString()}} NumberPlate: {{item.numberPlate.toString()}}</ion-item>
+        <ion-item ion-item *ngFor="#item of buslist" (click)="navigate(item)"> 
+            <ion-thumbnail item-left>
+                <img src="img/bus.svg">
+            </ion-thumbnail>
+            <h2>Bus Nr. {{item.id.toString()}}</h2>
+            <p>NumberPlate: {{item.numberPlate.toString()}}</p>           
+        </ion-item>
     </ion-list>
 </ion-content>
