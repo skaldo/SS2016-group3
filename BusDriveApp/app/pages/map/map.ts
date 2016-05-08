@@ -44,7 +44,7 @@ export class MapPage {
                     });
                 }
                 this.directionsDisplay.setMap(this.map);
-                this.route(this.directionsService, this.directionsDisplay, latLng);
+                this.route(this.directionsService, this.directionsDisplay, latLng, latLng);
             },
             (error) => {
                 console.log(error);
@@ -53,7 +53,7 @@ export class MapPage {
     }
     
     // Zeichnet die Route anhand der gegebenen GPS Koordinaten ( aktuell werden die Koordinaten von Stops genutzt, später werden die von der Route genommen)
-    route(directionsService, directionsDisplay, myPos) {
+    route(directionsService, directionsDisplay, startpos, endpos) {
         let stops = [];
         for (var index = 0; index < this.stoplist.length; index++) {
             stops.push({
@@ -61,8 +61,8 @@ export class MapPage {
                 stopover: false
             });
         }
-        let start = myPos;
-        let end = myPos;
+        let start = startpos;
+        let end = endpos;
         let request = {
             origin: start,
             destination: end,

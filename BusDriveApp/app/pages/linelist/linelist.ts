@@ -28,6 +28,11 @@ export class LineListPage {
             () => console.log('getLines completed')
         );
     }
+    
+    // Aktualisiert die Lineliste, sobald man wieder auf LineListPage kommt.
+    onPageWillEnter(){
+        this.getlinelist();
+    }
 
     // Übergibt den gewählten Bus und die gewählte Line an TabsPage und wechselt die GUI auf DrivePage
     navigate(item) {

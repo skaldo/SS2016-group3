@@ -13,7 +13,7 @@ export class BusListPage {
 
     constructor(nav:NavController, navParams:NavParams, private lists:Lists) {
         this.nav = nav;
-        setInterval(this.getbuslist(),30000);        
+        this.getbuslist();        
     }
 
     // Holt die Busliste vom Server
@@ -25,6 +25,11 @@ export class BusListPage {
             err => console.error(err),
             () => console.log('getBusses completed')
         );
+    }
+    
+    // Aktualisiert die Busliste, sobald man wieder auf BusListPage kommt.
+    onPageWillEnter(){
+        this.getbuslist();
     }
 
     // Übergibt den gewählten Bus an LineListPage und wechselt die GUI auf LineListPage
