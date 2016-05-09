@@ -6,9 +6,9 @@ import {Page} from 'ionic-angular';
 })
 export class DrivePage {
     public counter:number = 0;
-
+    public passengers;
     constructor() {
-
+         this.passengers = "Passengers:";
     }
     // Erhöhrt den Zähler(Counter)
     increase() {

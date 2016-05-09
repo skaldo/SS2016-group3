@@ -4,16 +4,28 @@
 
 <ion-content class="drive" padding>
     <center>
-        <p>
-            <button large (click)="decrease()">
-                <ion-icon name="remove"></ion-icon>
-            </button>
-            <button clear> Number of Passengers:
-                {{counter}}
-            </button>
-            <button large (click)="increase()">
-                <ion-icon name="add"></ion-icon>
-            </button>
-        </p>
+        <table>
+            <tr>
+               <td >
+                   <div class="buttonleft">
+                    <button large (click)="decrease()">
+                        <ion-icon name="remove"></ion-icon>
+                    </button>
+                    </div>
+                </td>
+                <td class="text">
+                    
+                    <h2>{{passengers}}<br> {{counter}}</h2>
+                    
+                </td>     
+                <td > 
+                    <div class="buttonright">
+                    <button large (click)="increase()">
+                        <ion-icon name="add"></ion-icon>
+                    </button>
+                    </div>
+                </td>
+             </tr>
+        </table>
     </center>
 </ion-content>
