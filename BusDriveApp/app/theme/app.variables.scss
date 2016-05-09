@@ -1,9 +1,7 @@
 // http://ionicframework.com/docs/v2/theming/
-
 // Ionic Shared Functions
 // --------------------------------------------------
 // Makes Ionic Sass functions available to your App
-
 @import 'globals.core';
 
 // App Shared Variables
@@ -15,7 +13,6 @@
 // in the app.core.scss file and not this file. Sass variables specific
 // to the mode belong in either the app.ios.scss or app.md.scss files.
 
-
 // App Shared Color Variables
 // --------------------------------------------------
 // It's highly recommended to change the default colors
@@ -26,10 +23,18 @@
 // are different per mode.
 
 $colors: (
-  primary:    #387ef5,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222,
-  favorite:   #69BB7B
+        primary: (base: #1F82C0, contrast: lightgrey), // with light grey text, App Main Color, Use for: Navigation Bar, Action Buttons, Main Navigation
+        primary2: (base: #66BFAC, contrast: white), // with white text, App Main Color, Use for: Secondary highlighting
+        green: (base: #009374, contrast: white), // with white text, App Secondary Color, Use for: Item declarations (e.g. ideas)
+        blue: (base: #33B8CA, contrast: white), // with white text, App Secondary Color, Use for: Item declarations (e.g. ideas)
+        yellow: (base: #B1C800, contrast: white), // with white text, App Secondary Color, Use for: Item declarations (e.g. ideas)
+        red: (base: #f53d3d, contrast: white), // with white text, App Alerting Color, Use for: Alerts, critical actions
+        darkgrey: (base: #555555, contrast: lightgrey), // with light grey text, Use for: text color, dark background color, navigation bar background color, status bar background color
+        neutralgrey: (base: #C7CACC, contrast: black), // with black text, Use for: text color, background color
+        lightgrey: (base: #F4F4F4, contrast: black), // with black text, Use for: primary tint color on dark background, primary background color
+
+
+        light: #f4f4f4,
+        dark: #222,
+        favorite: #69BB7B
 );
