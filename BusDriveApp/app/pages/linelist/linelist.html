@@ -1,6 +1,6 @@
 <ion-navbar primary *navbar>
     <ion-title>
-        Line List
+        {{title}}
     </ion-title>
 </ion-navbar>
 
@@ -10,8 +10,8 @@
             <ion-thumbnail item-left>
                 <img src="img/line.svg">
             </ion-thumbnail>
-            <h2>Line-Nr. {{item.id.toString()}}</h2>
-            <p>Name:{{item.name.toString()}}</p>           
+            <h2>{{Line}} {{item.id.toString()}}</h2>
+            <p>{{item.name.toString()}}</p>           
         </ion-item>
     </ion-list>
 </ion-content>

@@ -19,7 +19,10 @@ export class TabsPage {
     private tab3Root;
     private latitude;
     private longitude
-
+    public map;
+    public drive;
+    public stops;
+    
     constructor(navParams:NavParams, private lists:Lists) {
         this.getstoplist();
         this.selectedbus = navParams.get("selectedbus")
@@ -28,6 +31,11 @@ export class TabsPage {
         this.tab2Root = MapPage;
         this.tab3Root = StopsPage;
         this.log();
+        this.map ="Karte";
+        this.drive = "Fahren";
+        this.stops = "Fahrplan";
+        
+        
         // setInterval(this.sendcurrentbusstatus,3000)
     }
     

@@ -10,10 +10,13 @@ import {Lists} from '../../Services/lists';
 export class BusListPage {
     private nav;
     private buslist;
-
+    public numberplate;
+    public title;
     constructor(nav:NavController, navParams:NavParams, private lists:Lists) {
         this.nav = nav;
-        this.getbuslist();        
+        this.getbuslist();       
+        this.numberplate="Kennzeichen";
+        this.title="Bus wählen";
     }
 
     // Holt die Busliste vom Server

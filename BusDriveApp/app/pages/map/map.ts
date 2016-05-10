@@ -8,12 +8,14 @@ import {Geolocation} from 'ionic-native';
 export class MapPage {
     private map;
     private stoplist;
+    public title;
     directionsService = new google.maps.DirectionsService;
     directionsDisplay = new google.maps.DirectionsRenderer;
 
     constructor(navParams:NavParams) {
         this.stoplist = navParams.data;
         this.loadMap()
+        this.title="Karte";
     }
     
     // Lädt Google Maps und zeigt die eigene Position, die Position der Stops und die Route

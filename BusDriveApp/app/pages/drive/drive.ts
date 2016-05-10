@@ -7,8 +7,11 @@ import {Page} from 'ionic-angular';
 export class DrivePage {
     public counter:number = 0;
     public passengers;
+    public title;
+    
     constructor() {
-         this.passengers = "Passengers:";
+         this.passengers = "Belegte Plätze:";
+         this.title="Fahren";
     }
     // Erhöhrt den Zähler(Counter)
     increase() {

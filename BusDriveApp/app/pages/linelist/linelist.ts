@@ -11,11 +11,15 @@ export class LineListPage {
     private nav;
     private linelist;
     private selectedbus;
+    public line ;
+    public title;
 
     constructor(nav:NavController, navParams:NavParams, private lists:Lists) {
         this.nav = nav;
         this.getlinelist();
         this.selectedbus = navParams.get("selectedbus")
+        this.line="Linie";
+        this.title = this.line+" wählen";
     }
 
     // Holt die Lineliste vom Server
