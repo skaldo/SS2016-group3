@@ -17,7 +17,6 @@ export class LineListPage {
 
     constructor(nav:NavController, navParams:NavParams, private lists:Lists) {
         this.nav = nav;
-        this.getlinelist();
         this.selectedbus = navParams.get("selectedbus")
         this.title = language.lineTitle;
     }

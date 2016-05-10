@@ -14,8 +14,7 @@ export class BusListPage {
     public numberplate;
     public title;
     constructor(nav:NavController, navParams:NavParams, private lists:Lists) {
-        this.nav = nav;
-        this.getbuslist();       
+        this.nav = nav;     
         this.numberplate=language.numberplate;
         this.title=language.chooseBus;
     }

@@ -6,10 +6,10 @@
 </ion-navbar>
 
 <ion-content class="stops">
-  <ion-list>
-    
-      <ion-item  ion-item *ngFor="#item of stoplist" >
-            <p>{{item.id.toString()}} Ist dieser text gut?<!-- add stop name here><--></p>
-       </ion-item> 
+    <ion-list>
+        <ion-item ion-item *ngFor="#item of stoplist" > 
+            <h2>Stop {{item.id.toString()}}</h2>
+            <p>{{item.name.toString()}}</p>           
+        </ion-item>
     </ion-list>
 </ion-content>

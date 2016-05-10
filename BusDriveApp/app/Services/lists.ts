@@ -21,4 +21,9 @@ export class Lists {
         let stops = this.http.get(`http://localhost:3000/stops`);
         return stops;
     }
+    
+    getRoutes() {
+        let routes = this.http.get(`http://localhost:3000/routes`);
+        return routes;
+    }
 }
