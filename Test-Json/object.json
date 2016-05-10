@@ -1,89 +1,103 @@
 {
   "busses": [
     {
-      "id": "1",
-      "numberPlate": "KL-DD001",
-      "color": "blue",
-      "picture": "string"
+      "id": 1,
+      "numberPlate": "KL-AB345",
+      "color": "green",
+      "picture": "http://www.tm4.com/wp-content/uploads/2014/08/Foton-bus-12-m-e1407525133477.png"
     },
     {
-      "id": "2",
-      "numberPlate": "KL-DD002",
+      "id": 2,
+      "numberPlate": "KL-CD678",
       "color": "red",
-      "picture": "string"
-    },
-    {
-      "id": "3",
-      "numberPlate": "KL-DD003",
-      "color": "red",
-      "picture": "string"
+      "picture": "http://littlebabybum.com/wp-content/uploads/2015/01/wheels-on-the-bus-red.png"
     }
   ],
   "lines": [
     {
-      "id": "1",
-      "name": "Linie 1",
-      "routeRef": "1",
+      "id": 1,
+      "name": "Dorftour",
+      "routeRef": 1,
       "busses": [
-        "1",
-        "2"
+        1
       ]
     },
     {
-      "id": "2",
-      "name": "Linie 2",
-      "routeRef": "2",
+      "id": 1,
+      "name": "Kaiserslautern und zurück",
+      "routeRef": 2,
       "busses": [
-        "1",
-        "2"
-      ]
-    },
-    {
-      "id": "3",
-      "name": "Linie 3",
-      "routeRef": "3",
-      "busses": [
-        "1",
-        "2"
+        2
       ]
     }
   ],
   "stops": [
     {
-      "id": "1",
-      "location": [
-        "7.607495",
-        "49.209281"
+      "id": 1,
+      "name": "Kirche",
+      "lines": [
+        1,
+        2
       ],
-      "longitude": "7.607495",
-      "latitude": "49.209281"
+      "location": {
+        "latitude": 100,
+        "longitude": 100
+      },
+      "schedule": [
+        {
+          "lineId": 2,
+          "time": "12:00"
+        },
+        {
+          "lineId": 2,
+          "time": "13:00"
+        },
+        {
+          "lineId": 2,
+          "time": "9:00"
+        }
+      ]
+    }
+  ],
+  "currentBusStatus": [
+    {
+      "bus_id": "1",
+      "line_id": "1",
+      "position": [
+        {
+          "longitude": "7.605135",
+          "latitude": "49.210998"
+        }
+      ],
+      "timeStamp": "number"
+    }
+  ],
+  "routes": [
+    {
+      "id": 1,
+      "gpsData": [
+        {
+          "latitude": 100,
+          "longitude": 100
+        },
+        {
+          "latitude": 101,
+          "longitude": 99
+        }
+      ]
     },
     {
-      "id": "2",
-      "location": [
-        "7.606079",
-        "49.206989"
-      ],
-      "longitude": "7.606079",
-      "latitude": "49.206989"
-    },
-    {
-      "id": "3",
-      "location": [
-        "7.603762",
-        "49.20872"
-      ],
-      "longitude": "7.603762",
-      "latitude": "49.20872"
-    },
-    {
-      "id": "4",
-      "location": [
-        "7.605135",
-        "49.210998"
-      ],
-      "longitude": "7.605135",
-      "latitude": "49.210998"
+      "id": 2,
+      "gpsData": [
+        {
+          "latitude": 50,
+          "longitude": 100
+        },
+        {
+          "latitude": 101,
+          "longitude": 50
+        }
+      ]
     }
   ]
 }
