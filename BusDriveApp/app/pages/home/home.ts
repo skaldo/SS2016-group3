@@ -1,5 +1,6 @@
 import {Page, Platform, NavController} from 'ionic-angular';
 import {BusListPage} from '../buslist/buslist';
+import {language, de, en} from "../../languages/languages";
 
 @Page({
     templateUrl: 'build/pages/home/home.html',
@@ -8,17 +9,26 @@ export class HomePage {
     private platform;
     private nav;
     private os;
+    public buttontext;
+    
 
     constructor(platform:Platform, nav:NavController) {
         this.platform = platform;
         this.nav = nav;
         this.getMobileOperatingSystem();
+        this.buttontext = language.name;
     }
 
     // Wechselt die GUI auf BusListPage 
     navigate() {
         console.log("-> BusListPage");
         this.nav.push(BusListPage, {});
+    }
+    
+    changeLanguage() {
+        if (language === en) language = de; else language = en;
+        this.buttontext = language.name;
+        console.log("-> ChangeLanguage");
     }
     
     // 
@@ -36,3 +46,4 @@ export class HomePage {
         console.log("os detected: ", this.os);
     }
 }
+

@@ -1,4 +1,5 @@
 import {Page, Platform, NavParams} from 'ionic-angular';
+import {language} from "../../languages/languages";
 
 @Page({
   templateUrl: 'build/pages/stops/stops.html'
@@ -9,7 +10,7 @@ export class StopsPage {
   public title;
   constructor(platform: Platform, navParams: NavParams) {
     this.stoplist = navParams.data;
-    this.title="Fahrplan";
+    this.title=language.stopTitle;
   }
   
 }

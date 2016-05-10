@@ -1,4 +1,5 @@
 import {Page} from 'ionic-angular';
+import {language} from "../../languages/languages";
 
 
 @Page({
@@ -10,16 +11,16 @@ export class DrivePage {
     public title;
     
     constructor() {
-         this.passengers = "Belegte Plätze:";
-         this.title="Fahren";
+         this.passengers = language.passengers;
+         this.title = language.driveTitle;
     }
-    // Erhöhrt den Zähler(Counter)
+    // Erhöht den Zähler(Counter)
     increase() {
         this.counter++
     }
 
     // Reduziert den Zähler(Counter)
     decrease() {
-        this.counter--
+        if (this.counter > 0) this.counter--
     }
 }

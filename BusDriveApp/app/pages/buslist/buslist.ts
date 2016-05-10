@@ -1,6 +1,7 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
 import {LineListPage} from '../linelist/linelist';
 import {Lists} from '../../Services/lists';
+import {language} from "../../languages/languages";
 
 @Page({
     templateUrl: 'build/pages/buslist/buslist.html',
@@ -15,8 +16,8 @@ export class BusListPage {
     constructor(nav:NavController, navParams:NavParams, private lists:Lists) {
         this.nav = nav;
         this.getbuslist();       
-        this.numberplate="Kennzeichen";
-        this.title="Bus wählen";
+        this.numberplate=language.numberplate;
+        this.title=language.chooseBus;
     }
 
     // Holt die Busliste vom Server

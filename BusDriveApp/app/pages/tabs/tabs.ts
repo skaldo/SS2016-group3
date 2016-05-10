@@ -4,6 +4,7 @@ import {MapPage} from '../map/map';
 import {StopsPage} from '../stops/stops';
 import {Geolocation} from 'ionic-native';
 import {Lists} from '../../Services/lists';
+import {language} from "../../languages/languages";
 
 @Page({
     templateUrl: 'build/pages/tabs/tabs.html',
@@ -31,9 +32,9 @@ export class TabsPage {
         this.tab2Root = MapPage;
         this.tab3Root = StopsPage;
         this.log();
-        this.map ="Karte";
-        this.drive = "Fahren";
-        this.stops = "Fahrplan";
+        this.map = language.mapTitle;
+        this.drive = language.driveTitle;
+        this.stops = language.stopTitle;
         
         
         // setInterval(this.sendcurrentbusstatus,3000)

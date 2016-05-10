@@ -1,5 +1,6 @@
 import {Page, NavParams} from 'ionic-angular';
 import {Geolocation} from 'ionic-native';
+import {language} from "../../languages/languages";
 
 @Page({
     templateUrl: 'build/pages/map/map.html',
@@ -15,7 +16,7 @@ export class MapPage {
     constructor(navParams:NavParams) {
         this.stoplist = navParams.data;
         this.loadMap()
-        this.title="Karte";
+        this.title=language.mapTitle;
     }
     
     // Lädt Google Maps und zeigt die eigene Position, die Position der Stops und die Route

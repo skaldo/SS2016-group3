@@ -1,6 +1,7 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
 import {TabsPage} from '../tabs/tabs';
 import {Lists} from '../../Services/lists';
+import {language} from "../../languages/languages";
 
 @Page({
     templateUrl: 'build/pages/linelist/linelist.html',
@@ -18,8 +19,7 @@ export class LineListPage {
         this.nav = nav;
         this.getlinelist();
         this.selectedbus = navParams.get("selectedbus")
-        this.line="Linie";
-        this.title = this.line+" wählen";
+        this.title = language.lineTitle;
     }
 
     // Holt die Lineliste vom Server
