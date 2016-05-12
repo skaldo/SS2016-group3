@@ -11,7 +11,7 @@ import {Lists} from '../../Services/lists';
 export class MapPage {
     private map;
     private stoplist;
-    private route;
+    private route = [];
     private routedata = [];
     
     public title;
@@ -21,25 +21,39 @@ export class MapPage {
 
     constructor(navParams:NavParams, private lists:Lists) {
         this.stoplist = navParams.data;
-        this.getroute();
-        this.loadMap()
-        
+        //this.getroute();
+        //this.loadMap()
+        this.loadRoute(this);
         this.title=language.mapTitle;
     }
         
-    // Holt die Route vom Server
-    getroute() {
-        this.lists.getRoutes().subscribe(
-            data => {
-                this.route = data.json();
-            },
-            err => console.error(err),
-            () => console.log('getRoute completed')
-        );
+   
+    
+    
+    loadRoute(that:any){
+        let p =   new Promise (
+            (resolve: (list: any)=>void, reject: (str: string)=>void) => {
+                const a: string = "hello from Promise";
+                that.lists.getRoutes().subscribe(
+                        data => {
+                            that.route = data.json();
+                        },
+                        err => console.error(err),
+                        () => console.log('getRoute completed')
+                    );
+                resolve(that);
+            }
+            );
+            
+            p.then((that) => {
+                that.loadMap();
+     
+            });
     }
     
     // Lädt Google Maps und zeigt die eigene Position, die Position der Stops und die Route an
     loadMap() {
+        console.log("started loading map");
         let options = {timeout: 10000, enableHighAccuracy: true};
         navigator.geolocation.getCurrentPosition((position) => {
                 let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -94,13 +108,13 @@ export class MapPage {
                 }
                 
                 routepath.setMap(this.map);
-                
+                console.log("finished loading map");
                 // Aufrufen, falls die Route von Google berechnet werden soll.
                 // this.directionsDisplay.setMap(this.map);
                 // this.calcroute(this.directionsService, this.directionsDisplay, latLng, latLng);
             },
             (error) => {
-                console.log(error);
+                console.log(" oh no",error);
             }, options
         );
     }
