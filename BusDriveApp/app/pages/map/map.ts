@@ -10,47 +10,21 @@ import {Lists} from '../../Services/lists';
 
 export class MapPage {
     private map;
-    private stoplist;
-    private route = [];
-    private routedata = [];
-    
+    private LineStops = [];
+    private LineRoute = [];
+
     public title;
-    
+
     directionsService = new google.maps.DirectionsService;
     directionsDisplay = new google.maps.DirectionsRenderer;
 
     constructor(navParams:NavParams, private lists:Lists) {
-        this.stoplist = navParams.data;
-        //this.getroute();
-        //this.loadMap()
-        this.loadRoute(this);
-        this.title=language.mapTitle;
+        this.LineStops = navParams.data[0];
+        this.LineRoute = navParams.data[1];
+        this.loadMap();
+        this.title = language.mapTitle;
     }
-        
-   
-    
-    
-    loadRoute(that:any){
-        let p =   new Promise (
-            (resolve: (list: any)=>void, reject: (str: string)=>void) => {
-                const a: string = "hello from Promise";
-                that.lists.getRoutes().subscribe(
-                        data => {
-                            that.route = data.json();
-                        },
-                        err => console.error(err),
-                        () => console.log('getRoute completed')
-                    );
-                resolve(that);
-            }
-            );
-            
-            p.then((that) => {
-                that.loadMap();
-     
-            });
-    }
-    
+
     // Lädt Google Maps und zeigt die eigene Position, die Position der Stops und die Route an
     loadMap() {
         console.log("started loading map");
@@ -62,51 +36,38 @@ export class MapPage {
                     zoom: 15,
                     mapTypeControl: true,
                     mapTypeControlOptions: {
-                      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-                      mapTypeIds: [
-                        google.maps.MapTypeId.ROADMAP,
-                        google.maps.MapTypeId.SATELLITE
-                      ]
+                        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+                        mapTypeIds: [
+                            google.maps.MapTypeId.ROADMAP,
+                            google.maps.MapTypeId.SATELLITE
+                        ]
                     },
                     zoomControl: true,
                     rotateControl: true
                 }
-                
+
                 this.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-                
+
                 // Zeigt die eigene Position auf der Karte an ( als Marker )
-                let markerOptions = {
-                    
-                }
-                let circleOptions = {
-                    
-                }
-                let marker = new GeolocationMarker(this.map, markerOptions, circleOptions)
-                
-                // Verbindet die GPS Koordinaten der Route miteinander
-                for (var index = 0; index < this.route[0].gpsData.length; index++) { 
-                    this.routedata.push({
-                        lat: this.route[0].gpsData[index].latitude,
-                        lng: this.route[0].gpsData[index].longitude                       
-                    })    
-                }
+                let geoloccontrol = new klokantech.GeolocationControl(this.map, 18);
+
+                // Zeigt die Stops auf der Karte an ( als Marker ) 
+                for (var index = 0; index < this.LineStops.length; index++) {
+                    let stopLatLng = new google.maps.LatLng(this.LineStops[index].location.latitude, this.LineStops[index].location.longitude);
+                    let stopmarker = new google.maps.Marker({
+                        position: stopLatLng,
+                        map: this.map,
+                    });
+                };
+
                 let routepath = new google.maps.Polyline({
-                    path: this.routedata,
+                    path: this.LineRoute,
                     geodesic: true,
                     strokeColor: '#FF0000',
                     strokeOpacity: 1.0,
                     strokeWeight: 2
                 });
-                
-                // Zeigt die Stops auf der Karte an ( als Marker ) 
-                for (var index = 0; index < this.stoplist.length; index++) {     
-                    let stopLatLng = new google.maps.LatLng(this.stoplist[index].location.latitude, this.stoplist[index].location.longitude);
-                    let stopmarker = new google.maps.Marker({
-                        position: stopLatLng,
-                        map: this.map,
-                    });
-                }
-                
+
                 routepath.setMap(this.map);
                 console.log("finished loading map");
                 // Aufrufen, falls die Route von Google berechnet werden soll.
@@ -114,17 +75,17 @@ export class MapPage {
                 // this.calcroute(this.directionsService, this.directionsDisplay, latLng, latLng);
             },
             (error) => {
-                console.log(" oh no",error);
+                console.log(" oh no", error);
             }, options
         );
     }
-    
+
     // Berechnet die Route anhand der gegebenen GPS Koordinaten ( aktuell werden die Koordinaten von Stops genutzt, später werden die von der Route genommen)
     calcroute(directionsService, directionsDisplay, startpos, endpos) {
         let stops = [];
-        for (var index = 0; index < this.stoplist.length; index++) {
+        for (var index = 0; index < this.LineStops.length; index++) {
             stops.push({
-                location: new google.maps.LatLng(this.stoplist[index].location.latitude, this.stoplist[index].location.longitude),
+                location: new google.maps.LatLng(this.LineStops[index].location.latitude, this.LineStops[index].location.longitude),
                 stopover: false
             });
         }

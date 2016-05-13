@@ -1,15 +1,19 @@
-import {Page, Platform, NavParams} from 'ionic-angular';
+import {Page, NavParams, Platform} from 'ionic-angular';
 import {language} from "../../languages/languages";
+import {Lists} from '../../Services/lists';
 
 @Page({
-  templateUrl: 'build/pages/stops/stops.html'
+  templateUrl: 'build/pages/stops/stops.html',
+  providers: [Lists]
 })
 
 export class StopsPage {
-  private stoplist;
+  private LineStops = [];
   public title;
-  constructor(platform: Platform, navParams: NavParams) {
-    this.stoplist = navParams.data;
+  
+  constructor(navParams: NavParams, private lists:Lists, platform : Platform) {
+
+    this.LineStops = navParams.data[0];
     this.title=language.stopTitle;
   }
   
