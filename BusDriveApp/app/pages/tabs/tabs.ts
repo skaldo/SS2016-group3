@@ -24,16 +24,15 @@ export class TabsPage {
     private tab1Root;
     private tab2Root;
     private tab3Root;
-    private latitude;
-    private longitude;
     
     public map;
     public drive;
     public stops;
     
     constructor(navParams:NavParams, private lists:Lists) {
-        this.selectedbus = navParams.get("selectedbus")
-        this.selectedline = navParams.get("selectedline")
+        this.selectedbus = navParams.get("selectedbus");
+        this.selectedline = navParams.get("selectedline");       
+        
         this.log();
         
         this.tab1Root = DrivePage;
@@ -43,12 +42,13 @@ export class TabsPage {
         this.getstoplist();
         this.getRoute();
         this.setData();
-        
+                
         this.map = language.mapTitle;
         this.drive = language.driveTitle;
         this.stops = language.stopTitle;
                 
-        // setInterval(this.sendcurrentbusstatus,3000)
+        setInterval(this.sendcurrentStatus.bind(this), 3000)
+        //setInterval(this.sendcurrentStatus(), 3000);
     }
     
     // Holt die die Route vom Server und entfernt Stops, die nicht zu der Line gehören
@@ -97,13 +97,32 @@ export class TabsPage {
         console.log(this.selectedline.id.toString());
     }
 
-    sendcurrentbusstatus() {
+    sendcurrentStatus() {
         Geolocation.getCurrentPosition().then((resp) => {
-            this.latitude = resp.coords.latitude;
-            this.longitude = resp.coords.longitude;
-            console.log("Latitude: ", this.latitude, "Longitude: ", this.longitude);
+            let latitude = resp.coords.latitude;
+            let longitude = resp.coords.longitude;
+            let currentBusStatus = JSON.stringify(
+                {
+                "bus_id": this.selectedbus.id,
+                "line_id": this.selectedline.id,
+                "position": 
+                [
+                    {
+                    "longitude": longitude,
+                    "latitude": latitude
+                    }
+                ],
+                "timeStamp": Date.now()
+                })
+                let senddata = new XMLHttpRequest();
+                senddata.open('POST',"http://localhost:3000/currentbusStatus");
+                senddata.setRequestHeader('Content-Type','application/json');
+                senddata.send(currentBusStatus)
+                console.log("Senden")
+                console.log("Latitude: ", latitude, "Longitude: ", longitude);
+                console.log("Bus: ", this.selectedbus.id, "Line: ", this.selectedline.id);
         });
-    }
+    }     
 }
      
      
