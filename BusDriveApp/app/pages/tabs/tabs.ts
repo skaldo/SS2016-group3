@@ -6,6 +6,10 @@ import {Geolocation} from 'ionic-native';
 import {Lists} from '../../Services/lists';
 import {language} from "../../languages/languages";
 
+/*
+  Created by ttmher
+*/
+
 @Page({
     templateUrl: 'build/pages/tabs/tabs.html',
     providers: [Lists]
@@ -16,7 +20,7 @@ export class TabsPage {
     private linestops = [];
     private route = [];
     private lineroute = [];
-    private data = [];
+    private rootParams = [];
     
     private selectedbus;
     private selectedline;
@@ -30,28 +34,28 @@ export class TabsPage {
     public stops;
     
     constructor(navParams:NavParams, private lists:Lists) {
-        this.selectedbus = navParams.get("selectedbus");
-        this.selectedline = navParams.get("selectedline");       
-        
-        this.log();
-        
         this.tab1Root = DrivePage;
         this.tab2Root = MapPage;
         this.tab3Root = StopsPage;
         
+        this.selectedbus = navParams.get("selectedbus");
+        this.selectedline = navParams.get("selectedline");       
+                     
         this.getstoplist();
         this.getRoute();
-        this.setData();
+        this.setRootParams();
                 
         this.map = language.mapTitle;
         this.drive = language.driveTitle;
         this.stops = language.stopTitle;
                 
         setInterval(this.sendcurrentStatus.bind(this), 3000)
-        //setInterval(this.sendcurrentStatus(), 3000);
     }
     
-    // Holt die die Route vom Server und entfernt Stops, die nicht zu der Line gehören
+    /**
+     * DE: Holt die Stoppliste vom Server und entfernt Stopps, die nicht zu der Line gehören 
+     * EN: gets the stoplist from the server and removes stops which do not belong to the line
+     */ 
     getstoplist() {
         this.lists.getStops().subscribe(
             data => {
@@ -70,7 +74,10 @@ export class TabsPage {
         );
     }
 
-   // Holt die die Route vom Server und entfernt Routen, die nicht zur Line gehören
+    /**
+     * DE: Holt die Routen vom Server und entfernt die Routen, die nicht zu der Line gehören 
+     * EN: gets the routes from the server and removes routes which do not belong to the line
+     */ 
     getRoute(){
         this.lists.getRoutes().subscribe(
             data => {
@@ -88,15 +95,18 @@ export class TabsPage {
         );               
     }
     
-    setData(){
-         this.data = [this.linestops, this.lineroute]
+    /**
+     * DE: Setzt die RootParams 
+     * EN: sets rootParams
+     */
+    setRootParams(){
+         this.rootParams = [this.linestops, this.lineroute]
     }
     
-    log() {
-        console.log(this.selectedbus.id.toString());
-        console.log(this.selectedline.id.toString());
-    }
-
+     /**
+     * DE: Sendet die aktuelle Position, die Id des gewählten Busses und der Line und die Zeit an den Server
+     * EN: sends the current position, the id of the selected bus and line and the time to the server
+     */ 
     sendcurrentStatus() {
         Geolocation.getCurrentPosition().then((resp) => {
             let latitude = resp.coords.latitude;

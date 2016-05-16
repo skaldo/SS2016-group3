@@ -3,6 +3,11 @@ import {Geolocation} from 'ionic-native';
 import {language} from "../../languages/languages";
 import {Lists} from '../../Services/lists';
 
+/*
+  Created by ttmher and pardypaddy
+  Edited by ttmher and saskl
+*/
+
 @Page({
     templateUrl: 'build/pages/map/map.html',
     providers: [Lists]
@@ -15,9 +20,6 @@ export class MapPage {
 
     public title;
 
-    directionsService = new google.maps.DirectionsService;
-    directionsDisplay = new google.maps.DirectionsRenderer;
-
     constructor(navParams:NavParams, private lists:Lists) {
         this.LineStops = navParams.data[0];
         this.LineRoute = navParams.data[1];
@@ -25,9 +27,12 @@ export class MapPage {
         this.title = language.mapTitle;
     }
 
-    // Lädt Google Maps und zeigt die eigene Position, die Position der Stops und die Route an
+    /**
+     * DE: Lädt Google Maps und zeigt die eigene Position, die Position der Stops und die Route auf der Karte an
+     * EN: loads Google Maps and shows its own position, the position of the stops and the route on the map
+     */ 
     loadMap() {
-        console.log("started loading map");
+        console.log("Lade die Karte/ started loading map");
         let options = {timeout: 10000, enableHighAccuracy: true};
         navigator.geolocation.getCurrentPosition((position) => {
                 let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -45,13 +50,18 @@ export class MapPage {
                     zoomControl: true,
                     rotateControl: true
                 }
-
                 this.map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-                // Zeigt die eigene Position auf der Karte an ( als Marker )
+                /**
+                 * DE: Zeigt die eigene Position auf der Karte an ( als ein blauer Marker )
+                 * EN: shows its own position on the map ( as a blue marker )
+                 */
                 let geoloccontrol = new klokantech.GeolocationControl(this.map, 18);
 
-                // Zeigt die Stops auf der Karte an ( als Marker ) 
+                /**
+                 * DE: Erstellt Marker für die Stopps auf der Karte 
+                 * EN: creats markers for the stops on the map
+                */ 
                 for (var index = 0; index < this.LineStops.length; index++) {
                     let stopLatLng = new google.maps.LatLng(this.LineStops[index].location.latitude, this.LineStops[index].location.longitude);
                     let stopmarker = new google.maps.Marker({
@@ -59,51 +69,24 @@ export class MapPage {
                         map: this.map,
                     });
                 };
-
+                /**
+                 * DE: Verbindet die einzelnen GPS-Punkte der Route miteinander
+                 * EN: connects the individual GPS-Points of the route to each other
+                 */
                 let routepath = new google.maps.Polyline({
                     path: this.LineRoute,
                     geodesic: true,
                     strokeColor: '#FF0000',
                     strokeOpacity: 1.0,
-                    strokeWeight: 2
+                    strokeWeight: 3
                 });
-
                 routepath.setMap(this.map);
-                console.log("finished loading map");
-                // Aufrufen, falls die Route von Google berechnet werden soll.
-                // this.directionsDisplay.setMap(this.map);
-                // this.calcroute(this.directionsService, this.directionsDisplay, latLng, latLng);
+                console.log("Karte erfolgreich geladen/ successfully loaded map");                
             },
             (error) => {
-                console.log(" oh no", error);
+                console.log("Karte konnte nicht geladen werden/ ap could not be loaded", error);
             }, options
         );
-    }
-
-    // Berechnet die Route anhand der gegebenen GPS Koordinaten ( aktuell werden die Koordinaten von Stops genutzt, später werden die von der Route genommen)
-    calcroute(directionsService, directionsDisplay, startpos, endpos) {
-        let stops = [];
-        for (var index = 0; index < this.LineStops.length; index++) {
-            stops.push({
-                location: new google.maps.LatLng(this.LineStops[index].location.latitude, this.LineStops[index].location.longitude),
-                stopover: false
-            });
-        }
-        let start = startpos;
-        let end = endpos;
-        let request = {
-            origin: start,
-            destination: end,
-            waypoints: stops,
-            optimizeWaypoints: true,
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-        directionsService.route(request, function (response, status) {
-            if (status == google.maps.DirectionsStatus.OK) {
-                directionsDisplay.setDirections(response);
-                var route = response.routes[0];
-            }
-        });
     }
 }
   

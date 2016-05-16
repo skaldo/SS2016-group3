@@ -3,6 +3,11 @@ import {TabsPage} from '../tabs/tabs';
 import {Lists} from '../../Services/lists';
 import {language} from "../../languages/languages";
 
+/*
+  Created by ttmher
+  Edited by saskl
+*/
+
 @Page({
     templateUrl: 'build/pages/linelist/linelist.html',
     providers: [Lists]
@@ -21,24 +26,33 @@ export class LineListPage {
         this.title = language.lineTitle;
     }
 
-    // Holt die Lineliste vom Server
+    /**
+     * DE: Holt die Lineliste vom Server    
+     * EN: gets the linelist from the server
+     */
     getlinelist() {
         this.lists.getLines().subscribe(
             data => {
                 this.linelist = data.json();
             },
             err => console.error(err),
-            () => console.log('getLines completed')
+            () => console.log('getBusses abgeschlossen/ getLines completed')
         );
     }
     
-    // Aktualisiert die Lineliste, sobald man wieder auf LineListPage kommt.
-    onPageWillEnter(){
+    /**
+     * DE: Aktualisiert die Lineliste, sobald man wieder auf LineListPage kommt
+     * EN: updates the linelist as soon as you get back on LineListPage
+     */    onPageWillEnter(){
         this.getlinelist();
     }
 
-    // Übergibt den gewählten Bus und die gewählte Line an TabsPage und wechselt die GUI auf DrivePage
-    navigate(item) {
+    /**
+     * DE: Übergibt die gewählten Line an TabsPage und wechselt die GUI auf DrivePage
+     * EN: passes the selected line to TabsPage and switches the GUI to DrivePage
+     * DE: Eingabeparameter: element von der Lineliste
+     * EN: Input parameters: element of the linelist
+     */    navigate(item) {
         console.log("-> DrivePage");
         for (var index = 0; index < this.linelist.length; index++) {
             if (this.linelist[index] == item) {

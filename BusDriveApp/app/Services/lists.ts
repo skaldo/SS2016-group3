@@ -1,6 +1,11 @@
 import {Injectable} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
 
+/*
+  Created by Charel92
+  Edited by ttmher
+*/
+
 @Injectable()
 export class Lists {
     constructor(private http:Http) {

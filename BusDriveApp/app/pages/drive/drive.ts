@@ -1,6 +1,10 @@
 import {Page} from 'ionic-angular';
 import {language} from "../../languages/languages";
 
+/*
+  Created by ttmher
+  Edited by saskl
+*/
 
 @Page({
     templateUrl: 'build/pages/drive/drive.html',
@@ -14,12 +18,18 @@ export class DrivePage {
          this.passengers = language.passengers;
          this.title = language.driveTitle;
     }
-    // Erhöht den Zähler(Counter)
+    /**
+     * DE: Erhöht den Zähler(Counter)
+     * EN: increases the counter
+     */
     increase() {
         this.counter++
     }
 
-    // Reduziert den Zähler(Counter)
+    /**
+     * DE: Reduziert den Zähler(Counter)
+     * EN: decreases the counter
+     */
     decrease() {
         if (this.counter > 0) this.counter--
     }
