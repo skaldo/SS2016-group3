@@ -35,15 +35,16 @@ export class LineListPage {
             data => {
                 this.linelist = data.json();
             },
-            err => console.error(err),
-            () => console.log('getBusses abgeschlossen/ getLines completed')
+            err => console.error('getLines fehlgeschlagen/ getLines failed'),
+            () => console.log('getLines abgeschlossen/ getLines completed')
         );
     }
     
     /**
      * DE: Aktualisiert die Lineliste, sobald man wieder auf LineListPage kommt
      * EN: updates the linelist as soon as you get back on LineListPage
-     */    onPageWillEnter(){
+     */    
+    onPageWillEnter(){
         this.getlinelist();
     }
 

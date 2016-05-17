@@ -34,7 +34,7 @@ export class BusListPage {
             data => {
                 this.buslist = data.json();
             },
-            err => console.error(err),
+            err => console.error('getBusses fehlgeschlagen/ getBusses failed'),
             () => console.log('getBusses abgeschlossen/ getBusses completed')
         );
     }
