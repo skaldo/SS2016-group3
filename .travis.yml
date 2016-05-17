@@ -1,0 +1,4 @@
+language: node_js
+node_js: 
+  - "4"	#loading the latest v4 test.
+  - "iojs"
