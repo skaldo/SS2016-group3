@@ -15,8 +15,10 @@ This repository contains the source code of the BusDriveApp, used by the bus dri
 This app is used to track the bus and send this to the server.
 
 The application is written in [TypeScript](https://github.com/Microsoft/TypeScript) utilizes the beta version of the cross-platform development framework [Ionic](https://github.com/driftyco/ionic/tree/2.0).
-Requirement documenttion
-Design: [component diagram](https://github.com/GSE-Project/SS2016-group3/blob/master/Architecture%20and%20Interface/Architecture%20-%20Component%20Diagramm.pdf)
+Requirement documenttion:
+- [Tracebility Matrix](https://github.com/GSE-Project/SS2016-group3/blob/master/Doc/tracebility%20matrix.pdf)
+Design: 
+- [Component diagram](https://github.com/GSE-Project/SS2016-group3/blob/master/Doc/Architecture%20-%20Component%20Diagramm.pdf)
 
 How to build the application
 ---------------------------------------
