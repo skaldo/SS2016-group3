@@ -17,8 +17,8 @@ install:
  #- npm install -g cordova
  #- npm install -g ionic@beta
 
-script: 
- -gulpfile.js
+#script: 
+ #-gulpfile.js
  #-karma.conf.js
 
 after_success:
