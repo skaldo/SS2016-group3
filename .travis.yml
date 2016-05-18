@@ -12,10 +12,11 @@ install:
  - npm install -g gulp
  - npm install -g cordova
  - npm install -g ionic@beta
-
+before_script:
+ cd BusDriveApp
 script: 
- -/BusDriveApp/gulpfile.js
- -BusDriveApp/karma.conf.js
+ gulpfile.js
+ karma.conf.js
 
 after_success:
  - coveralls
