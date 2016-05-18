@@ -10,10 +10,10 @@ addons:
    - g++-4.8
 before_install:
  cd BusDriveApp
- install:
- - npm install -g gulp
- - npm install -g cordova
- - npm install -g ionic@beta
+install:
+ #- npm install -g gulp
+ #- npm install -g cordova
+ #- npm install -g ionic@beta
 
 script: 
  gulpfile.js
