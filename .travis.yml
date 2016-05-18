@@ -9,7 +9,6 @@ addons:
   packages:
    - g++-4.8
 install: 
- ./install-dependencies.sh
  - cd BusDriverApp
  - npm install -g gulp
  - npm install -g cordova
