@@ -8,8 +8,7 @@ addons:
    - ubuntu-toolchain-r-test
   packages:
    - g++-4.8
-install: 
- - cd BusDriverApp
+install:
  - npm install -g gulp
  - npm install -g cordova
  - npm install -g ionic@beta
