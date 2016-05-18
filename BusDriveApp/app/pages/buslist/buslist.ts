@@ -18,11 +18,12 @@ export class BusListPage {
     private buslist;
     public numberplate;
     public title;
-    
+    public serverIP
     constructor(nav:NavController, navParams:NavParams, private lists:Lists) {
         this.nav = nav;     
         this.numberplate=language.numberplate;
         this.title=language.chooseBus;
+        this.serverIP=navParams.get("URL");
     }
 
     /**
@@ -30,7 +31,7 @@ export class BusListPage {
      * EN: gets the buslist from the server
      */
     getBuslist() {
-        this.lists.getBusses().subscribe(
+        this.lists.getBusses(this.serverIP).subscribe(
             data => {
                 this.buslist = data.json();
             },
@@ -59,6 +60,7 @@ export class BusListPage {
             if (this.buslist[index] == item) {
                 this.nav.push(LineListPage, {
                     selectedbus: item,
+                URL: this.serverIP
                 });
             }
         }

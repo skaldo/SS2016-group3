@@ -12,23 +12,23 @@ export class Lists {
     }
 
 // Hier wird die Methode deklariert die die Busse anfragt, später kommen noch ein paar mehr hinzu
-    getBusses() {
-        let busses = this.http.get(`http://localhost:3000/busses`);
+    getBusses(serverIP) {
+        let busses = this.http.get(serverIP+'/busses');
         return busses;
     }
 
-    getLines() {
-        let lines = this.http.get(`http://localhost:3000/lines`);
+    getLines(serverIP) {
+        let lines = this.http.get(serverIP+`/lines`);
         return lines;
     }
 
-    getStops() {
-        let stops = this.http.get(`http://localhost:3000/stops`);
+    getStops(serverIP) {
+        let stops = this.http.get(serverIP+`/stops`);
         return stops;
     }
     
-    getRoutes() {
-        let routes = this.http.get(`http://localhost:3000/routes`);
+    getRoutes(serverIP) {
+        let routes = this.http.get(serverIP+`/routes`);
         return routes;
     }
 }
