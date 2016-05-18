@@ -20,7 +20,7 @@ Requirements documentation:
 - [Tracebility Matrix](https://github.com/GSE-Project/SS2016-group3/blob/master/Doc/tracebility%20matrix.pdf)
 
 Design documentation: 
-- [Component diagram](https://github.com/GSE-Project/SS2016-group3/blob/master/Doc/Architecture%20-%20Component%20Diagramm.pdf)
+- [Component diagram](https://github.com/GSE-Project/SS2016-group3/blob/master/Doc/Architecture%20-%20Component%20Diagram.pdf)
 
 How to build the application
 ---------------------------------------
@@ -52,7 +52,7 @@ Please follow these steps:
 
 1) Go to [Json-Server](https://github.com/typicode/json-server) and follow the instructions.
 
-2) Download [json-data](https://github.com/GSE-Project/SS2016-group3/blob/master/Test-Json/object.json)
+2) Download [json-data](https://github.com/GSE-Project/SS2016-group3/blob/master/TestServer-Json/TestServer.json)
 
 3) Open a command line in the directory where your json-data is saved and start the server
 
