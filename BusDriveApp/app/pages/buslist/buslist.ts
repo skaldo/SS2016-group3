@@ -53,12 +53,12 @@ export class BusListPage {
      * DE: Eingabeparameter: Element von der Busliste
      * EN: Input parameters: element of the buslist
      */
-    navigate(item) {
+    navigate(bus) {
         console.log("-> LineListPage");
         for (var index = 0; index < this.buslist.length; index++) {
-            if (this.buslist[index] == item) {
+            if (this.buslist[index] == bus) {
                 this.nav.push(LineListPage, {
-                    selectedbus: item,
+                    selectedbus: bus,
                 });
             }
         }

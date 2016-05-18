@@ -54,12 +54,12 @@ export class LineListPage {
      * DE: Eingabeparameter: Element von der Lineliste
      * EN: Input parameters: element of the linelist
      */    
-    navigate(item) {
+    navigate(line) {
         console.log("-> DrivePage");
         for (var index = 0; index < this.linelist.length; index++) {
-            if (this.linelist[index] == item) {
+            if (this.linelist[index] == line) {
                 this.nav.push(TabsPage, {
-                    selectedline: item,
+                    selectedline: line,
                     selectedbus: this.selectedbus,
                 });
             }
