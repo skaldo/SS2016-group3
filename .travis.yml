@@ -14,7 +14,8 @@ install:
  - npm install -g ionic@beta
 
 script: 
- gulp
+ -/BusDriveApp/gulpfile.js
+ -BusDriveApp/karma.conf.js
 
 after_success:
  - coveralls
