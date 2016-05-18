@@ -12,7 +12,7 @@ BusDriveApp
 
 This repository contains the source code of the BusDriveApp, used by the bus driver.
 
-This app is used to track the bus and send this to the server.
+This app is used to track the bus and send its position to the server.
 
 The application is written in [TypeScript](https://github.com/Microsoft/TypeScript) utilizes the beta version of the cross-platform development framework [Ionic](https://github.com/driftyco/ionic/tree/2.0).
 
@@ -54,7 +54,12 @@ Please follow these steps:
 
 2) Download [json-data](https://github.com/GSE-Project/SS2016-group3/blob/master/Test-Json/object.json)
 
-3) Open a command line in the directory where your json-data is saved and start he server
+3) Open a command line in the directory where your json-data is saved and start the server
 
     `json-serer -w object.json`
+	
 
+If everything is allredy installed
+---------------------------------------
+Just open "Start Server and Ionic.bat" from the main directory.
+It will start the mock server and the integrated web server for you.
