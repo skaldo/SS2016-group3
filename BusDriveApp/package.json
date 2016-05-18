@@ -8,6 +8,7 @@
     "rxjs": "5.0.0-beta.2"
   },
   "devDependencies": {
+    "browserify": "^13.0.1",
     "del": "2.2.0",
     "gulp": "3.9.1",
     "gulp-watch": "4.3.5",
@@ -16,7 +17,12 @@
     "ionic-gulp-html-copy": "^1.0.0",
     "ionic-gulp-sass-build": "^1.0.0",
     "ionic-gulp-scripts-copy": "^1.0.1",
-    "run-sequence": "1.1.5"
+    "karma": "^0.13.22",
+    "karma-browserify": "^5.0.5",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-jasmine": "^1.0.2",
+    "run-sequence": "1.1.5",
+    "watchify": "^3.7.0"
   },
   "name": "busdriveapp",
   "description": "BusDriveApp: An Ionic project",
