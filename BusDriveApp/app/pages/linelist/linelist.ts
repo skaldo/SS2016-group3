@@ -17,7 +17,7 @@ export class LineListPage {
     private nav;
     private linelist;
     private selectedbus;
-    public line ;
+
     public title;
 
     constructor(nav:NavController, navParams:NavParams, private lists:Lists) {
@@ -30,7 +30,7 @@ export class LineListPage {
      * DE: Holt die Lineliste vom Server    
      * EN: gets the linelist from the server
      */
-    getlinelist() {
+    getLinelist() {
         this.lists.getLines().subscribe(
             data => {
                 this.linelist = data.json();
@@ -45,15 +45,16 @@ export class LineListPage {
      * EN: updates the linelist as soon as you get back on LineListPage
      */    
     onPageWillEnter(){
-        this.getlinelist();
+        this.getLinelist();
     }
 
     /**
      * DE: Übergibt die gewählten Line an TabsPage und wechselt die GUI auf DrivePage
      * EN: passes the selected line to TabsPage and switches the GUI to DrivePage
-     * DE: Eingabeparameter: element von der Lineliste
+     * DE: Eingabeparameter: Element von der Lineliste
      * EN: Input parameters: element of the linelist
-     */    navigate(item) {
+     */    
+    navigate(item) {
         console.log("-> DrivePage");
         for (var index = 0; index < this.linelist.length; index++) {
             if (this.linelist[index] == item) {

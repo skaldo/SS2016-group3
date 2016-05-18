@@ -29,7 +29,7 @@ export class BusListPage {
      * DE: Holt die Busliste vom Server    
      * EN: gets the buslist from the server
      */
-    getbuslist() {
+    getBuslist() {
         this.lists.getBusses().subscribe(
             data => {
                 this.buslist = data.json();
@@ -44,13 +44,13 @@ export class BusListPage {
      * EN: updates the buslist as soon as you get back on BusListPage
      */
     onPageWillEnter(){
-        this.getbuslist();
+        this.getBuslist();
     }
 
     /**
      * DE: Übergibt den gewählten Bus an LineListPage und wechselt die GUI auf LineListPage
      * EN: passes the selected bus to LineListPage and switches the GUI to LineListPage
-     * DE: Eingabeparameter: element von der Busliste
+     * DE: Eingabeparameter: Element von der Busliste
      * EN: Input parameters: element of the buslist
      */
     navigate(item) {

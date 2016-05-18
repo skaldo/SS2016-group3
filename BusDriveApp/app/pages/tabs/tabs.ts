@@ -41,7 +41,7 @@ export class TabsPage {
         this.selectedbus = navParams.get("selectedbus");
         this.selectedline = navParams.get("selectedline");       
                      
-        this.getstoplist();
+        this.getStoplist();
         this.getRoute();
         this.setRootParams();
                 
@@ -49,14 +49,14 @@ export class TabsPage {
         this.drive = language.driveTitle;
         this.stops = language.stopTitle;
                 
-        setInterval(this.sendcurrentStatus.bind(this), 3000)
+        setInterval(this.sendCurrentStatus.bind(this), 15000)
     }
     
     /**
      * DE: Holt die Stoppliste vom Server und entfernt Stopps, die nicht zu der Line gehören 
      * EN: gets the stoplist from the server and removes stops which do not belong to the line
      */ 
-    getstoplist() {
+    getStoplist() {
         this.lists.getStops().subscribe(
             data => {
                 this.stoplist = data.json();
@@ -107,7 +107,7 @@ export class TabsPage {
      * DE: Sendet die aktuelle Position, die Id des gewählten Busses und der Line und die Zeit an den Server
      * EN: sends the current position, the id of the selected bus and line and the time to the server
      */ 
-    sendcurrentStatus() {
+    sendCurrentStatus() {
         Geolocation.getCurrentPosition().then((resp) => {
             let latitude = resp.coords.latitude;
             let longitude = resp.coords.longitude;
