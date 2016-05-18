@@ -12,7 +12,6 @@ install:
  - npm install -g gulp
  - npm install -g cordova
  - npm install -g ionic@beta
- - npm install 
 
 script: 
  gulp
