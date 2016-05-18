@@ -7,5 +7,11 @@
     <button large class="button button-block" (click)="navigate()">Start App</button>
     <div class="spacer" style="width: 283px; height: 50px;"></div>
     <button class="languageButton" (click)="changeLanguage()"> {{buttontext}} </button>
+    <ion-item>
+        <ion-label>Server IP: </ion-label>
+        <ion-input [(ngModel)]="serverIP" type="url" id="ServerIP" placeholder="http://localhost:3000" clearInput>http</ion-input>
+        <!--<ion-input type="text" id="ServerIP" value="http://localhost:3000"></ion-input>-->
+    </ion-item>
+   <!--<button (click)="setServerIP()">Festlegen</button>-->
 </ion-content>
 

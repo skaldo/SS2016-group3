@@ -17,13 +17,14 @@ export class LineListPage {
     private nav;
     private linelist;
     private selectedbus;
-
+    private serverIP;
     public title;
 
     constructor(nav:NavController, navParams:NavParams, private lists:Lists) {
         this.nav = nav;
         this.selectedbus = navParams.get("selectedbus")
         this.title = language.lineTitle;
+        this.serverIP=navParams.get("URL")
     }
 
     /**
@@ -31,7 +32,7 @@ export class LineListPage {
      * EN: gets the linelist from the server
      */
     getLinelist() {
-        this.lists.getLines().subscribe(
+        this.lists.getLines(this.serverIP).subscribe(
             data => {
                 this.linelist = data.json();
             },
@@ -61,6 +62,7 @@ export class LineListPage {
                 this.nav.push(TabsPage, {
                     selectedline: line,
                     selectedbus: this.selectedbus,
+                    URL: this.serverIP
                 });
             }
         }

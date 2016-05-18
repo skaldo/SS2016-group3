@@ -15,13 +15,15 @@ export class HomePage {
     private nav;
     private os;
     public buttontext;
-    
+    public serverIP;
 
     constructor(platform:Platform, nav:NavController) {
         this.platform = platform;
         this.nav = nav;
         this.getMobileOperatingSystem();
         this.buttontext = language.name;
+        this.serverIP== "http://localhost:3000";
+        
     }
 
     /**
@@ -29,8 +31,9 @@ export class HomePage {
      * EN: switches the GUI on BusListPage
      */
     navigate() {
+        
         console.log("-> BusListPage");
-        this.nav.push(BusListPage, {});
+        this.nav.push(BusListPage, {URL: this.serverIP});
     }
     
     /**
@@ -60,5 +63,6 @@ export class HomePage {
         }
         console.log("os detected: ", this.os);
     }
+   
 }
 
