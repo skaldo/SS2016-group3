@@ -27,7 +27,7 @@ install:
  - npm install gulp
   
 script: 
- - ../scripts/build_travis.sh
+ - ../scripts/travisbuilt.sh
  
 after_script:
  - cat ./test/reports/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
