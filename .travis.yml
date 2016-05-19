@@ -16,9 +16,10 @@ install:
  - npm install -g gulp
  #- npm install -g cordova
  #- npm install -g ionic@beta
-
+before_script:
+  - npm install -g gulp
 script: 
- gulp test
+ - gulp test
  #-karma.conf.js
 
 after_success:
