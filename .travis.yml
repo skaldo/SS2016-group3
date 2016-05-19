@@ -18,7 +18,6 @@ cache:
   - BusDriveApp/node_modules
   - BusDriveApp/platforms
   - BusDriveApp/plugins
-
 before_install:
  - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
  cd BusDriveApp
