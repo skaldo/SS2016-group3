@@ -16,7 +16,7 @@ This app is used to track the bus and send its position to the server.
 
 The application is written in [TypeScript](https://github.com/Microsoft/TypeScript) and utilizes the beta version of the cross-platform development framework [Ionic](https://github.com/driftyco/ionic/tree/2.0).
 
-It uses also http://www.maptiler.com/maptilerlayer[MapTilerLayer]
+It uses also [MapTilerLayer](http://www.maptiler.com/maptilerlayer).
 
 Requirements documentation:
 - [Bürgerbus Concept](/Doc/Requirements/B%C3%BCrgerbus%20Concept%20Document.pdf)
