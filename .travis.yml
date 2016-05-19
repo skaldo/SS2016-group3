@@ -22,14 +22,14 @@ before_install:
  - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
 install:
  - cd BusDriveApp
- #- npm install gulp
- #- npm install karma
- #- npm install jasmine
+ - npm install gulp
+ - npm install karma
+ - npm install jasmine
  #- npm install cordova
  #- npm install ionic@beta
  #- npm install 
 script: 
- - npm test
+ - karma start karma.conf.js
 after_script:
  - cat ./test/reports/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 after_success:
