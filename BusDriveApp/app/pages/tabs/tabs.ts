@@ -147,7 +147,7 @@ export class TabsPage {
      */
     onPageWillLeave(){
         let alert = Alert.create({
-        title: 'Fahrt beenden',
+        title: language.alertTitle,
         buttons: [{
                 text: 'OK',
                 handler: () => {
@@ -157,7 +157,7 @@ export class TabsPage {
                 }
             },
             {
-                text: 'Abbrechen',
+                text: language.alertCancel,
                 handler: () => {
                     console.log('alert aborted');
                 }
