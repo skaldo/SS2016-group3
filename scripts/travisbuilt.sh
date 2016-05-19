@@ -1,5 +1,5 @@
 #!/bin/bash
-# Created by skaldo on 08.05.2016 and imported by erik 17.05.2016
+# Created by erikgruener,skalado on 08.05.2016
 # This script decides which build does have to start according to the build matrix.
 set -ev
 if [ $JOB = "unit" ]; then
