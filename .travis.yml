@@ -29,7 +29,7 @@ install:
  #- npm install ionic@beta
  #- npm install 
 script: 
- - karma start karma.conf.js
+ - gulp test
 after_script:
  - cat ./test/reports/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 after_success:
