@@ -20,8 +20,8 @@ cache:
    - BusDriveApp/plugins
 before_install:
  - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
- cd BusDriveApp
 install:
+ - cd BusDriveApp
  - npm install gulp
  #- npm install karma
  #- npm install jasmine
