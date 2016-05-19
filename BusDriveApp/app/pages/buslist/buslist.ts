@@ -5,7 +5,7 @@ import {language} from "../../languages/languages";
 
 /*
   Created by ttmher
-  Edited by saskl
+  Edited by saskl and Charel92
 */
 
 @Page({
@@ -16,14 +16,17 @@ import {language} from "../../languages/languages";
 export class BusListPage {
     private nav;
     private buslist;
+    private serverURL;  
+      
     public numberplate;
-    public title;
-    public serverIP
+    public title
+
     constructor(nav:NavController, navParams:NavParams, private lists:Lists) {
-        this.nav = nav;     
-        this.numberplate=language.numberplate;
-        this.title=language.chooseBus;
-        this.serverIP=navParams.get("URL");
+        this.nav = nav;             
+        this.serverURL = navParams.get("URL");
+        
+        this.numberplate = language.numberplate;
+        this.title = language.chooseBus;
     }
 
     /**
@@ -31,7 +34,7 @@ export class BusListPage {
      * EN: gets the buslist from the server
      */
     getBuslist() {
-        this.lists.getBusses(this.serverIP).subscribe(
+        this.lists.getBusses(this.serverURL).subscribe(
             data => {
                 this.buslist = data.json();
             },
@@ -49,18 +52,18 @@ export class BusListPage {
     }
 
     /**
-     * DE: Übergibt den gewählten Bus an LineListPage und wechselt die GUI auf LineListPage
-     * EN: passes the selected bus to LineListPage and switches the GUI to LineListPage
+     * DE: Übergibt den gewählten Bus und die URL des Servers an LineListPage und wechselt die GUI auf LineListPage
+     * EN: passes the selected bus and the url of the server to LineListPage and switches the GUI to LineListPage
      * DE: Eingabeparameter: Element von der Busliste
      * EN: Input parameters: element of the buslist
      */
-    navigate(item) {
+    navigate(bus) {
         console.log("-> LineListPage");
         for (var index = 0; index < this.buslist.length; index++) {
-            if (this.buslist[index] == item) {
+            if (this.buslist[index] == bus) {
                 this.nav.push(LineListPage, {
-                    selectedbus: item,
-                URL: this.serverIP
+                    selectedbus: bus,
+                    URL: this.serverURL
                 });
             }
         }

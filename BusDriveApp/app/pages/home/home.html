@@ -9,9 +9,7 @@
     <button class="languageButton" (click)="changeLanguage()"> {{buttontext}} </button>
     <ion-item>
         <ion-label>Server IP: </ion-label>
-        <ion-input [(ngModel)]="serverIP" type="url" id="ServerIP" placeholder="http://localhost:3000" clearInput>http</ion-input>
-        <!--<ion-input type="text" id="ServerIP" value="http://localhost:3000"></ion-input>-->
+        <ion-input [(ngModel)]="serverURL" type="url" id="serverURL" placeholder="http://localhost:3000">http</ion-input>
     </ion-item>
-   <!--<button (click)="setServerIP()">Festlegen</button>-->
 </ion-content>
 

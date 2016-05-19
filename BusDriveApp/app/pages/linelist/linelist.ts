@@ -5,7 +5,7 @@ import {language} from "../../languages/languages";
 
 /*
   Created by ttmher
-  Edited by saskl
+  Edited by saskl and Charel92
 */
 
 @Page({
@@ -17,14 +17,16 @@ export class LineListPage {
     private nav;
     private linelist;
     private selectedbus;
-    private serverIP;
+    private serverURL;
+    
     public title;
 
     constructor(nav:NavController, navParams:NavParams, private lists:Lists) {
         this.nav = nav;
         this.selectedbus = navParams.get("selectedbus")
+        this.serverURL = navParams.get("URL")
+                
         this.title = language.lineTitle;
-        this.serverIP=navParams.get("URL")
     }
 
     /**
@@ -32,7 +34,7 @@ export class LineListPage {
      * EN: gets the linelist from the server
      */
     getLinelist() {
-        this.lists.getLines(this.serverIP).subscribe(
+        this.lists.getLines(this.serverURL).subscribe(
             data => {
                 this.linelist = data.json();
             },
@@ -50,8 +52,8 @@ export class LineListPage {
     }
 
     /**
-     * DE: Übergibt die gewählten Line an TabsPage und wechselt die GUI auf DrivePage
-     * EN: passes the selected line to TabsPage and switches the GUI to DrivePage
+     * DE: Übergibt die gewählten Linie, den gewählten Bus und die URL des Servers an TabsPage und wechselt die GUI auf DrivePage
+     * EN: passes the selected line, the selected bus and the url of the server to TabsPage and switches the GUI to DrivePage
      * DE: Eingabeparameter: Element von der Lineliste
      * EN: Input parameters: element of the linelist
      */    
@@ -62,7 +64,7 @@ export class LineListPage {
                 this.nav.push(TabsPage, {
                     selectedline: line,
                     selectedbus: this.selectedbus,
-                    URL: this.serverIP
+                    URL: this.serverURL
                 });
             }
         }

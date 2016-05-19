@@ -8,6 +8,7 @@ import {language} from "../../languages/languages";
 
 /*
   Created by ttmher
+  Edited by Charel92  
 */
 
 @Page({
@@ -24,6 +25,7 @@ export class TabsPage {
     
     private selectedbus;
     private selectedline;
+    private serverURL;
     
     private tab1Root;
     private tab2Root;
@@ -32,7 +34,7 @@ export class TabsPage {
     public map;
     public drive;
     public stops;
-    private serverIP;
+
     constructor(navParams:NavParams, private lists:Lists) {
         this.tab1Root = DrivePage;
         this.tab2Root = MapPage;
@@ -40,7 +42,7 @@ export class TabsPage {
         
         this.selectedbus = navParams.get("selectedbus");
         this.selectedline = navParams.get("selectedline");       
-        this.serverIP= navParams.get("URL");
+        this.serverURL = navParams.get("URL");
         
         this.getStoplist();
         this.getRoute();
@@ -58,7 +60,7 @@ export class TabsPage {
      * EN: gets the stoplist from the server and removes stops which do not belong to the line
      */ 
     getStoplist() {
-        this.lists.getStops(this.serverIP).subscribe(
+        this.lists.getStops(this.serverURL).subscribe(
             data => {
                 this.stoplist = data.json();
                 for ( let index = 0; index < this.stoplist.length; index++) { 
@@ -80,7 +82,7 @@ export class TabsPage {
      * EN: gets the routes from the server and removes routes which do not belong to the line
      */ 
     getRoute(){
-        this.lists.getRoutes(this.serverIP).subscribe(
+        this.lists.getRoutes(this.serverURL).subscribe(
             data => {
                 this.route = data.json();
                 console.log("jetzt wird die Route geladen:",this.selectedline.id-1);
@@ -108,7 +110,7 @@ export class TabsPage {
      * DE: Sendet die aktuelle Position, die Id des gewählten Busses und der Line und die Zeit an den Server
      * EN: sends the current position, the id of the selected bus and line and the time to the server
      */ 
-    sendCurrentStatus(serverIP) {
+    sendCurrentStatus() {
         Geolocation.getCurrentPosition().then((resp) => {
             let latitude = resp.coords.latitude;
             let longitude = resp.coords.longitude;
@@ -126,7 +128,7 @@ export class TabsPage {
                 "timeStamp": Date.now()
                 })
                 let senddata = new XMLHttpRequest();
-                senddata.open('POST',serverIP+"/currentbusStatus");
+                senddata.open('POST',this.serverURL+"/currentbusStatus");
                 senddata.setRequestHeader('Content-Type','application/json');
                 senddata.send(currentBusStatus)
                 console.log("Senden")

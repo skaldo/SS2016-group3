@@ -4,7 +4,7 @@ import {language, de, en} from "../../languages/languages";
 
 /*
   Created by ttmher
-  Edited by saskl and pardypaddy
+  Edited by saskl and pardypaddy and Charel92
 */
 
 @Page({
@@ -15,30 +15,33 @@ export class HomePage {
     private nav;
     private os;
     public buttontext;
-    public serverIP;
+    public serverURL;
 
     constructor(platform:Platform, nav:NavController) {
         this.platform = platform;
         this.nav = nav;
-        this.getMobileOperatingSystem();
-        this.buttontext = language.name;
-        this.serverIP== "http://localhost:3000";
+        this.serverURL = "http://localhost:3000";
         
+        this.getMobileOperatingSystem();
+        
+        this.buttontext = language.name;
+              
     }
 
     /**
-     * DE: Wechselt die GUI auf BusListPage 
-     * EN: switches the GUI on BusListPage
+     * DE: Wechselt die GUI auf BusListPage und übergibt die URL des Servers
+     * EN: switches the GUI on BusListPage and passes the url of the server
      */
-    navigate() {
-        
+    navigate() {   
         console.log("-> BusListPage");
-        this.nav.push(BusListPage, {URL: this.serverIP});
+        this.nav.push(BusListPage, {
+            URL: this.serverURL
+        });
     }
     
     /**
      * DE: Ändert die GUI-Sprache
-     * EN: changes the gui-language
+     * EN: changes the gui-language 
      */
     changeLanguage() {
         if (language === en) language = de; else language = en;
