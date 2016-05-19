@@ -15,9 +15,9 @@ addons:
    - g++-4.8
 cache:
   directories:
-  - BusDriveApp/node_modules
-  - BusDriveApp/platforms
-  - BusDriveApp/plugins
+   - BusDriveApp/node_modules
+   - BusDriveApp/platforms
+   - BusDriveApp/plugins
 before_install:
  - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
  cd BusDriveApp
