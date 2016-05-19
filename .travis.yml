@@ -2,25 +2,34 @@ language: node_js
 node_js: 4
 env:
   - CXX=g++-4.8
+  matrix:
+    - JOB=unit
+    - JOB=lint
+    - JOB=build-web
 addons:
  apt:
   sources:
    - ubuntu-toolchain-r-test
   packages:
    - g++-4.8
+cache:
+  directories:
+  - BusDriveApp/node_modules
+
 before_install:
  cd BusDriveApp
 install:
- - npm install -g karma
- - npm install -g jasmine
- #- npm install -g cordova
- #- npm install -g ionic@beta
-before_script:
-  - npm install -g gulp
+ - npm install karma
+ - npm install jasmine
+ - npm install cordova
+ - npm install ionic@beta
+ - npm install gulp
+  
 script: 
- - gulp test
- #-karma.conf.js
-
+ - ../scripts/build_travis.sh
+ 
+after_script:
+ - cat ./test/reports/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 after_success:
  - coveralls
 deploy:
