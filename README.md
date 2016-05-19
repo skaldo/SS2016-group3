@@ -59,7 +59,7 @@ Please follow these steps:
     `json-serer -w object.json`
 	
 
-If everything is allredy installed
+If everything is already installed
 ---------------------------------------
-Just open "Start Server and Ionic.bat" from the main directory.
+Just open [Start Server and Ionic.bat](https://github.com/GSE-Project/SS2016-group3/blob/master/Start%20Server%20and%20Ionic.bat) from the main directory.
 It will start the mock server and the integrated web server for you.
