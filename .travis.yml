@@ -23,11 +23,12 @@ before_install:
 install:
  - cd BusDriveApp
  - npm install gulp
+ - npm install gulp-watch
  - npm install karma
  - npm install jasmine
  #- npm install cordova
- #- npm install ionic@beta
- #- npm install 
+ - npm install ionic@beta
+ - npm install 
 script: 
  - gulp test
 after_script:

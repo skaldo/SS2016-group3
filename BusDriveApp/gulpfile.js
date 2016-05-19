@@ -1,19 +1,11 @@
 var gulp = require('gulp'),
-    watch = require('gulp-watch'),
-    del = require('del'),
-    runSequence = require('run-sequence'),
-    argv = process.argv;
+var gulpWatch = require('gulp-watch'),
+var del = require('del'),
+var runSequence = require('run-sequence'),
+var argv = process.argv;
 var Server = require('karma').Server;
 
-/**
- * Run test once and exit
- */
-gulp.task('test', function (done) {
-  new Server({
-    configFile: __dirname + '/karma.conf.js',
-    singleRun: true
-  }, done).start();
-});
+
 
 /**
  * Ionic hooks
@@ -79,4 +71,14 @@ gulp.task('fonts', copyFonts);
 gulp.task('scripts', copyScripts);
 gulp.task('clean', function(){
   return del('www/build');
+});
+
+/**
+ * Run test once and exit
+ */
+gulp.task('test', function (done) {
+  new Server({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done).start();
 });
