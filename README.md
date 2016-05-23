@@ -26,6 +26,9 @@ Design documentation:
 - [Tracebility SF to Components](Doc/Architecture/System Functions to Components Traceability.pdf)
 - [Component diagram](Doc/Architecture/Architecture - Component Diagram.pdf)
 
+Quality Assurance:
+- [Sytem test cases](Doc/Quality Assurance/System test cases [RESULTS] .pdf)
+
 How to build the application
 ---------------------------------------
 
