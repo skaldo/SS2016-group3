@@ -24,6 +24,8 @@ install:
  - cd BusDriveApp
  - npm install gulp
  - npm install gulp-watch
+ - npm install del
+ - npm install runSequence
  - npm install karma
  - npm install jasmine
  #- npm install cordova
