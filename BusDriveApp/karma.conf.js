@@ -1,4 +1,4 @@
-// Karma configuration
+﻿// Karma configuration
 // Generated on Thu May 12 2016 11:12:41 GMT+0200 (Mitteleuropäische Sommerzeit)
 
 module.exports = function(config) {
@@ -16,7 +16,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'node_modules/angular2/bundles/angular2-polyfills.js', // 'Uncaught reflect-metadata shim is required when using class decorators'
-      // 'node_modules/traceur/bin/traceur-runtime.js',         // TypeError: undefined is not a constructor (evaluating 'new exports.Map()')
+      'node_modules/traceur/bin/traceur-runtime.js',         // TypeError: undefined is not a constructor (evaluating 'new exports.Map()')
       'test/**/*Spec.ts',
 	  'app/*.ts',
 	  'typings/browser.d.ts',
@@ -27,6 +27,7 @@ module.exports = function(config) {
     // list of files to exclude
     exclude: [
 	  'node_modules/angular2/**/*_spec.js',
+	  'node_modules/angular2/src/facade/collection.ts',
       'node_modules/ionic-angular/**/*spec*'
     ],
 
