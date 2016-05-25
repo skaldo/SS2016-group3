@@ -18,14 +18,14 @@ export class LineListPage {
     private linelist;
     private selectedbus;
     private serverURL;
-    
+    public lineName;
     public title;
 
     constructor(nav:NavController, navParams:NavParams, private lists:Lists) {
         this.nav = nav;
         this.selectedbus = navParams.get("selectedbus")
         this.serverURL = navParams.get("URL")
-                
+        this.lineName = language.lineName;
         this.title = language.lineTitle;
     }
 

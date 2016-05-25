@@ -14,13 +14,20 @@ This repository contains the source code of the BusDriveApp, used by the bus dri
 
 This app is used to track the bus and send its position to the server.
 
-The application is written in [TypeScript](https://github.com/Microsoft/TypeScript) utilizes the beta version of the cross-platform development framework [Ionic](https://github.com/driftyco/ionic/tree/2.0).
+The application is written in [TypeScript](https://github.com/Microsoft/TypeScript) and utilizes the beta version of the cross-platform development framework [Ionic](https://github.com/driftyco/ionic/tree/2.0).
+
+It uses also [MapTilerLayer](http://www.maptiler.com/maptilerlayer).
 
 Requirements documentation:
-- [Tracebility Matrix](https://github.com/GSE-Project/SS2016-group3/blob/master/Doc/tracebility%20matrix.pdf)
+- [Bürgerbus Concept](/Doc/Requirements/B%C3%BCrgerbus%20Concept%20Document.pdf)
+- [Tracebility Matrix](/Doc/Requirements/tracebility%20matrix.pdf)
 
 Design documentation: 
-- [Component diagram](https://github.com/GSE-Project/SS2016-group3/blob/master/Doc/Architecture%20-%20Component%20Diagram.pdf)
+- [Tracebility SF to Components](Doc/Architecture/System Functions to Components Traceability.pdf)
+- [Component diagram](Doc/Architecture/Architecture - Component Diagram.pdf)
+
+Quality Assurance:
+- [Sytem test cases](Doc/Quality Assurance/System test cases [RESULTS] .pdf)
 
 How to build the application
 ---------------------------------------
@@ -63,3 +70,5 @@ If everything is already installed
 ---------------------------------------
 Just open [Start Server and Ionic.bat](https://github.com/GSE-Project/SS2016-group3/blob/master/Start%20Server%20and%20Ionic.bat) from the main directory.
 It will start the mock server and the integrated web server for you.
+
+

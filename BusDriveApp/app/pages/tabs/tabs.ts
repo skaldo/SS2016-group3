@@ -1,4 +1,5 @@
-import {Page, NavParams} from 'ionic-angular';
+import {Page, Alert, NavController, NavParams} from 'ionic-angular';
+import {HomePage} from '../home/home';
 import {DrivePage} from '../drive/drive';
 import {MapPage} from '../map/map';
 import {StopsPage} from '../stops/stops';
@@ -17,6 +18,9 @@ import {language} from "../../languages/languages";
 })
 
 export class TabsPage {
+    private nav;
+    private intervalID;
+    
     private stoplist = [];
     private linestops = [];
     private route = [];
@@ -35,7 +39,8 @@ export class TabsPage {
     public drive;
     public stops;
 
-    constructor(navParams:NavParams, private lists:Lists) {
+    constructor(nav:NavController, navParams:NavParams, private lists:Lists) {
+        this.nav = nav;
         this.tab1Root = DrivePage;
         this.tab2Root = MapPage;
         this.tab3Root = StopsPage;
@@ -52,7 +57,7 @@ export class TabsPage {
         this.drive = language.driveTitle;
         this.stops = language.stopTitle;
                 
-        setInterval(this.sendCurrentStatus.bind(this), 15000)
+        this.intervalID = setInterval(this.sendCurrentStatus.bind(this), 15000)
     }
     
     /**
@@ -85,11 +90,11 @@ export class TabsPage {
         this.lists.getRoutes(this.serverURL).subscribe(
             data => {
                 this.route = data.json();
-                console.log("jetzt wird die Route geladen:",this.selectedline.id-1);
+                console.log("jetzt wird die Route geladen:",this.selectedline.id);
                 for (var index = 0; index < this.route[this.selectedline.id-1].gpsData.length; index++) { 
                     this.lineroute.push({
-                        lat: this.route[0].gpsData[index].latitude,
-                        lng: this.route[0].gpsData[index].longitude                       
+                        lat: this.route[this.selectedline.id-1].gpsData[index].latitude,
+                        lng: this.route[this.selectedline.id-1].gpsData[index].longitude                       
                     })    
                  } 
             },
@@ -106,7 +111,7 @@ export class TabsPage {
          this.rootParams = [this.linestops, this.lineroute]
     }
     
-     /**
+    /**
      * DE: Sendet die aktuelle Position, die Id des gewählten Busses und der Line und die Zeit an den Server
      * EN: sends the current position, the id of the selected bus and line and the time to the server
      */ 
@@ -135,7 +140,31 @@ export class TabsPage {
                 console.log("Latitude: ", latitude, "Longitude: ", longitude);
                 console.log("Bus: ", this.selectedbus.id, "Line: ", this.selectedline.id);
         });
-    }     
+    }
+    
+    /**
+     * alert when leaving, if you click "OK" GUI will change to HomePage and you will stop sending, if you click "Abbrechen" nothing will happen.
+     */
+    onPageWillLeave(){
+        let alert = Alert.create({
+        title: language.alertTitle,
+        buttons: [{
+                text: 'OK',
+                handler: () => {
+                    console.log('alert confirmed');
+                    this.nav.setRoot(HomePage);
+                    clearInterval(this.intervalID);
+                }
+            },
+            {
+                text: language.alertCancel,
+                handler: () => {
+                    console.log('alert aborted');
+                }
+            }]
+        });
+     this.nav.present(alert);   
+    }
 }
      
      
