@@ -23,32 +23,16 @@ before_install:
 install:
  - cd BusDriveApp
  - npm install -g gulp
-<<<<<<< HEAD
- #- npm install gulp-watch
- #- npm install del
- #- npm install karma
- #- npm install jasmine
- - npm install cordova
- - npm install ionic@beta
-=======
- #- npm install karma
- #- npm install jasmine
  - npm install -g cordova
  - npm install -g ionic@beta
->>>>>>> refs/remotes/origin/develop
  - npm install 
 script: 
  - gulp test #nur verkürzung von - ../scripts/travisbuilt.sh da gulp test dort auch ausgeführt wird
 after_script:
  - cat ./test/reports/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-<<<<<<< HEAD
 after_success:
  - coveralls
 deploy:
  skip_cleanup: true
-=======
-#after_success:
-# - coveralls
-#deploy:
-# skip_cleanup: true
->>>>>>> refs/remotes/origin/develop
+after_success:
+ - coveralls
