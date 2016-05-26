@@ -251,17 +251,49 @@
       ]
     }
   ],
-  "currentBusStatus": [
+  "updateBusStatus": [
     {
-      "bus_id": "1",
-      "line_id": "1",
-      "position": [
-        {
-          "longitude": "7.605135",
-          "latitude": "49.210998"
-        }
-      ],
-      "timeStamp": "number"
+      "busid": 1,
+      "lineid": 1,
+      "id": 1
+    }
+  ],
+  "realTimeData": [
+    {
+      "busid": 1,
+      "position": {
+        "type": "Point",
+        "coordinatates": [
+          7.6086912,
+          49.2105432
+        ]
+      },
+      "timeStamp": 1464224072062,
+      "id": 1
+    },
+    {
+      "busid": 1,
+      "position": {
+        "type": "Point",
+        "coordinatates": [
+          7.6086901,
+          49.2105421
+        ]
+      },
+      "timeStamp": 1464224605629,
+      "id": 2
+    },
+    {
+      "busid": 1,
+      "position": {
+        "type": "Point",
+        "coordinatates": [
+          7.608691599999999,
+          49.2105417
+        ]
+      },
+      "timeStamp": 1464224844590,
+      "id": 3
     }
   ],
   "routes": [
