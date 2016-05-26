@@ -30,6 +30,9 @@ export class TabsPage {
     private selectedbus;
     private selectedline;
     private serverURL;
+    
+    private lng = 0;
+    private lat = 0;
 
     private tab1Root;
     private tab2Root;
@@ -57,7 +60,7 @@ export class TabsPage {
         this.drive = language.driveTitle;
         this.stops = language.stopTitle;
 
-        this.intervalID = setInterval(this.sendrealTimeData.bind(this), 15000)
+        this.intervalID = setInterval(this.sendrealTimeData.bind(this), 10000)
         this.lists.postBusStatus(this.serverURL, this.selectedbus.id, this.selectedline.id)
 
     }
@@ -78,7 +81,7 @@ export class TabsPage {
                     }
                 }
             },
-            err => console.error(err),
+            err => console.error("getStops failed"),
             () => console.log('getStops completed')
         );
     }
@@ -98,7 +101,7 @@ export class TabsPage {
                     })
                 }
             },
-            err => console.error(err),
+            err => console.error("getRoute failed"),
             () => console.log('getRoute completed')
         );
     }
@@ -117,8 +120,33 @@ export class TabsPage {
         Geolocation.getCurrentPosition().then((resp) => {
             let latitude = resp.coords.latitude;
             let longitude = resp.coords.longitude;
-            this.lists.postRealTimeData(this.serverURL, this.selectedbus.id, longitude, latitude)
+            if((this.distance(this.lat,this.lng,latitude,longitude) > 75)) {
+                this.lists.postRealTimeData(this.serverURL, this.selectedbus.id, longitude, latitude)
+                this.lat = latitude;
+                this.lng = longitude;                       
+            }
         });
+    }
+    
+    /**
+     * calculates the distance between two points (given the latitude/longitude of those points)
+     * @param lat1, lon1 = Latitude and Longitude of point 1 (in decimal degrees)
+     * @param lat2, lon2 = Latitude and Longitude of point 2 (in decimal degrees)
+     * @returns distance between two points
+     */
+    distance(lat1, lng1, lat2, lng2) {
+	    let radlat1 = Math.PI * lat1/180
+	    let radlat2 = Math.PI * lat2/180
+	    let theta = lng1-lng2
+	    let radtheta = Math.PI * theta/180
+	    let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+	    dist = Math.acos(dist)
+	    dist = dist * 180/Math.PI
+	    dist = dist * 60 * 1.1515
+	    dist = dist * 1.609344
+        dist = dist * 1000;
+        console.log(dist);
+	return dist
     }
 
     /**
