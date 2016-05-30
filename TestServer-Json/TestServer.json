@@ -256,6 +256,16 @@
       "busid": 1,
       "lineid": 1,
       "id": 1
+    },
+    {
+      "lineid": 1,
+      "busid": 1,
+      "id": 2
+    },
+    {
+      "lineid": 1,
+      "busid": 1,
+      "id": 3
     }
   ],
   "realTimeData": [
@@ -294,6 +304,42 @@
       },
       "timeStamp": 1464224844590,
       "id": 3
+    },
+    {
+      "busid": 1,
+      "position": {
+        "type": "Point",
+        "coordinatates": [
+          7.6086716999999995,
+          49.2105384
+        ]
+      },
+      "timeStamp": 1464609945585,
+      "id": 4
+    },
+    {
+      "busid": 1,
+      "position": {
+        "type": "Point",
+        "coordinatates": [
+          7.6086662,
+          49.210540099999996
+        ]
+      },
+      "timeStamp": 1464610005375,
+      "id": 5
+    },
+    {
+      "busid": 1,
+      "position": {
+        "type": "Point",
+        "coordinatates": [
+          7.608664900000001,
+          49.2105397
+        ]
+      },
+      "timeStamp": 1464610077252,
+      "id": 6
     }
   ],
   "routes": [

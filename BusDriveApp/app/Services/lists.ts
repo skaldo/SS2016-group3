@@ -68,9 +68,7 @@ export class Lists {
         senddata.open('POST', serverURL + "/realTimeData");
         senddata.setRequestHeader('Content-Type', 'application/json');
         senddata.send(realTimeData)
-        console.log("Senden")
-        console.log("Latitude: ", latitude, "Longitude: ", longitude);
-        console.log("Bus: ", busID);
+        console.log("Senden: "+"Bus: "+ busID, " Latitude: "+ latitude, " Longitude: "+ longitude);
     }
 
     /**
@@ -89,7 +87,6 @@ export class Lists {
         senddata.open('POST', serverURL + "/updateBusStatus");
         senddata.setRequestHeader("Content-Type", "application/json");
         senddata.send(busStatus)
-        console.log("Senden")
-        console.log("Bus: ", busID, "Line: ", lineID);
+        console.log("Senden: "+"Bus: "+ busID, " Line: "+ lineID);
     }
 }

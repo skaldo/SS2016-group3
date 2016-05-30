@@ -30,9 +30,10 @@ export class TabsPage {
     private selectedbus;
     private selectedline;
     private serverURL;
-    
+
     private lng = 0;
     private lat = 0;
+    private lastSendTime = undefined;
 
     private tab1Root;
     private tab2Root;
@@ -42,7 +43,7 @@ export class TabsPage {
     public drive;
     public stops;
 
-    constructor(nav:NavController, navParams:NavParams, private lists:Lists) {
+    constructor(nav: NavController, navParams: NavParams, private lists: Lists) {
         this.nav = nav;
         this.tab1Root = DrivePage;
         this.tab2Root = MapPage;
@@ -60,7 +61,7 @@ export class TabsPage {
         this.drive = language.driveTitle;
         this.stops = language.stopTitle;
 
-        this.intervalID = setInterval(this.sendrealTimeData.bind(this), 10000)
+        this.intervalID = setInterval(this.sendrealTimeData.bind(this), 5000)
         this.lists.postBusStatus(this.serverURL, this.selectedbus.id, this.selectedline.id)
 
     }
@@ -117,17 +118,21 @@ export class TabsPage {
      * sends the current position, the id of the selected bus and the time to the server
      */
     sendrealTimeData() {
+        let currenTime = undefined;
         Geolocation.getCurrentPosition().then((resp) => {
             let latitude = resp.coords.latitude;
             let longitude = resp.coords.longitude;
-            if((this.distance(this.lat,this.lng,latitude,longitude) > 75)) {
+            if ((this.distance(this.lat, this.lng, latitude, longitude) > 75) || (currenTime - this.lastSendTime > 56000)) {
                 this.lists.postRealTimeData(this.serverURL, this.selectedbus.id, longitude, latitude)
                 this.lat = latitude;
-                this.lng = longitude;                       
+                this.lng = longitude;
+                this.lastSendTime = new Date();
             }
         });
+        currenTime = new Date();
+        console.log("passed time after last send: " + (currenTime - this.lastSendTime));
     }
-    
+
     /**
      * calculates the distance between two points (given the latitude/longitude of those points)
      * @param lat1, lon1 = Latitude and Longitude of point 1 (in decimal degrees)
@@ -135,18 +140,18 @@ export class TabsPage {
      * @returns distance between two points
      */
     distance(lat1, lng1, lat2, lng2) {
-	    let radlat1 = Math.PI * lat1/180
-	    let radlat2 = Math.PI * lat2/180
-	    let theta = lng1-lng2
-	    let radtheta = Math.PI * theta/180
-	    let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-	    dist = Math.acos(dist)
-	    dist = dist * 180/Math.PI
-	    dist = dist * 60 * 1.1515
-	    dist = dist * 1.609344
+        let radlat1 = Math.PI * lat1 / 180;
+        let radlat2 = Math.PI * lat2 / 180;
+        let theta = lng1 - lng2;
+        let radtheta = Math.PI * theta / 180;
+        let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        dist = Math.acos(dist);
+        dist = dist * 180 / Math.PI;
+        dist = dist * 60 * 1.1515;
+        dist = dist * 1.609344;
         dist = dist * 1000;
-        console.log(dist);
-	return dist
+        console.log("distance: " + dist);
+        return dist
     }
 
     /**
@@ -173,6 +178,3 @@ export class TabsPage {
         this.nav.present(alert);
     }
 }
-     
-     
-   
