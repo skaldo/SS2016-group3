@@ -1,22 +1,17 @@
-<ion-navbar *navbar>
+<ion-navbar primary *navbar>
   <button menuToggle>
     <ion-icon name="menu"></ion-icon>
   </button>
   <ion-title>Settings</ion-title>
 </ion-navbar>
 
-<ion-content padding class="getting-started">
-
-  <h3>Welcome to your first Ionic app!</h3>
-
-  <p>
-    This starter project is our way of helping you get a functional app running in record time.
-  </p>
-  <p>
-    Follow along on the tutorial section of the Ionic docs!
-  </p>
-  <p>
-    <button primary menuToggle>Toggle Menu</button>
-  </p>
-
+<ion-content padding class="setting">
+  <div class="spacer" style="width: 283px; height: 50px;"></div>
+  <ion-item>
+    <ion-label>Server IP: </ion-label>
+    <ion-input [(ngModel)]="serverURL" type="url" id="serverURL" placeholder="http://localhost:3000"></ion-input>
+  </ion-item>
+  <button (click)="setServerURL(serverURL)">Set data</button>
+  <div class="spacer" style="width: 283px; height: 50px;"></div>
+  <button class="languageButton" (click)="changeLanguage()"> {{buttontext}} </button>
 </ion-content>

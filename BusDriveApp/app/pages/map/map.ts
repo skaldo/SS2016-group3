@@ -13,8 +13,7 @@ import {Lists} from '../../Services/lists';
 
 @Page({
     templateUrl: 'build/pages/map/map.html',
-    directives: [Map],
-    providers: [Lists]
+    directives: [Map]
 })
 
 export class MapPage {
@@ -28,7 +27,7 @@ export class MapPage {
         this.LineStops = navParams.data[0];
         this.LineRoute = navParams.data[1];
         this.title = language.mapTitle;
-        setTimeout(this.showLine.bind(this),2000);
+        setTimeout(this.showLine.bind(this),1500);
     }
     
     /**

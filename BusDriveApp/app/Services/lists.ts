@@ -22,7 +22,7 @@ export class Lists {
     
     /**
      * @param serverURL URL of the Server
-     * @returns JSN of lines
+     * @returns JSON of lines
      */
     getLines(serverURL) {
         let lines = this.http.get(serverURL + "/lines");

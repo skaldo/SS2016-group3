@@ -13,8 +13,7 @@ import {language} from "../../languages/languages";
  */
 
 @Page({
-    templateUrl: 'build/pages/tabs/tabs.html',
-    providers: [Lists]
+    templateUrl: 'build/pages/tabs/tabs.html'
 })
 
 export class TabsPage {

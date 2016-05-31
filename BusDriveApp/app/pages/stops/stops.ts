@@ -9,7 +9,6 @@ import {Lists} from '../../Services/lists';
 
 @Page({
   templateUrl: 'build/pages/stops/stops.html',
-  providers: [Lists]
 })
 
 export class StopsPage {
