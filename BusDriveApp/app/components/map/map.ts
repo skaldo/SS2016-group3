@@ -1,4 +1,4 @@
-import {Component, ElementRef, AfterViewInit} from 'angular2/core';
+import {Component, ElementRef, AfterViewInit} from '@angular/core';
 import {Geolocation} from 'ionic-native';
 
 @Component({

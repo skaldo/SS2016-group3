@@ -1,6 +1,6 @@
 import {Page, NavParams} from 'ionic-angular';
 import {Geolocation} from 'ionic-native';
-import {ViewChild} from  'angular2/core';
+import {ViewChild} from  '@angular/core';
 import {Map} from '../../components/map/map';
 import {language} from "../../languages/languages";
 import {Lists} from '../../Services/lists';
@@ -28,10 +28,11 @@ export class MapPage {
         this.LineStops = navParams.data[0];
         this.LineRoute = navParams.data[1];
         this.title = language.mapTitle;
+        setTimeout(this.showLine.bind(this),2000);
     }
     
     /**
-     * after the button is clicked the line ( stops and route ) will be shown on the map 
+     * shows the line ( stops and route ) on the map 
      */
     showLine() {
         this.map.loadRoute(this.LineRoute);
