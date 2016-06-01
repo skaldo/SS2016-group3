@@ -94,12 +94,13 @@ export class TabsPage {
             data => {
                 this.route = data["routes"];
                 console.log("jetzt wird die Route geladen:", this.selectedline.id);
-                for (var index = 0; index < this.route[this.selectedline.id - 1].gpsData.length; index++) {
+                for (var index = 0; index < this.route[this.selectedline.id - 1].route.coordinates.length; index++) {
                     this.lineroute.push({
-                        lat: this.route[this.selectedline.id - 1].gpsData[index].latitude,
-                        lng: this.route[this.selectedline.id - 1].gpsData[index].longitude
+                        lat: this.route[this.selectedline.id - 1].route.coordinates[index][1],
+                        lng: this.route[this.selectedline.id - 1].route.coordinates[index][0]
                     })
                 }
+                console.log("Länge"+this.lineroute.length)
             },
             err => console.error("getRoute failed"),
             () => console.log('getRoute completed')
