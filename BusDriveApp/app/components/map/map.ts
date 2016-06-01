@@ -70,10 +70,11 @@ export class Map implements AfterViewInit {
      */
     loadStops(Stops) {
         for (var index = 0; index < Stops.length; index++) {
-            let stopLatLng = new google.maps.LatLng(Stops[index].location.latitude, Stops[index].location.longitude);
+            let stopLatLng = new google.maps.LatLng(Stops[index].location.coordinates[1], Stops[index].location.coordinates[0]);
             let stopmarker = new google.maps.Marker({
                 position: stopLatLng,
                 map: this.map,
+                label: Stops[index].name
             });
         };
     }
