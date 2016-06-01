@@ -2,8 +2,8 @@ import {Page, NavParams} from 'ionic-angular';
 import {Geolocation} from 'ionic-native';
 import {ViewChild} from  '@angular/core';
 import {Map} from '../../components/map/map';
-import {language} from "../../languages/languages";
-import {Lists} from '../../Services/lists';
+import {language} from "../../components/languages/languages";
+import {Lists} from '../../components/Services/lists';
 
 
 /*

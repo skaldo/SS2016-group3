@@ -4,8 +4,8 @@ import {DrivePage} from '../drive/drive';
 import {MapPage} from '../map/map';
 import {StopsPage} from '../stops/stops';
 import {Geolocation} from 'ionic-native';
-import {Lists} from '../../Services/lists';
-import {language} from "../../languages/languages";
+import {Lists} from '../../components/Services/lists';
+import {language} from "../../components/languages/languages";
 
 /*
  Created by ttmher

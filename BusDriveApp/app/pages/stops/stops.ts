@@ -1,6 +1,6 @@
 import {Page, NavParams, Platform} from 'ionic-angular';
-import {language} from "../../languages/languages";
-import {Lists} from '../../Services/lists';
+import {language} from "../../components/languages/languages";
+import {Lists} from '../../components/Services/lists';
 
 /*
   Created by ttmher
