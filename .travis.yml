@@ -24,7 +24,9 @@ install:
  - npm install -g gulp
  - npm install -g cordova
  - npm install -g ionic@beta
- - npm install 
+ - npm install
+after_install:
+ - cd BusDriveApp 
 script: 
  - gulp test #nur verkürzung von - ../scripts/travisbuilt.sh da gulp test dort auch ausgeführt wird
 after_script:
