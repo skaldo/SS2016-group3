@@ -44,7 +44,7 @@ export class HomePage {
         else if (userAgent.match(/Android/i)) {
             this.os = 'Android';
         }
-        else {
+        else{
             this.os = 'unknown';
         }
         console.log("os detected: ", this.os);
