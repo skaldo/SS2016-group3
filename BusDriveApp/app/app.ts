@@ -2,8 +2,8 @@ import {App, Platform, MenuController, Nav} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {ViewChild} from '@angular/core';
 import {HomePage} from './pages/home/home';
-import {SettingPage} from './setting/setting';
-import {Lists} from './Services/lists';
+import {SettingPage} from './components/setting/setting';
+import {Lists} from './components/Services/lists';
 
 @App({
   templateUrl: 'build/app.html',
@@ -20,8 +20,9 @@ export class MyApp {
   constructor(private platform: Platform, private menu: MenuController) {
     this.initializeApp();
     this.pages = [
-      { title: 'BusDriveApp', component: HomePage, icon: 'cube' },
-      { title: 'Settings', component: SettingPage, icon: 'settings' }
+      { title: 'Tour', component: HomePage, icon: 'bus' },
+      { title: 'Settings', component: SettingPage, icon: 'settings' },
+      { title: 'About', component: SettingPage, icon: 'alert' }
     ];
   }
 

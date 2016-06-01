@@ -1,7 +1,7 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
 import {TabsPage} from '../tabs/tabs';
-import {Lists} from '../../Services/lists';
-import {language} from "../../languages/languages";
+import {Lists} from '../../components/Services/lists';
+import {language} from "../../components/languages/languages";
 
 /*
   Created by ttmher

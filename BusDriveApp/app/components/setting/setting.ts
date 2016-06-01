@@ -6,7 +6,7 @@ import {language, de, en} from "../languages/languages";
  */
 
 @Page({
-  templateUrl: 'build/setting/setting.html'
+  templateUrl: 'build/components//setting/setting.html'
 })
 
 export class SettingPage {

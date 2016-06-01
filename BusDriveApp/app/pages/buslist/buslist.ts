@@ -1,8 +1,8 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
 import {LineListPage} from '../linelist/linelist';
-import {Lists} from '../../Services/lists';
-import {SettingPage} from '../../setting/setting';
-import {language} from "../../languages/languages";
+import {Lists} from '../../components/Services/lists';
+import {SettingPage} from '../../components/setting/setting';
+import {language} from "../../components/languages/languages";
 
 /*
   Created by ttmher

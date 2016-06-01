@@ -1,5 +1,5 @@
 import {Page} from 'ionic-angular';
-import {language} from "../../languages/languages";
+import {language} from "../../components/languages/languages";
 
 /*
   Created by ttmher
