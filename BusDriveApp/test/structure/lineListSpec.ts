@@ -1,4 +1,4 @@
-import {LineListPage} from '../../app/pages/linelist/linelist';
+import {LineListPage} from '../../app/pages/linelist/linelist.ts';
 /**
   Created by Erik
   LineListPage tests

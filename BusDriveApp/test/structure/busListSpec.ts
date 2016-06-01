@@ -1,4 +1,4 @@
-import {BusListPage} from '../../app/pages/buslist/buslist';
+import {BusListPage} from '../../app/pages/buslist/buslist.ts';
 /**
   Created by Oliver
   Edited by Erik
