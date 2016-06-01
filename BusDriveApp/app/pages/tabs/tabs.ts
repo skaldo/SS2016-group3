@@ -69,9 +69,9 @@ export class TabsPage {
      * gets the stoplist from the server and removes stops which do not belong to the line
      */
     getStoplist() {
-        this.lists.getStops(this.serverURL).subscribe(
+        this.lists.getStops(this.serverURL).map(res => res.json()).subscribe(
             data => {
-                this.stoplist = data.json();
+                this.stoplist = data["stops"];
                 for (let index = 0; index < this.stoplist.length; index++) {
                     for (let jndex = 0; jndex < this.stoplist[index].lines.length; jndex++) {
                         if (this.selectedline.id === this.stoplist[index].lines[jndex]) {
@@ -90,9 +90,9 @@ export class TabsPage {
      * gets the routes from the server and removes routes which do not belong to the line
      */
     getRoute() {
-        this.lists.getRoutes(this.serverURL).subscribe(
+        this.lists.getRoutes(this.serverURL).map(res => res.json()).subscribe(
             data => {
-                this.route = data.json();
+                this.route = data["routes"];
                 console.log("jetzt wird die Route geladen:", this.selectedline.id);
                 for (var index = 0; index < this.route[this.selectedline.id - 1].gpsData.length; index++) {
                     this.lineroute.push({
