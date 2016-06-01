@@ -34,5 +34,3 @@ after_success:
  - coveralls
 deploy:
  skip_cleanup: true
-after_success:
- - coveralls

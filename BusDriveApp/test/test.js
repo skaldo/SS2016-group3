@@ -1,11 +1,11 @@
 var path = require('path'),
   karma = require('karma').server,
-  tsLint = require('gulp-tslint');
+ // tsLint = require('gulp-tslint'); keine ahnung was dat is.
 
 module.exports = {
   karma: function (done) {
     karma.start({
-      configFile: path.resolve('test/karma.config.js'),
+      configFile: path.resolve('../karma.config.js'),
       singleRun: true
     }, function (exitCode) {
       done(exitCode);
@@ -13,9 +13,9 @@ module.exports = {
   },
   karmaDebug: function (done) {
     karma.start({
-      configFile: path.resolve('test/karma.config.js'),
+      configFile: path.resolve('../karma.config.js'),
       singleRun: false,
-      browsers: ['Chrome']
+      browsers: ['PhantomJS']
     }, function (exitCode) {
       done(exitCode);
     })
