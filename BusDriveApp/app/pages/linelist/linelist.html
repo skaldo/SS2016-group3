@@ -6,7 +6,7 @@
 
 <ion-content class="linelist">
     <ion-list>
-        <ion-item ion-item *ngFor="#item of linelist" (click)="navigate(item)"> 
+        <ion-item ion-item *ngFor="let item of linelist" (click)="navigate(item)"> 
             <ion-thumbnail item-left>
                 <ion-icon name="git-compare" style="font-size:90px" ></ion-icon>
             </ion-thumbnail>

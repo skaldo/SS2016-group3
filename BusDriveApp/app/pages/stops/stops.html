@@ -7,7 +7,7 @@
 
 <ion-content class="stops">
     <ion-list>
-        <ion-item ion-item *ngFor="#item of LineStops" > 
+        <ion-item ion-item *ngFor="let item of LineStops" > 
             <h2>{{item.name.toString()}}</h2>           
         </ion-item>
     </ion-list>

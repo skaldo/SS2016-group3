@@ -9,8 +9,7 @@ import {language} from "../../languages/languages";
 */
 
 @Page({
-    templateUrl: 'build/pages/linelist/linelist.html',
-    providers: [Lists]
+    templateUrl: 'build/pages/linelist/linelist.html'
 })
 
 export class LineListPage {

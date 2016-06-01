@@ -63,7 +63,7 @@ Please follow these steps:
 
 3) Open a command line in the directory where your json-data is saved and start the server
 
-    `json-serer -w object.json`
+    `json-serer -w TestServer.json`
 	
 
 If everything is already installed

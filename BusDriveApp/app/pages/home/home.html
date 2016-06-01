@@ -1,8 +1,11 @@
+<ion-navbar primary *navbar>
+  <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>BusDriveApp</ion-title>
+</ion-navbar>
+
 <ion-content class="home" padding>
-    <ion-item>
-        <ion-label>Server IP: </ion-label>
-        <ion-input [(ngModel)]="serverURL" type="url" id="serverURL" placeholder="http://localhost:3000">http</ion-input>
-    </ion-item>
     <div class="spacer" style="width: 283px; height: 75px;"></div>
     <div>
         <img src="img/dd.png" width="80%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
@@ -10,6 +13,4 @@
     <div class="spacer" style="width: 283px; height: 100px;"></div>
     <button large class="button button-block" (click)="navigate()">Start App</button>
     <div class="spacer" style="width: 283px; height: 50px;"></div>
-    <button class="languageButton" (click)="changeLanguage()"> {{buttontext}} </button>
-
 </ion-content>

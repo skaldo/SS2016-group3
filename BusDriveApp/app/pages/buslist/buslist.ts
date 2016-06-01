@@ -1,6 +1,7 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
 import {LineListPage} from '../linelist/linelist';
 import {Lists} from '../../Services/lists';
+import {SettingPage} from '../../setting/setting';
 import {language} from "../../languages/languages";
 
 /*
@@ -9,8 +10,7 @@ import {language} from "../../languages/languages";
 */
 
 @Page({
-    templateUrl: 'build/pages/buslist/buslist.html',
-    providers: [Lists]
+    templateUrl: 'build/pages/buslist/buslist.html'
 })
 
 export class BusListPage {
@@ -21,9 +21,9 @@ export class BusListPage {
     public numberplate;
     public title
 
-    constructor(nav:NavController, navParams:NavParams, private lists:Lists) {
+    constructor(nav:NavController, navParams:NavParams, private lists:Lists, private setting:SettingPage) {
         this.nav = nav;             
-        this.serverURL = navParams.get("URL");
+        this.serverURL = setting.getServerURL();
         
         this.numberplate = language.numberplate;
         this.title = language.chooseBus;

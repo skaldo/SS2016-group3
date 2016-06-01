@@ -6,7 +6,7 @@
 
 <ion-content class="buslist">
     <ion-list>
-        <ion-item ion-item *ngFor="#item of buslist" (click)="navigate(item)"> 
+        <ion-item ion-item *ngFor="let item of buslist" (click)="navigate(item)"> 
             <ion-thumbnail item-left>
                 <ion-icon name="bus" style="font-size:100px" ></ion-icon>
             </ion-thumbnail>

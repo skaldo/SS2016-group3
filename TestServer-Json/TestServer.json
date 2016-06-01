@@ -251,19 +251,14 @@
       ]
     }
   ],
-  "currentBusStatus": [
+  "updateBusStatus": [
     {
-      "bus_id": "1",
-      "line_id": "1",
-      "position": [
-        {
-          "longitude": "7.605135",
-          "latitude": "49.210998"
-        }
-      ],
-      "timeStamp": "number"
+      "lineid": 1,
+      "busid": 1,
+      "id": 1
     }
   ],
+  "realTimeData": [],
   "routes": [
     {
       "id": 1,
