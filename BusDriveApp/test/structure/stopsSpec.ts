@@ -12,7 +12,7 @@ describe("tests for the StopsPage",function(){
 	/** This test is testing if the Stops are correct*/
 	it("testing the creation of the list",function(){
 
-		expect(testDrivePage.counter).toBe(1);
+		expect(testStopsPage.counter).toBe(1);
 
 	});
 });

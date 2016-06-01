@@ -1,4 +1,5 @@
 import {LineListPage} from '../../app/pages/linelist/linelist.ts';
+import {BusListPage} from '../../app/pages/buslist/buslist.ts';
 /**
   Created by Erik
   LineListPage tests
@@ -6,13 +7,13 @@ import {LineListPage} from '../../app/pages/linelist/linelist.ts';
 
 describe("tests for the LineListPage",function(){
 
-	let testLineListPage = new LineListPage();
-    let testBuslistPage = new BusListPage();
+	var testLineListPage = new LineListPage(); // Probleme mit dem Contructor
+    var testBuslistPage = new BusListPage();
+	var testLinelist = testLineListPage.getLinelist();
 	
 	it("testing the getLinelist() function",function(){
 		
-		let testLinelist = testLinelistPage.getLinelist();
-		let actualLinelist = [
+		var actualLinelist = [
 			{
 			  "id": 1,
 			  "name": "Dorftour",
@@ -50,7 +51,7 @@ describe("tests for the LineListPage",function(){
 	});
 	
 	it('testing the busnavigate function',function(){
-		bus={
+		var bus={
 			  "id": 1,
 			  "numberPlate": "KL-AB345",
 			  "color": "green",
