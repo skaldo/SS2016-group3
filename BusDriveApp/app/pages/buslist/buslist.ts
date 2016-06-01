@@ -34,9 +34,9 @@ export class BusListPage {
      * EN: gets the buslist from the server
      */
     getBuslist() {
-        this.lists.getBusses(this.serverURL).subscribe(
+        this.lists.getBusses(this.serverURL).map(res => res.json()).subscribe(
             data => {
-                this.buslist = data.json();
+                this.buslist = data["busses"];
             },
             err => console.error('getBusses fehlgeschlagen/ getBusses failed'),
             () => console.log('getBusses abgeschlossen/ getBusses completed')

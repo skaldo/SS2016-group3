@@ -33,9 +33,9 @@ export class LineListPage {
      * EN: gets the linelist from the server
      */
     getLinelist() {
-        this.lists.getLines(this.serverURL).subscribe(
+        this.lists.getLines(this.serverURL).map(res => res.json()).subscribe(
             data => {
-                this.linelist = data.json();
+                this.linelist = data["lines"];
             },
             err => console.error('getLines fehlgeschlagen/ getLines failed'),
             () => console.log('getLines abgeschlossen/ getLines completed')
