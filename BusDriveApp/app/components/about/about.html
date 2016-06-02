@@ -1,0 +1,71 @@
+<ion-navbar primary *navbar>
+    <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+    <ion-title>About</ion-title>
+</ion-navbar>
+
+<ion-content class="about">
+    <ion-list>
+        <ion-item>
+            <div class="platform"> Sie finden uns auf </div>
+            <ion-card>
+                <ion-list>
+                    <button ion-item (click)="openFacebook('DigitaleDoerfer')">
+                        <ion-icon name="logo-facebook" item-left></ion-icon>
+                            Facebook
+                    </button>
+                    <button ion-item (click)="openTwitter('twitter.com/digitaledoerfer')">
+                        <ion-icon name="logo-twitter" item-left></ion-icon>
+                            Twitter
+                    </button>
+                    <button ion-item (click)="openYouTube('UC2z1kArBgoEwZ1I0oRfzt8Q')">
+                        <ion-icon name="logo-youtube" item-left></ion-icon>
+                            YouTube
+                    </button>
+                    <button ion-item (click)="openURL('http://www.digitale-doerfer.de')">
+                        <ion-icon name="logo-chrome" item-left></ion-icon>
+                            Internet
+                    </button>
+                </ion-list>
+            </ion-card>
+        </ion-item>
+        <ion-item>
+            <div class="version"> Ihre Meinung </div>
+            <ion-card>
+                <button ion-item (click)="mailto('steffen.hess@iese.fraunhofer.de')">
+                        <ion-icon name="mail" item-left></ion-icon>
+                            Feedback an DigitaleDörfer
+                </button>
+            </ion-card>
+        </ion-item>
+        <ion-item>
+            <div class="platform"> Rechtliches </div>
+            <ion-card>
+                <ion-list>
+                    <button ion-item (click)="openURL('http://www.digitale-doerfer.de/impressum')">
+                        <ion-icon name="information" item-left></ion-icon>
+                            Impressum
+                    </button>
+                    <button ion-item (click)="openURL('http://www.digitale-doerfer.de/datenschutzerklaerung')">
+                        <ion-icon name="information" item-left></ion-icon>
+                            Datenschutzerklaerung
+                    </button>
+                    <button ion-item (click)="openLicense()">
+                        <ion-icon name="information" item-left></ion-icon>
+                            Lizenzen
+                    </button>
+                </ion-list>
+            </ion-card>
+        </ion-item>
+        <ion-item>
+            <div class="version"> Versionsinformationen </div>
+            <ion-card>
+                <button ion-item>
+                        <ion-icon name="apps" item-left></ion-icon>
+                            BusDriveApp 0.2.5
+                    </button>
+            </ion-card>
+        </ion-item>
+    </ion-list>
+</ion-content>

@@ -5,13 +5,32 @@
   <ion-title>Settings</ion-title>
 </ion-navbar>
 
-<ion-content padding class="setting">
-  <div class="spacer" style="width: 283px; height: 50px;"></div>
-  <ion-item>
-    <ion-label>Server IP: </ion-label>
-    <ion-input [(ngModel)]="serverURL" type="url" id="serverURL" placeholder="http://localhost:3000"></ion-input>
-  </ion-item>
-  <button (click)="setServerURL(serverURL)">Set data</button>
-  <div class="spacer" style="width: 283px; height: 50px;"></div>
-  <button class="languageButton" (click)="changeLanguage()"> {{buttontext}} </button>
-</ion-content>
+<ion-content>  
+<ion-list>
+    <ion-item>
+      <ion-label>Sprache</ion-label>
+      <ion-select [(ngModel)]="lang">
+        <ion-option (click)="changeLanguage(en)">English</ion-option>
+        <ion-option (click)="changeLanguage(de)">Deutsch</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>ServerURL</ion-label>
+      <ion-select [(ngModel)]="lang">
+        <ion-option value="eng">English</ion-option>
+        <ion-option value="ger">Deutsch</ion-option>
+      </ion-select>
+    </ion-item>
+ </ion-list>
+
+
+
+
+
+</ion-content>  
+<button class="languageButton" (click)="changeLanguage()"> {{buttontext}} </button>
+   <ion-item>
+    <ion-label>New Server URL: </ion-label>
+    <ion-input [(ngModel)]="serverURL" type="url" id="serverURL" >{{serverURL}}</ion-input>
+  </ion-item>     
+   <button (click)="setServerURL(serverURL)">Set data</button>

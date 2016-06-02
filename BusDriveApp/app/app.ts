@@ -2,8 +2,9 @@ import {App, Platform, MenuController, Nav} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {ViewChild} from '@angular/core';
 import {HomePage} from './pages/home/home';
-import {SettingPage} from './components/setting/setting';
 import {Lists} from './components/Services/lists';
+import {SettingPage} from './components/setting/setting';
+import {AboutPage} from './components/about/about';
 
 @App({
   templateUrl: 'build/app.html',
@@ -22,7 +23,7 @@ export class MyApp {
     this.pages = [
       { title: 'Tour', component: HomePage, icon: 'bus' },
       { title: 'Settings', component: SettingPage, icon: 'settings' },
-      { title: 'About', component: SettingPage, icon: 'alert' }
+      { title: 'About', component: AboutPage, icon: 'alert' }
     ];
   }
 
@@ -41,5 +42,9 @@ export class MyApp {
   openPage(page) {
     this.menu.close();
     this.nav.setRoot(page.component);
+  }
+
+  exit() {
+    this.platform.exitApp()
   }
 }

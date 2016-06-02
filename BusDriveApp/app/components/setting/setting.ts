@@ -16,10 +16,9 @@ export class SettingPage {
   public settings; //: Storage;
 
   constructor() {
-    this.serverURL = "http://localhost:3000";
     this.buttontext = language.name;
-
     this.settings = window.localStorage; // new Storage(LocalStorage) 
+    this.serverURL = this.getServerURL();
   }
 
   /**
@@ -27,7 +26,8 @@ export class SettingPage {
    * @param URL url of the server
    */
   setServerURL(URL) {
-    this.settings.setItem('serverURL', URL);
+    this.settings.setItem("serverURL", URL);
+    console.log("set new server url: "+this.serverURL);
   }
 
   /**
