@@ -57,7 +57,7 @@ export class Lists {
     postRealTimeData(serverURL, busID, longitude, latitude) {
         let realTimeData = JSON.stringify(
             {
-                "busid": busID,
+                "busId": busID,
                 "position": {
                     "type": "Point",
                     "coordinatates": [longitude, latitude]
@@ -80,8 +80,8 @@ export class Lists {
     postBusStatus(serverURL, busID, lineID) {
         let busStatus = JSON.stringify(
             {
-                "lineid": lineID,
-                "busid": busID
+                "lineId": lineID,
+                "busId": busID
             })
         let senddata = new XMLHttpRequest();
         senddata.open('POST', serverURL + "/updateBusStatus");
