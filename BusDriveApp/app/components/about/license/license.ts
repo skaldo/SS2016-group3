@@ -1,4 +1,4 @@
-import {Page, NavController, Platform} from 'ionic-angular';
+import {Page, NavController, MenuController, Platform} from 'ionic-angular';
 import {language} from "../../../components/languages/languages";
 
 /*
@@ -12,7 +12,8 @@ import {language} from "../../../components/languages/languages";
 export class LicensePage {
   private nav;
 
-  constructor(nav: NavController) {
+  constructor(nav: NavController, private menu: MenuController) {
     this.nav = nav;
+    this.menu.swipeEnable(false);
   }
 }

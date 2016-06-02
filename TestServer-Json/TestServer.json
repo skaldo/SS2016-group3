@@ -43,7 +43,9 @@
         "id": 1,
         "name": "Kirche",
         "lines": [
-          1
+          {
+            "id": 1
+          }
         ],
         "location": {
           "type": "Point",
@@ -71,7 +73,9 @@
         "id": 2,
         "name": "Brunnen",
         "lines": [
-          1
+          {
+            "id": 1
+          }
         ],
         "location": {
           "type": "Point",
@@ -99,7 +103,9 @@
         "id": 3,
         "name": "Park",
         "lines": [
-          1
+          {
+            "id": 1
+          }
         ],
         "location": {
           "type": "Point",
@@ -127,7 +133,9 @@
         "id": 4,
         "name": "Markt",
         "lines": [
-          1
+          {
+            "id": 1
+          }
         ],
         "location": {
           "type": "Point",
@@ -155,7 +163,9 @@
         "id": 5,
         "name": "Uni West",
         "lines": [
-          2
+          {
+            "id": 2
+          }
         ],
         "location": {
           "type": "Point",
@@ -183,7 +193,9 @@
         "id": 6,
         "name": "Uni Süd",
         "lines": [
-          2
+          {
+            "id": 2
+          }
         ],
         "location": {
           "type": "Point",
@@ -211,7 +223,9 @@
         "id": 7,
         "name": "Uni Ost",
         "lines": [
-          2
+          {
+            "id": 2
+          }
         ],
         "location": {
           "type": "Point",
@@ -239,7 +253,9 @@
         "id": 8,
         "name": "Uni Sporthalle",
         "lines": [
-          2
+          {
+            "id": 2
+          }
         ],
         "location": {
           "type": "Point",
@@ -266,8 +282,8 @@
     ],
     "timestamp": 2
   },
-  "updateBusStatus": [],
-  "realTimeData": [],
+  "updateBusStatus": {},
+  "realTimeData": {},
   "routes": {
     "routes": [
       {

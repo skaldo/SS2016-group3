@@ -12,6 +12,7 @@ import {language, de, en} from "../languages/languages";
 export class SettingPage {
   public buttontext;
   public serverURL;
+  public lang;
 
   public settings; //: Storage;
 
@@ -19,6 +20,7 @@ export class SettingPage {
     this.buttontext = language.name;
     this.settings = window.localStorage; // new Storage(LocalStorage) 
     this.serverURL = this.getServerURL();
+    this.lang = this.getLanguage();
   }
 
   /**
@@ -27,21 +29,7 @@ export class SettingPage {
    */
   setServerURL(URL) {
     this.settings.setItem("serverURL", URL);
-    console.log("set new server url: "+this.serverURL);
-  }
-
-  /**
-   * changes the gui-language 
-   */
-  changeLanguage(lang) {
-    if(lang = "de"){
-      language = de;
-    }
-    else {
-      language = en;
-    }
-    this.buttontext = language.name;
-    console.log("ChangeLanguage:"+lang);
+    console.log("set new server url: " + this.serverURL);
   }
 
   /**
@@ -50,5 +38,37 @@ export class SettingPage {
   getServerURL() {
     return this.settings.getItem("serverURL")
     //.then((value) => {      let serverURL = JSON.stringify(value);      console.log(serverURL);      return serverURL;    })
+  }
+
+  /**
+   * sets the GUI input as GUI language
+   * @param URL url of the server
+   */
+  setLanguage(lang) {
+    this.settings.setItem("Language", lang);
+    console.log("set new language: " + this.lang);
+  }
+  
+  /**
+   * @retruns language of GUI
+   */
+  getLanguage() {
+    return this.settings.getItem("Language")
+  }
+
+  /**
+   * changes the gui-language 
+   */
+  changeLanguage(lang) {
+    if (lang === "en") {
+      language = en;
+      this.setLanguage(lang);
+    }
+    else {
+      language = de;
+      this.setLanguage(lang);
+    }
+    this.buttontext = language.name;
+    console.log("ChangeLanguage: " + lang);
   }
 }
