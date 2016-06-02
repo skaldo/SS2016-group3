@@ -1,4 +1,4 @@
-import {Page, NavController, NavParams} from 'ionic-angular';
+import {Page, NavController, NavParams, MenuController} from 'ionic-angular';
 import {TabsPage} from '../tabs/tabs';
 import {Lists} from '../../components/Services/lists';
 import {language} from "../../components/languages/languages";
@@ -20,10 +20,12 @@ export class LineListPage {
     public lineName;
     public title;
 
-    constructor(nav:NavController, navParams:NavParams, private lists:Lists) {
+    constructor(nav:NavController, navParams:NavParams, private lists:Lists, private menu: MenuController) {
         this.nav = nav;
         this.selectedbus = navParams.get("selectedbus")
         this.serverURL = navParams.get("URL")
+        this.menu.swipeEnable(false);
+        
         this.lineName = language.lineName;
         this.title = language.lineTitle;
     }

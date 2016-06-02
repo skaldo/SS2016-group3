@@ -1,4 +1,4 @@
-import {Page, Alert, NavController, NavParams} from 'ionic-angular';
+import {Page, Alert, NavController, NavParams, MenuController} from 'ionic-angular';
 import {HomePage} from '../home/home';
 import {DrivePage} from '../drive/drive';
 import {MapPage} from '../map/map';
@@ -42,11 +42,12 @@ export class TabsPage {
     public drive;
     public stops;
 
-    constructor(nav: NavController, navParams: NavParams, private lists: Lists) {
+    constructor(nav: NavController, navParams: NavParams, private lists: Lists, private menu: MenuController) {
         this.nav = nav;
         this.tab1Root = DrivePage;
         this.tab2Root = MapPage;
         this.tab3Root = StopsPage;
+        this.menu.swipeEnable(false);
 
         this.selectedbus = navParams.get("selectedbus");
         this.selectedline = navParams.get("selectedline");
@@ -74,7 +75,7 @@ export class TabsPage {
                 this.stoplist = data["stops"];
                 for (let index = 0; index < this.stoplist.length; index++) {
                     for (let jndex = 0; jndex < this.stoplist[index].lines.length; jndex++) {
-                        if (this.selectedline.id === this.stoplist[index].lines[jndex]) {
+                        if (this.selectedline.id === this.stoplist[index].lines[jndex].id) {
                             console.log("jetzt wird gepusht", this.stoplist[index].name)
                             this.linestops.push(this.stoplist[index]);
                         }

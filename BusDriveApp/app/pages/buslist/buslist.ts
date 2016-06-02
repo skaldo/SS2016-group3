@@ -1,4 +1,4 @@
-import {Page, NavController, NavParams} from 'ionic-angular';
+import {Page, NavController, NavParams, MenuController} from 'ionic-angular';
 import {LineListPage} from '../linelist/linelist';
 import {Lists} from '../../components/Services/lists';
 import {SettingPage} from '../../components/setting/setting';
@@ -21,9 +21,10 @@ export class BusListPage {
     public numberplate;
     public title
 
-    constructor(nav:NavController, navParams:NavParams, private lists:Lists, private setting:SettingPage) {
+    constructor(nav:NavController, navParams:NavParams, private lists:Lists, private setting:SettingPage, private menu: MenuController) {
         this.nav = nav;             
         this.serverURL = setting.getServerURL();
+        this.menu.swipeEnable(false);
         
         this.numberplate = language.numberplate;
         this.title = language.chooseBus;
