@@ -100,7 +100,7 @@ export class TabsPage {
                         lng: this.route[this.selectedline.id - 1].route.coordinates[index][0]
                     })
                 }
-                console.log("Länge"+this.lineroute.length)
+                console.log("Länge" + this.lineroute.length)
             },
             err => console.error("getRoute failed"),
             () => console.log('getRoute completed')
@@ -160,18 +160,19 @@ export class TabsPage {
     onPageWillLeave() {
         let alert = Alert.create({
             title: language.alertTitle,
-            buttons: [{
-                text: 'OK',
-                handler: () => {
-                    console.log('alert confirmed');
-                    this.nav.setRoot(HomePage);
-                    clearInterval(this.intervalID);
-                }
-            },
+            buttons: [
                 {
                     text: language.alertCancel,
                     handler: () => {
                         console.log('alert aborted');
+                    }
+                },
+                {
+                    text: 'OK',
+                    handler: () => {
+                        console.log('alert confirmed');
+                        this.nav.setRoot(HomePage);
+                        clearInterval(this.intervalID);
                     }
                 }]
         });

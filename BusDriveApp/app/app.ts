@@ -33,6 +33,7 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       StatusBar.styleDefault();
+      this.menu.swipeEnable(false);
     });
   }
 
