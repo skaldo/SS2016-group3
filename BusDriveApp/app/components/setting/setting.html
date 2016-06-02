@@ -9,9 +9,9 @@
 <ion-list>
     <ion-item>
       <ion-label>Sprache</ion-label>
-      <ion-select [(ngModel)]="lang">
-        <ion-option (click)="changeLanguage(en)">English</ion-option>
-        <ion-option (click)="changeLanguage(de)">Deutsch</ion-option>
+      <ion-select [(ngModel)]="lang" (change)="changeLanguage(lang)">
+        <ion-option value="en">English</ion-option>
+        <ion-option value="de">Deutsch</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
