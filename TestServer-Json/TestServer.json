@@ -44,7 +44,7 @@
         "name": "Kirche",
         "lines": [
           {
-            "id": 1
+            "id": "1"
           }
         ],
         "location": {
@@ -74,7 +74,7 @@
         "name": "Brunnen",
         "lines": [
           {
-            "id": 1
+            "id": "1"
           }
         ],
         "location": {
@@ -104,7 +104,7 @@
         "name": "Park",
         "lines": [
           {
-            "id": 1
+            "id": "1"
           }
         ],
         "location": {
@@ -134,7 +134,7 @@
         "name": "Markt",
         "lines": [
           {
-            "id": 1
+            "id": "1"
           }
         ],
         "location": {
@@ -164,7 +164,7 @@
         "name": "Uni West",
         "lines": [
           {
-            "id": 2
+            "id": "2"
           }
         ],
         "location": {
@@ -194,7 +194,7 @@
         "name": "Uni Süd",
         "lines": [
           {
-            "id": 2
+            "id": "2"
           }
         ],
         "location": {
@@ -224,7 +224,7 @@
         "name": "Uni Ost",
         "lines": [
           {
-            "id": 2
+            "id": "2"
           }
         ],
         "location": {
@@ -254,7 +254,7 @@
         "name": "Uni Sporthalle",
         "lines": [
           {
-            "id": 2
+            "id": "2"
           }
         ],
         "location": {

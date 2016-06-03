@@ -75,7 +75,7 @@ export class TabsPage {
                 this.stoplist = data["stops"];
                 for (let index = 0; index < this.stoplist.length; index++) {
                     for (let jndex = 0; jndex < this.stoplist[index].lines.length; jndex++) {
-                        if (this.selectedline.id === this.stoplist[index].lines[jndex].id) {
+                        if (this.selectedline.id === parseInt(this.stoplist[index].lines[jndex].id)) {
                             console.log("jetzt wird gepusht", this.stoplist[index].name)
                             this.linestops.push(this.stoplist[index]);
                         }

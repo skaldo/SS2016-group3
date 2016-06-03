@@ -60,7 +60,7 @@ export class Lists {
                 "busId": busID,
                 "position": {
                     "type": "Point",
-                    "coordinatates": [longitude, latitude]
+                    "coordinates": [longitude, latitude]
                 },
                 "timeStamp": Date.now()
             })
