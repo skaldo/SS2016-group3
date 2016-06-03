@@ -8,7 +8,7 @@
 <ion-content class="about">
     <ion-list>
         <ion-item>
-            <div class="platform"> Sie finden uns auf </div>
+            <div class="platform"> {{findUs}} </div>
             <ion-card>
                 <ion-list>
                     <button ion-item (click)="openFacebook('DigitaleDoerfer')">
@@ -31,7 +31,7 @@
             </ion-card>
         </ion-item>
         <ion-item>
-            <div class="version"> Ihre Meinung </div>
+            <div class="version"> {{opinion}} </div>
             <ion-card>
                 <button ion-item (click)="mailto('gseprojekt3@informatik.uni-kl.de')">
                         <ion-icon name="mail" item-left></ion-icon>
@@ -40,26 +40,26 @@
             </ion-card>
         </ion-item>
         <ion-item>
-            <div class="platform"> Rechtliches </div>
+            <div class="platform"> {{disclaimer}} </div>
             <ion-card>
                 <ion-list>
                     <button ion-item (click)="openURL('http://www.digitale-doerfer.de/impressum')">
                         <ion-icon name="information" item-left></ion-icon>
-                            Impressum
+                            {{imprint}}
                     </button>
                     <button ion-item (click)="openURL('http://www.digitale-doerfer.de/datenschutzerklaerung')">
                         <ion-icon name="information" item-left></ion-icon>
-                            Datenschutzerklaerung
+                            {{privacyPolicy}}
                     </button>
                     <button ion-item (click)="openLicense()">
                         <ion-icon name="information" item-left></ion-icon>
-                            Lizenzen
+                            {{licence}}
                     </button>
                 </ion-list>
             </ion-card>
         </ion-item>
         <ion-item>
-            <div class="version"> Versionsinformationen </div>
+            <div class="version"> {{versionInfo}} </div>
             <ion-card>
                 <button ion-item>
                         <ion-icon name="apps" item-left></ion-icon>
