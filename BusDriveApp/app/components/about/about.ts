@@ -14,10 +14,25 @@ import {LicensePage} from "../../components/about/license/license";
 export class AboutPage {
     private platform;
     private nav;
+//----------Language-------
+    private findUs;
+    private opinion;
+    private disclaimer;
+    private imprint;
+    private privacyPolicy;
+    private licence;
+    private versionInfo;
 
     constructor(platform: Platform, nav: NavController) {
         this.platform = platform;
         this.nav = nav;
+        this.findUs=language.findUs;
+        this.opinion=language.opinion;
+        this.disclaimer=language.disclaimer;
+        this.imprint=language.imprint;
+        this.privacyPolicy=language.privacyPolicy;
+        this.licence=language.licence;
+        this.versionInfo=language.versionInfo;
 
     }
     /**

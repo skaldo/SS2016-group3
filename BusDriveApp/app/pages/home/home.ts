@@ -1,5 +1,6 @@
 import {Page, Platform, NavController} from 'ionic-angular';
 import {BusListPage} from '../buslist/buslist';
+import {language} from "../../components/languages/languages";
 
 /*
   Created by ttmher
@@ -14,10 +15,13 @@ export class HomePage {
     private platform;
     private nav;
     private os;
+    public beginTour;
 
     constructor(platform: Platform, nav: NavController) {
         this.platform = platform;
         this.nav = nav;
+         //-----Language-----
+        this.beginTour=language.beginTour;
 
         this.getMobileOperatingSystem();
     }
