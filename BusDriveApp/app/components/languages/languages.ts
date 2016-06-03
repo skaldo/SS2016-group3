@@ -8,7 +8,9 @@ export class Language {
 
     constructor(public id: number, public name: string, public driveTitle: string, public passengers: string, public numberplate: string,
         public chooseBus: string, public lineTitle: string, public lineName: string, public mapTitle: string, public stopTitle: string,
-        public alertTitle: string, public alertCancel: string) {
+        public alertTitle: string, public alertCancel: string, public findUs: string, public opinion:string, public disclaimer:string,
+            public imprint:string, public privacyPolicy:string, public licence:string, public versionInfo:string, public beginTour:string){
+
         this.id = id;
         this.name = name;
         this.driveTitle = driveTitle;
@@ -21,15 +23,28 @@ export class Language {
         this.alertTitle = alertTitle;
         this.alertCancel = alertCancel;
         this.lineName = lineName;
+        //------- about-page
+        this.findUs=findUs;
+        this.opinion=opinion;
+        this.disclaimer=disclaimer;
+        this.imprint=imprint;
+        this.privacyPolicy=privacyPolicy;
+        this.licence=licence;
+        this.versionInfo=versionInfo;
+        //----------home screen------
+        this.beginTour=beginTour;
+        
     }
 
 }
 
 
 export var en = new Language(0, "EN", "Drive", "Seats taken:", "Numberplate:",
-    "Choose bus", "Choose line", "Line", "Map", "Schedule", "End tour?", "Cancel");
+    "Choose bus", "Choose line", "Line", "Map", "Schedule", "End tour?", "Cancel","Find us on","Your opinion",
+    "Disclaimer","Imprint","Privacy Policy","Licence","Version Info","Start Tour");
 export var de = new Language(1, "DE", "Fahren", "Belegte Plätze:", "Nummernschild",
-    "Wähle Bus aus", "Wähle Linie aus", "Linie", "Karte", "Fahrplan", "Fahrt beenden?", "Abbrechen");
+    "Wähle Bus aus", "Wähle Linie aus", "Linie", "Karte", "Fahrplan", "Fahrt beenden?", "Abbrechen", " Sie finden uns auf","Ihre Meinung",
+    "Rechtliches","Impressum","Datenschutzerklärung","Lizenz","Versionsinfo","Tour starten");
 
 export var language;
 
