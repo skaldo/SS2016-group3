@@ -14,7 +14,8 @@ import {LicensePage} from "../../components/about/license/license";
 export class AboutPage {
     private platform;
     private nav;
-//----------Language-------
+
+    //----------Language-------
     private findUs;
     private opinion;
     private disclaimer;
@@ -26,13 +27,13 @@ export class AboutPage {
     constructor(platform: Platform, nav: NavController) {
         this.platform = platform;
         this.nav = nav;
-        this.findUs=language.findUs;
-        this.opinion=language.opinion;
-        this.disclaimer=language.disclaimer;
-        this.imprint=language.imprint;
-        this.privacyPolicy=language.privacyPolicy;
-        this.licence=language.licence;
-        this.versionInfo=language.versionInfo;
+        this.findUs = language.findUs;
+        this.opinion = language.opinion;
+        this.disclaimer = language.disclaimer;
+        this.imprint = language.imprint;
+        this.privacyPolicy = language.privacyPolicy;
+        this.licence = language.licence;
+        this.versionInfo = language.versionInfo;
 
     }
     /**
@@ -45,6 +46,10 @@ export class AboutPage {
         });
     }
 
+    /**
+     * opens a url in the system app if installed or in the browser
+     * @param url url of the website
+     */
     openTwitter(url) {
         let app;
         if (this.platform === 'iOS') {
@@ -67,6 +72,10 @@ export class AboutPage {
             );
     }
 
+    /**
+     * opens a url in the system app if installed or in the browser
+     * @param url url of the website
+     */
     openFacebook(url) {
         let app;
         if (this.platform === 'iOS') {
@@ -79,7 +88,7 @@ export class AboutPage {
         AppAvailability.check(app)
             .then(
             function () {  // Success callback
-                window.open('fb://facewebmodal/f?href=' + url, '_system', 'location=no');
+                window.open(url, '_system', 'location=no');
                 console.log('Facebook is available');
             },
             function () {  // Error callback
@@ -88,11 +97,15 @@ export class AboutPage {
             }
             );
     }
-    
+
+    /**
+     * opens a url in the system app if installed or in the browser
+     * @param url url of the website
+     */
     openYouTube(url) {
         let app;
         if (this.platform === 'iOS') {
-            app = 'fb://';
+            app = 'youtube://';
         }
         else if (this.platform === 'Android') {
             app = 'com.google.android.youtube';

@@ -30,7 +30,7 @@ export class SettingPage {
    * @param URL url of the server
    */
   addToServerURLList(URL) {
-    this.serverURLListStorage = this.serverURLListStorage +","+ URL;
+    this.serverURLListStorage = this.serverURLListStorage + "," + URL;
     this.settings.setItem("serverURLList", this.serverURLListStorage);
   }
 
