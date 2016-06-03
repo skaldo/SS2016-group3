@@ -16,9 +16,8 @@
     </ion-item>
     <ion-item>
       <ion-label>ServerURL</ion-label>
-      <ion-select [(ngModel)]="lang">
-        <ion-option value="eng">English</ion-option>
-        <ion-option value="ger">Deutsch</ion-option>
+      <ion-select [(ngModel)]="serverURL" (ngModelChange)="setServerURL(serverURL)" okText="Ok" cancelText="Abbruch">
+        <ion-option  *ngFor="let url of serverURLList" value="{{url}}">{{url}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
@@ -30,6 +29,6 @@
 </ion-content>
 <ion-item>
   <ion-label>New Server URL: </ion-label>
-  <ion-input [(ngModel)]="serverURL" type="url" id="serverURL">{{serverURL}}</ion-input>
+  <ion-input [(ngModel)]="url" type="url" id="serverURL">{{serverURL}}</ion-input>
 </ion-item>
-<button (click)="setServerURL(serverURL)">Set data</button>
+<button (click)="addToServerURLList(url)">Add URL</button>

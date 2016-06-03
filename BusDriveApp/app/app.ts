@@ -5,6 +5,7 @@ import {HomePage} from './pages/home/home';
 import {Lists} from './components/Services/lists';
 import {SettingPage} from './components/setting/setting';
 import {AboutPage} from './components/about/about';
+import {Storage, LocalStorage} from 'ionic-angular';
 
 @App({
   templateUrl: 'build/app.html',
@@ -34,6 +35,11 @@ export class MyApp {
     this.platform.ready().then(() => {
       StatusBar.styleDefault();
     });
+    let settings = window.localStorage;
+    if(!(settings["serverURL"] )){
+      settings.setItem("serverURL","http://localhost:3000/");
+      settings.setItem("serverURLList","http://localhost:3000/")
+    }
   }
 
   /**
