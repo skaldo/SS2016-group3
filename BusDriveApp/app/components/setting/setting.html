@@ -15,9 +15,33 @@
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label>ServerURL</ion-label>
+      <ion-label>Provider URL</ion-label>
       <ion-select [(ngModel)]="serverURL" (ngModelChange)="setServerURL(serverURL)" okText="Ok" cancelText="Abbruch">
-        <ion-option  *ngFor="let url of serverURLList" value="{{url}}">{{url}}</ion-option>
+        <ion-option *ngFor="let url of serverURLList" value="{{url}}">{{url}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <table>
+      <tr>
+        <td>
+          <ion-item>
+            <ion-label>New Provider URL: </ion-label>
+            <ion-input [(ngModel)]="url" type="url" id="serverURL">{{serverURL}}</ion-input>
+          </ion-item>
+        </td>
+        <td>
+          <button (click)="addToServerURLList(url)">
+            <ion-icon name="add"></ion-icon>
+          </button>
+        </td>
+      </tr>
+    </table>
+    <ion-item>
+      <ion-label>Sendedistanz</ion-label>
+      <ion-select [(ngModel)]="distance" (ngModelChange)="setServerURL(serverURL)" okText="Ok" cancelText="Abbruch">
+        <ion-option value="50">50</ion-option>
+        <ion-option value="75">75</ion-option>
+        <ion-option value="100en">100</ion-option>
+        <ion-option value="125">125</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
@@ -27,8 +51,3 @@
 
 
 </ion-content>
-<ion-item>
-  <ion-label>New Server URL: </ion-label>
-  <ion-input [(ngModel)]="url" type="url" id="serverURL">{{serverURL}}</ion-input>
-</ion-item>
-<button (click)="addToServerURLList(url)">Add URL</button>

@@ -151,7 +151,7 @@ export class TabsPage {
         dist = dist * 60 * 1.1515;
         dist = dist * 1.609344;
         dist = dist * 1000;
-        console.log("distance: " + dist);
+        console.log("positiondistance: " + dist);
         return dist
     }
 
