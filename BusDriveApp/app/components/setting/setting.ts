@@ -32,6 +32,7 @@ export class SettingPage {
   addToServerURLList(URL) {
     this.serverURLListStorage = this.serverURLListStorage + "," + URL;
     this.settings.setItem("serverURLList", this.serverURLListStorage);
+    this.serverURLList = this.getServerURLList().split(",");
   }
 
   /**

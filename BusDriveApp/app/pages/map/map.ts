@@ -26,7 +26,9 @@ export class MapPage {
     constructor(navParams:NavParams, private lists:Lists) {
         this.LineStops = navParams.data[0];
         this.LineRoute = navParams.data[1];
+        
         this.title = language.mapTitle;
+        
         setTimeout(this.showLine.bind(this),1500);
     }
     
