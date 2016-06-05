@@ -30,7 +30,7 @@ before_script:
 script: 
  - gulp test #nur verkürzung von - ../scripts/travisbuilt.sh da gulp test dort auch ausgeführt wird
 after_script:
- - cat ./test/reports/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+ - cat ./test/reports/coverage/lcov.info | /node_modules/coveralls/bin/coveralls.js
 after_success:
  - coveralls
 deploy:

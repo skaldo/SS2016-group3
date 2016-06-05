@@ -34,7 +34,7 @@ export class SettingPage {
    * changes the gui-language 
    */
   changeLanguage() {
-    if (language === en) language = de; else language = en;
+    if (language === en)language = de; else language = en;
     this.buttontext = language.name;
     console.log("-> ChangeLanguage");
   }
