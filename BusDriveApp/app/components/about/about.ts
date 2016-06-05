@@ -52,10 +52,10 @@ export class AboutPage {
      */
     openTwitter(url) {
         let app;
-        if (this.platform === 'iOS') {
+        if (this.platform.is('ios')) {
             app = 'twitter://';
         }
-        else if (this.platform === 'Android') {
+        else if (this.platform.is('android')) {
             app = 'com.twitter.android';
         }
 
@@ -78,17 +78,17 @@ export class AboutPage {
      */
     openFacebook(url) {
         let app;
-        if (this.platform === 'iOS') {
+        if (this.platform.is('ios')) {
             app = 'fb://';
         }
-        else if (this.platform === 'Android') {
+        else if (this.platform.is('android')) {
             app = 'com.facebook.katana';
         }
 
         AppAvailability.check(app)
             .then(
             function () {  // Success callback
-                window.open(url, '_system', 'location=no');
+                window.open('fb://page/' + url, '_system', 'location=no');
                 console.log('Facebook is available');
             },
             function () {  // Error callback
@@ -104,10 +104,10 @@ export class AboutPage {
      */
     openYouTube(url) {
         let app;
-        if (this.platform === 'iOS') {
+        if (this.platform.is('ios')) {
             app = 'youtube://';
         }
-        else if (this.platform === 'Android') {
+        else if (this.platform.is('android')) {
             app = 'com.google.android.youtube';
         }
 

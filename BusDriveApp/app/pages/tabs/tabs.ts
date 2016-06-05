@@ -101,7 +101,7 @@ export class TabsPage {
                         lng: this.route[this.selectedline.id - 1].route.coordinates[index][0]
                     })
                 }
-                console.log("Länge" + this.lineroute.length)
+                console.log("GeoJson points of the route " + this.lineroute.length)
             },
             err => console.error("getRoute failed"),
             () => console.log('getRoute completed')
@@ -173,7 +173,8 @@ export class TabsPage {
                     handler: () => {
                         console.log('alert confirmed');
                         this.nav.setRoot(HomePage);
-                        clearInterval(this.intervalID);
+                        for (var i = 1; i < 99999; i++)
+                            window.clearInterval(i);
                     }
                 }]
         });
