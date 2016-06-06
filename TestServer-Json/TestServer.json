@@ -282,8 +282,18 @@
     ],
     "timestamp": 2
   },
-  "updateBusStatus": {},
-  "realTimeData": {},
+  "updateBusStatus": {
+    "lineId": 1,
+    "busId": 2
+  },
+  "realTimeData": {
+    "busId": 2,
+    "position": {
+      "type": "Point",
+      "coordinates": [
+      ]
+    },
+  },
   "routes": {
     "routes": [
       {
