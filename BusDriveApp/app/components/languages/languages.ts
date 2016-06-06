@@ -9,7 +9,7 @@ export class Language {
     constructor(public id: number, public name: string, public driveTitle: string, public passengers: string, public numberplate: string,
         public chooseBus: string, public lineTitle: string, public lineName: string, public mapTitle: string, public stopTitle: string,
         public alertTitle: string, public alertCancel: string, public findUs: string, public opinion: string, public disclaimer: string,
-        public imprint: string, public privacyPolicy: string, public licence: string, public versionInfo: string, public beginTour: string,
+        public imprint: string, public privacyPolicy: string, public license: string, public versionInfo: string, public beginTour: string,
         public langTrans:string,public serveradressTrans,public newServerTrans:string, public settingTrans:string, public about:string) {
 
         this.id = id;
@@ -30,7 +30,7 @@ export class Language {
         this.disclaimer = disclaimer;
         this.imprint = imprint;
         this.privacyPolicy = privacyPolicy;
-        this.licence = licence;
+        this.license = license;
         this.versionInfo = versionInfo;
         //----------home screen------
         this.beginTour = beginTour;
@@ -49,7 +49,7 @@ export class Language {
 
 export var en = new Language(0, "EN", "Drive", "Seats taken:", "Numberplate:",
     "Choose bus", "Choose line", "Line", "Map", "Schedule", "End tour?", "Cancel", "Find us on", "Your opinion",
-    "Disclaimer", "Imprint", "Privacy Policy", "Licence", "Version Info", "Start Tour","Language","Serveraddress","New serveraddress","Settings","About");
+    "Disclaimer", "Imprint", "Privacy Policy", "License", "Version Info", "Start Tour","Language","Serveraddress","New serveraddress","Settings","About");
 export var de = new Language(1, "DE", "Fahren", "Belegte Plätze:", "Nummernschild",
     "Wähle Bus aus", "Wähle Linie aus", "Linie", "Karte", "Fahrplan", "Fahrt beenden?", "Abbrechen", " Sie finden uns auf", "Ihre Meinung",
     "Rechtliches", "Impressum", "Datenschutzerklärung", "Lizenz", "Versionsinfo", "Tour starten","Sprache","Serveradresse","Neue Serveradresse","Einstellungen","Über uns");

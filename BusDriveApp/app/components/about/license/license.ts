@@ -11,9 +11,11 @@ import {language} from "../../../components/languages/languages";
 
 export class LicensePage {
   private nav;
+  private licenseTrans;
 
   constructor(nav: NavController, private menu: MenuController) {
     this.nav = nav;
     this.menu.swipeEnable(false);
+    this.licenseTrans=language.license;
   }
 }

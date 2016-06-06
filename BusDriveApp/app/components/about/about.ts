@@ -21,7 +21,7 @@ export class AboutPage {
     private disclaimer;
     private imprint;
     private privacyPolicy;
-    private licence;
+    private license;
     private versionInfo;
     private aboutTrans;
 
@@ -35,7 +35,7 @@ export class AboutPage {
         this.disclaimer = language.disclaimer;
         this.imprint = language.imprint;
         this.privacyPolicy = language.privacyPolicy;
-        this.licence = language.licence;
+        this.license = language.license;
         this.versionInfo = language.versionInfo;
         this.aboutTrans=language.about;
 
