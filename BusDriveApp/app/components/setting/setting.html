@@ -8,7 +8,7 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-label>Sprache</ion-label>
+      <ion-label>{{langTrans}}</ion-label>
       <ion-select [(ngModel)]="lang" (ngModelChange)="changeLanguage(lang)" okText="Ok" cancelText="Abbruch">
         <ion-option value="en">English</ion-option>
         <ion-option value="de">Deutsch</ion-option>
@@ -20,22 +20,18 @@
         <ion-option *ngFor="let url of serverURLList" value="{{url}}">{{url}}</ion-option>
       </ion-select>
     </ion-item>
-    <table>
-      <tr>
-        <td>
-          <ion-item>
-            <ion-label>New Provider URL: </ion-label>
-            <ion-input [(ngModel)]="url" type="url" id="serverURL">{{serverURL}}</ion-input>
-          </ion-item>
-        </td>
-        <td>
-          <button (click)="addToServerURLList(url)">
-            <ion-icon name="add"></ion-icon>
-          </button>
-        </td>
-      </tr>
-    </table>
-    <ion-item>
+    <div class="item item-input-inset">
+      <ion-item>
+        <ion-label>New Provider URL: </ion-label>
+        <ion-input [(ngModel)]="url" type="url" id="serverURL">{{serverURL}}</ion-input>
+      </ion-item>
+      <button (click)="addToServerURLList(url)">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </div>
+
+
+    <!--<ion-item>
       <ion-label>Sendedistanz</ion-label>
       <ion-select [(ngModel)]="distance" (ngModelChange)="setServerURL(serverURL)" okText="Ok" cancelText="Abbruch">
         <ion-option value="50">50</ion-option>
@@ -43,7 +39,7 @@
         <ion-option value="100en">100</ion-option>
         <ion-option value="125">125</ion-option>
       </ion-select>
-    </ion-item>
+    </ion-item>-->
   </ion-list>
 
 

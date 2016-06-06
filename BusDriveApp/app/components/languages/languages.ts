@@ -9,7 +9,8 @@ export class Language {
     constructor(public id: number, public name: string, public driveTitle: string, public passengers: string, public numberplate: string,
         public chooseBus: string, public lineTitle: string, public lineName: string, public mapTitle: string, public stopTitle: string,
         public alertTitle: string, public alertCancel: string, public findUs: string, public opinion: string, public disclaimer: string,
-        public imprint: string, public privacyPolicy: string, public licence: string, public versionInfo: string, public beginTour: string) {
+        public imprint: string, public privacyPolicy: string, public licence: string, public versionInfo: string, public beginTour: string,
+        public langTrans:string, public settingTrans:string, public about:string) {
 
         this.id = id;
         this.name = name;
@@ -33,7 +34,12 @@ export class Language {
         this.versionInfo = versionInfo;
         //----------home screen------
         this.beginTour = beginTour;
-
+        //------Settingspage-------
+        this.langTrans=langTrans;
+        //------Sidemunu-----------
+        this.settingTrans=settingTrans;
+        this.about=about;
+        
     }
 
 }
@@ -41,10 +47,10 @@ export class Language {
 
 export var en = new Language(0, "EN", "Drive", "Seats taken:", "Numberplate:",
     "Choose bus", "Choose line", "Line", "Map", "Schedule", "End tour?", "Cancel", "Find us on", "Your opinion",
-    "Disclaimer", "Imprint", "Privacy Policy", "Licence", "Version Info", "Start Tour");
+    "Disclaimer", "Imprint", "Privacy Policy", "Licence", "Version Info", "Start Tour","Language","Settings","About");
 export var de = new Language(1, "DE", "Fahren", "Belegte Plätze:", "Nummernschild",
     "Wähle Bus aus", "Wähle Linie aus", "Linie", "Karte", "Fahrplan", "Fahrt beenden?", "Abbrechen", " Sie finden uns auf", "Ihre Meinung",
-    "Rechtliches", "Impressum", "Datenschutzerklärung", "Lizenz", "Versionsinfo", "Tour starten");
+    "Rechtliches", "Impressum", "Datenschutzerklärung", "Lizenz", "Versionsinfo", "Tour starten","Sprache","Einstellungen","Über uns");
 
 export var language;
 let settings = window.localStorage;

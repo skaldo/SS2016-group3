@@ -5,6 +5,7 @@ import {HomePage} from './pages/home/home';
 import {Lists} from './components/Services/lists';
 import {SettingPage} from './components/setting/setting';
 import {AboutPage} from './components/about/about';
+import {language} from "./components/languages/languages";
 
 @App({
   templateUrl: 'build/app.html',
@@ -18,12 +19,17 @@ export class MyApp {
   rootPage: any = HomePage;
   pages: Array<{ title: string, component: any, icon: string }>;
 
+  //---------Language Support-----
+  public settingTrans;
+  public about;
   constructor(private platform: Platform, private menu: MenuController) {
     this.initializeApp();
+    this.settingTrans=language.settingTrans;
+    this.about=language.about;
     this.pages = [
       { title: 'Tour', component: HomePage, icon: 'bus' },
-      { title: 'Settings', component: SettingPage, icon: 'settings' },
-      { title: 'About', component: AboutPage, icon: 'alert' }
+      { title: this.settingTrans, component: SettingPage, icon: 'settings' },
+      { title: this.about, component: AboutPage, icon: 'alert' }
     ];
   }
 
@@ -47,6 +53,14 @@ export class MyApp {
   openPage(page) {
     this.menu.close();
     this.nav.setRoot(page.component);
+    this.settingTrans=language.settingTrans;
+    this.about=language.about;
+    this.pages = [
+      { title: 'Tour', component: HomePage, icon: 'bus' },
+      { title: this.settingTrans, component: SettingPage, icon: 'settings' },
+      { title: this.about, component: AboutPage, icon: 'alert' }
+    ];
+
   }
 
   exit() {

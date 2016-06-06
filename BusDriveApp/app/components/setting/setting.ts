@@ -16,6 +16,8 @@ export class SettingPage {
   public lang;
 
   public settings;
+  //language support
+  public langTrans;
 
   constructor() {
     this.settings = window.localStorage;
@@ -23,6 +25,9 @@ export class SettingPage {
     this.lang = this.getLanguage();
     this.serverURLList = this.getServerURLList().split(",");
     this.serverURLListStorage = this.getServerURLList();
+    //---- Language Support-----
+    this.langTrans=language.langTrans;
+
   }
 
   /**
@@ -86,6 +91,7 @@ export class SettingPage {
       language = de;
       this.setLanguage(lang);
     }
+    this.langTrans=language.langTrans;
     console.log("ChangeLanguage: " + lang);
   }
 }
