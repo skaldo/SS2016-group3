@@ -2,27 +2,27 @@
   <button menuToggle>
     <ion-icon name="menu"></ion-icon>
   </button>
-  <ion-title>Settings</ion-title>
+  <ion-title>{{settingTrans}}</ion-title>
 </ion-navbar>
 
 <ion-content>
   <ion-list>
     <ion-item>
       <ion-label>{{langTrans}}</ion-label>
-      <ion-select [(ngModel)]="lang" (ngModelChange)="changeLanguage(lang)" okText="Ok" cancelText="Abbruch">
+      <ion-select [(ngModel)]="lang" (ngModelChange)="changeLanguage(lang)" okText="Ok" cancelText={{cancelAlert}}>
         <ion-option value="en">English</ion-option>
         <ion-option value="de">Deutsch</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label>Provider URL</ion-label>
-      <ion-select [(ngModel)]="serverURL" (ngModelChange)="setServerURL(serverURL)" okText="Ok" cancelText="Abbruch">
+      <ion-label>{{serverAdressTrans}}</ion-label>
+      <ion-select [(ngModel)]="serverURL" (ngModelChange)="setServerURL(serverURL)" okText="Ok" cancelText={{cancelAlert}}>
         <ion-option *ngFor="let url of serverURLList" value="{{url}}">{{url}}</ion-option>
       </ion-select>
     </ion-item>
     <div class="item item-input-inset">
       <ion-item>
-        <ion-label>New Provider URL: </ion-label>
+        <ion-label>{{newServerAdressTrans}} </ion-label>
         <ion-input [(ngModel)]="url" type="url" id="serverURL">{{serverURL}}</ion-input>
       </ion-item>
       <button (click)="addToServerURLList(url)">

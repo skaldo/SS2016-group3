@@ -23,10 +23,13 @@ export class AboutPage {
     private privacyPolicy;
     private licence;
     private versionInfo;
+    private aboutTrans;
 
     constructor(platform: Platform, nav: NavController) {
         this.platform = platform;
         this.nav = nav;
+        
+        //----------Language--------------
         this.findUs = language.findUs;
         this.opinion = language.opinion;
         this.disclaimer = language.disclaimer;
@@ -34,6 +37,7 @@ export class AboutPage {
         this.privacyPolicy = language.privacyPolicy;
         this.licence = language.licence;
         this.versionInfo = language.versionInfo;
+        this.aboutTrans=language.about;
 
     }
     /**

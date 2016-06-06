@@ -18,6 +18,10 @@ export class SettingPage {
   public settings;
   //language support
   public langTrans;
+  public cancelAlert;
+  public serverAdressTrans;
+  public newServerAdressTrans;
+  public settingTrans;
 
   constructor() {
     this.settings = window.localStorage;
@@ -27,6 +31,10 @@ export class SettingPage {
     this.serverURLListStorage = this.getServerURLList();
     //---- Language Support-----
     this.langTrans=language.langTrans;
+    this.cancelAlert=language.alertCancel;
+    this.serverAdressTrans=language.serveradressTrans;
+    this.newServerAdressTrans=language.newServerTrans;
+    this.settingTrans=language.settingTrans;
 
   }
 
@@ -92,6 +100,10 @@ export class SettingPage {
       this.setLanguage(lang);
     }
     this.langTrans=language.langTrans;
+    this.cancelAlert=language.alertCancel;
+    this.serverAdressTrans=language.serveradressTrans;
+    this.newServerAdressTrans=language.newServerTrans;
+    this.settingTrans=language.settingTrans;
     console.log("ChangeLanguage: " + lang);
   }
 }
