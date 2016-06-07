@@ -1,4 +1,4 @@
-import {App, Platform, MenuController, Nav} from 'ionic-angular';
+import {App, Platform, MenuController, Nav, Events} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {ViewChild} from '@angular/core';
 import {HomePage} from './pages/home/home';
@@ -22,15 +22,12 @@ export class MyApp {
   //---------Language Support-----
   public settingTrans;
   public about;
-  constructor(private platform: Platform, private menu: MenuController) {
+  constructor(private platform: Platform, private menu: MenuController, public events: Events) {
     this.initializeApp();
-    this.settingTrans=language.settingTrans;
-    this.about=language.about;
-    this.pages = [
-      { title: 'Tour', component: HomePage, icon: 'bus' },
-      { title: this.settingTrans, component: SettingPage, icon: 'settings' },
-      { title: this.about, component: AboutPage, icon: 'alert' }
-    ];
+    this.setPages();
+    this.events.subscribe("ChangeLanguage", () => {
+      this.setPages();
+    });
   }
 
   /**
@@ -41,10 +38,24 @@ export class MyApp {
       StatusBar.styleDefault();
     });
     let settings = window.localStorage;
-    if(!(settings["serverURL"] )){
-      settings.setItem("serverURL","http://localhost:3000");
-      settings.setItem("serverURLList","http://localhost:3000")
+    if (!(settings["serverURL"])) {
+      settings.setItem("serverURL", "http://localhost:3000");
+      settings.setItem("serverURLList", "http://localhost:3000")
     }
+  }
+  
+  /**
+   * sets the pages of menu
+   */
+  setPages() {
+    this.settingTrans = language.settingTrans;
+    this.about = language.about;
+    this.pages = [
+      { title: 'Tour', component: HomePage, icon: 'bus' },
+      { title: this.settingTrans, component: SettingPage, icon: 'settings' },
+      { title: this.about, component: AboutPage, icon: 'alert' }
+    ];
+
   }
 
   /**
@@ -53,14 +64,6 @@ export class MyApp {
   openPage(page) {
     this.menu.close();
     this.nav.setRoot(page.component);
-    this.settingTrans=language.settingTrans;
-    this.about=language.about;
-    this.pages = [
-      { title: 'Tour', component: HomePage, icon: 'bus' },
-      { title: this.settingTrans, component: SettingPage, icon: 'settings' },
-      { title: this.about, component: AboutPage, icon: 'alert' }
-    ];
-
   }
 
   exit() {

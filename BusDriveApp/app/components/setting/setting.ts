@@ -1,5 +1,6 @@
-import {Page, Storage, LocalStorage} from 'ionic-angular';
+import {Page, Storage, LocalStorage, Events} from 'ionic-angular';
 import {language, de, en} from "../languages/languages";
+
 
 /*
  Created by ttmher
@@ -23,7 +24,7 @@ export class SettingPage {
   public newServerAdressTrans;
   public settingTrans;
 
-  constructor() {
+  constructor(public events: Events) {
     this.settings = window.localStorage;
     this.serverURL = this.getServerURL();
     this.lang = this.getLanguage();
@@ -56,7 +57,7 @@ export class SettingPage {
   }
 
   /**
-   * sets the GUI input as server url
+   * sets the GUI select as server url
    * @param URL url of the server
    */
   setServerURL(URL) {
@@ -99,6 +100,7 @@ export class SettingPage {
       language = de;
       this.setLanguage(lang);
     }
+    this.events.publish("ChangeLanguage");
     this.langTrans=language.langTrans;
     this.cancelAlert=language.alertCancel;
     this.serverAdressTrans=language.serveradressTrans;

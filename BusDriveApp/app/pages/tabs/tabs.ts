@@ -173,8 +173,9 @@ export class TabsPage {
                     handler: () => {
                         console.log('alert confirmed');
                         this.nav.setRoot(HomePage);
-                        for (var i = 1; i < 99999; i++)
-                            window.clearInterval(i);
+                        clearInterval(this.intervalID);
+                        /* for (var i = 1; i < 99999; i++)
+                            window.clearInterval(i); */
                     }
                 }]
         });

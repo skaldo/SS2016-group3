@@ -70,7 +70,7 @@ export class AboutPage {
                 console.log('Twitter is available');
             },
             function () {  // Error callback
-                window.open('https://' + url, '_system', 'location=no');
+                window.open(url, '_system', 'location=no');
                 console.log('Twitter is not available');
             }
             );
@@ -122,7 +122,7 @@ export class AboutPage {
                 console.log('YouTube is available');
             },
             function () {  // Error callback
-                window.open('https://www.youtube.com/channel/' + url, '_system', 'location=no');
+                window.open(url, '_system', 'location=no');
                 console.log('YouTube is not available');
             }
             );
