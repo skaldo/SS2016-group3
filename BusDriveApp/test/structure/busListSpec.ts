@@ -1,4 +1,8 @@
 import {BusListPage} from '../../app/pages/buslist/buslist.ts';
+import {Http, Response, ResponseOptions, Headers} from 'angular2/http';
+import {Observable} from 'rxjs/Observable';
+import {Lists} from '../../app/components/Services/lists.ts';
+import {Assert} from '../util'; //imported from Steffens util according to his suggestion
 /**
   Created by Oliver
   Edited by Erik
@@ -12,7 +16,7 @@ describe('Dieser Test ist ein Beispiel',function(){
   });
 });
 
-describe("test",function(){
+describe("setting up fake lists.ts for getbuslist test",function(){
 	let testData =   {busses:  [{
       id: 1,
       numberPlate: "KL-AB345",
@@ -34,17 +38,17 @@ describe("test",function(){
 			return Observable.of(response);
 		}
 	};
-	
+	let x,y,z;
 	let testObject = new BusListPage(x,y,lists,z);
-	it('name', function(done){
-		
+	it('testing get function', function(done){
+		Assert.equalJson(testData,testObject.getBuslist(), 'Wrong Buslist fetched');
 		done();
 	})
 })
 
 describe("tests for the buslist page",function(){
-
-	let testBuslistPage = new BusListPage();
+let a,y,z,lists;
+	let testBuslistPage = new BusListPage(a,y,lists,z);
 
 	it("testing the getBuslist function",function(){
 		
