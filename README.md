@@ -27,7 +27,8 @@ Design documentation:
 - [Component diagram](Doc/Architecture/Architecture - Component Diagram.pdf)
 
 Quality Assurance:
-- [Sytem test cases](Doc/Quality Assurance/System test cases [RESULTS] .pdf)
+- [Sytem test cases Iteration 1](Doc/Quality%20Assurance/System%20test%20cases%20It1%20[RESULTS]%20.pdf)
+- [Sytem test cases Iteration 2](Doc/Quality%20Assurance/System%20test%20cases%20It2%20[RESULTS]%20.pdf)
 
 How to build the application
 ---------------------------------------
