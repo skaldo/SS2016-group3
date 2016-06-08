@@ -1,4 +1,4 @@
-// Karma configuration
+﻿// Karma configuration
 // Generated on Thu May 12 2016 11:12:41 GMT+0200 (Mitteleuropäische Sommerzeit)
 
 module.exports = function(config) {
@@ -10,34 +10,42 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'browserify'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      'tests/**/*Spec.ts'
+      'node_modules/angular2/bundles/angular2-polyfills.js', // 'Uncaught reflect-metadata shim is required when using class decorators'
+      'node_modules/traceur/bin/traceur-runtime.js',         // TypeError: undefined is not a constructor (evaluating 'new exports.Map()')
+      'test/**/*Spec.ts',
+	  'app/*.ts',
+	  'typings/browser.d.ts',
+	  'app/**/*.ts'
     ],
 
 
     // list of files to exclude
     exclude: [
+	  'node_modules/angular2/**/*_spec.js',
+	  'node_modules/angular2/src/facade/collection.ts',
+      'node_modules/ionic-angular/**/*spec*'
     ],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-	//	'**/*.ts': [ 'browserify' ]
+		'**/*.ts': [ 'browserify' ]
     },
 	
 	//browserify configuration
-	// browserify: {
-		// debug: true,
-		//transform: [ 'brfs' ] //???
-		// plugin: [
-			// [ 'tsify' ]
-		// ]
-	// },
+	browserify: {
+		debug: true,
+		// transform: [ 'brfs' ] //???
+		plugin: [
+			[ 'tsify' ]
+		]
+	},
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -64,7 +72,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'Firefox'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
