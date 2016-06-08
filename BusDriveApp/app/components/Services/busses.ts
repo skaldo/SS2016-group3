@@ -1,22 +1,18 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
-import {SettingPage} from '../../components/setting/setting';
 
 @Injectable()
 export class Busses {
     private busses = [];
 
-    private serverURL;
-
-    constructor(private http: Http, private setting: SettingPage) {
-        this.serverURL = setting.getServerURL();
+    constructor(private http: Http) {
     }
 
     /**
      * requests busses from server
      */
-    requestBusses() {
-        this.http.get(this.serverURL + "/busses").map(res => res.json()).subscribe(
+    requestBusses(serverURL) {
+        this.http.get(serverURL + "/busses").map(res => res.json()).subscribe(
             data => {
                 this.busses = data["busses"];
             },

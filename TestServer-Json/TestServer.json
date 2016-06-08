@@ -282,6 +282,41 @@
     ],
     "timestamp": 2
   },
+  "customstops": {
+    "customstops": [
+      {
+        "name": "custom1",
+        "location": {
+          "type": "Point",
+          "coordinates": [
+            7.606974,
+            49.206611
+          ]
+        }
+      },
+       {
+        "name": "custom2",
+        "location": {
+          "type": "Point",
+          "coordinates": [
+            7.603509,
+            49.207039
+          ]
+        }
+      },
+      {
+        "name": "custom3",
+        "location": {
+          "type": "Point",
+          "coordinates": [
+            7.600365,
+            49.209681
+          ]
+        }
+      }
+    ],
+    "timestamp": 2
+  },
   "updateBusStatus": {
     "lineId": 1,
     "busId": 2

@@ -1,14 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
-import {SettingPage} from '../../components/setting/setting';
 
 @Injectable()
 export class Provider {
 
-    private serverURL;
-
-    constructor(private http: Http, private setting: SettingPage) {
-        this.serverURL = setting.getServerURL();
+    constructor(private http: Http) {
     }
 
     /**
@@ -17,7 +13,7 @@ export class Provider {
      * @param longitude Longitude of current position
      * @param latitude Latitude of current position
      */
-    postRealTimeData(busID, longitude, latitude) {
+    postRealTimeData(busID, longitude, latitude, serverURL) {
         let realTimeData = JSON.stringify(
             {
                 "busId": busID,
@@ -28,7 +24,7 @@ export class Provider {
                 "timeStamp": Date.now()
             })
         let senddata = new XMLHttpRequest();
-        senddata.open('POST', this.serverURL + "/realTimeData");
+        senddata.open('POST', serverURL + "/realTimeData");
         senddata.setRequestHeader('Content-Type', 'application/json');
         senddata.send(realTimeData)
         console.log("Senden: " + "Bus: " + busID, " Latitude: " + latitude, " Longitude: " + longitude);
@@ -39,14 +35,14 @@ export class Provider {
      * @param busID ID of the selected bus
      * @param lineID ID of the selected line
      */
-    postBusStatus(busID, lineID) {
+    postBusStatus(busID, lineID, serverURL) {
         let busStatus = JSON.stringify(
             {
                 "lineId": lineID,
                 "busId": busID
             })
         let senddata = new XMLHttpRequest();
-        senddata.open('POST', this.serverURL + "/updateBusStatus");
+        senddata.open('POST', serverURL + "/updateBusStatus");
         senddata.setRequestHeader("Content-Type", "application/json");
         senddata.send(busStatus)
         console.log("Senden: " + "Bus: " + busID, " Line: " + lineID);

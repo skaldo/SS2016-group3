@@ -1,25 +1,23 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
-import {SettingPage} from '../../components/setting/setting';
 import {Busses} from '../../components/services/busses';
 import {Lines} from '../../components/services/lines';
 import {Stops} from '../../components/services/stops';
 import {Routes} from '../../components/services/routes';
 import {Provider} from '../../components/services/provider';
+import {CustomStops} from '../../components/services/customstops';
 
 @Injectable()
 export class BusDriveInterface {
-    private serverURL;
 
-    constructor(private http: Http, private setting: SettingPage, private busses: Busses, private lines: Lines, private stops: Stops, private routes: Routes, private provider: Provider) {
-        this.serverURL = setting.getServerURL();
+    constructor(private http: Http, private busses: Busses, private lines: Lines, private stops: Stops, private routes: Routes, private provider: Provider, private customstops: CustomStops) {
     }
 
     /**
      * requests busses from server
      */
-    requestBusses() {
-        this.busses.requestBusses();
+    requestBusses(serverURL) {
+        this.busses.requestBusses(serverURL);
     }
     /**
      * @returns JSON of busses
@@ -38,8 +36,8 @@ export class BusDriveInterface {
     /**
      * requests lines from server
      */
-    requestLines() {
-        this.lines.requestLines();
+    requestLines(serverURL) {
+        this.lines.requestLines(serverURL);
     }
     /**
      * @returns JSON of lines
@@ -55,12 +53,11 @@ export class BusDriveInterface {
         return this.lines.getLinesInfos();
     }
 
-
     /**
      * requests stops from server
      */
-    requestStops() {
-        this.stops.requestStops()
+    requestStops(serverURL) {
+        this.stops.requestStops(serverURL);
     }
 
     /**
@@ -84,12 +81,11 @@ export class BusDriveInterface {
         return this.stops.getLineStopsCoordinates();
     }
 
-
     /**
      * requests routes from server
      */
-    requestRoutes() {
-        this.routes.requestRoutes();
+    requestRoutes(serverURL) {
+        this.routes.requestRoutes(serverURL);
     }
 
     /**
@@ -100,13 +96,34 @@ export class BusDriveInterface {
     }
 
     /**
+     * requests stops from server
+     */
+    requestCustomStops(serverURL) {
+        this.customstops.requestCustomStops(serverURL);
+    }
+
+    /**
+     * @retruns names of customstops
+     */
+    getCustomStopsNames() {
+        return this.customstops.getCustomStopsNames();
+    }
+
+    /**
+     * @returns coordinates of customstops
+     */
+    getCustomStopsCoordinates() {
+        return this.customstops.getCustomStopsCoordinates();
+    }
+
+    /**
      * posts realTimeData to server
      * @param busID ID of the selected bus
      * @param longitude Longitude of current position
      * @param latitude Latitude of current position
      */
-    postRealTimeData(busID, longitude, latitude) {
-        this.provider.postRealTimeData(busID, longitude, latitude);
+    postRealTimeData(busID, longitude, latitude, serverURL) {
+        this.provider.postRealTimeData(busID, longitude, latitude, serverURL);
     }
 
     /**
@@ -114,7 +131,7 @@ export class BusDriveInterface {
      * @param busID ID of the selected bus
      * @param lineID ID of the selected line
      */
-    postBusStatus(busID, lineID) {
-        this.provider.postBusStatus(busID, lineID);
+    postBusStatus(busID, lineID, serverURL) {
+        this.provider.postBusStatus(busID, lineID, serverURL);
     }
 }

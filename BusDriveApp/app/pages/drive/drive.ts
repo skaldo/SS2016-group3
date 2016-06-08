@@ -8,26 +8,29 @@ import {BusDriveInterface} from '../../components/Services/busdriveinterface';
     templateUrl: 'build/pages/drive/drive.html',
 })
 export class DrivePage {
-    public counter: number = 0;
-    private LineStops = [];
+    private counter: number = 0;
+    private linestopscoordinates = [];
     private linestopsnames = [];
+    private customstopscoordinates = [];
+    private customstopsnames = [];
     private nextStop;
-    private nextStopDistance;
-    private intervalID;
+    private busspeed;
 
     //-----Language-----
     public passengers;
     public title;
 
     constructor(navParams: NavParams, private busdriveinterface: BusDriveInterface, public events: Events) {
-        this.LineStops = navParams.data[0];
-
         this.getLineStopsNames();
-        this.events.subscribe("getPosition", (position) => {
-            this.calcNextStop(position[0], position[1]);
-        });
+        this.getLineStopsCoordinates();
         this.nextStop = this.linestopsnames[0];
-        console.log(this.nextStop)
+        this.events.subscribe("getPosition", (position) => {
+            this.calcNextStop(position[0], position[1], position[2]);
+        });
+        this.events.subscribe("customStop", () => {
+            this.getCustomStopsCoordinates();
+            this.getCustomStopsNames();
+        })
 
         //-----Language-----
         this.passengers = language.passengers;
@@ -48,10 +51,31 @@ export class DrivePage {
     }
 
     /**
-   * gets the names of  linestops
-   */
+     * gets the coordinates of linestops
+     */
+    getLineStopsCoordinates() {
+        this.linestopscoordinates = this.busdriveinterface.getLineStopsCoordinates();
+    }
+
+    /**
+     * gets the names of linestops
+     */
     getLineStopsNames() {
         this.linestopsnames = this.busdriveinterface.getLineStopsNames();
+    }
+
+    /**
+     * gets the coordinates of customstops
+     */
+    getCustomStopsCoordinates() {
+        this.customstopscoordinates = this.busdriveinterface.getCustomStopsCoordinates();
+    }
+
+    /**
+     * gets the names of customstops
+     */
+    getCustomStopsNames() {
+        this.customstopsnames = this.busdriveinterface.getCustomStopsNames();
     }
 
     /**
@@ -78,11 +102,12 @@ export class DrivePage {
     /**
      * calcs the next stop of the line
      */
-    calcNextStop(latitude, longitude) {
-        let nextstoplng = this.LineStops[0][0];
-        let nextstoplat = this.LineStops[0][1];
+    calcNextStop(latitude, longitude, busspeed) {
+        this.busspeed = busspeed;
+        let nextstoplng = this.linestopscoordinates[0][0];
+        let nextstoplat = this.linestopscoordinates[0][1];
         if (this.distance(latitude, longitude, nextstoplat, nextstoplng) < 5) {
-            this.LineStops.push(this.LineStops.shift());
+            this.linestopscoordinates.push(this.linestopscoordinates.shift());
             this.linestopsnames.push(this.linestopsnames.shift());
             this.nextStop = this.linestopsnames[0];
             console.log("next stop: " + this.linestopsnames[0]);

@@ -1,24 +1,19 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
-import {SettingPage} from '../../components/setting/setting';
-
 
 @Injectable()
 export class Routes {
     private route = [];
-    private lineroute = [];
+    private lineroutecoordinates = [];
 
-    private serverURL;
-
-    constructor(private http: Http, private setting: SettingPage) {
-        this.serverURL = setting.getServerURL();
+    constructor(private http: Http) {
     }
 
     /**
      * requests routes from server
      */
-    requestRoutes() {
-        this.http.get(this.serverURL + "/routes").map(res => res.json()).subscribe(
+    requestRoutes(serverURL) {
+        this.http.get(serverURL + "/routes").map(res => res.json()).subscribe(
             data => {
                 this.route = data["routes"];
             },
@@ -31,15 +26,15 @@ export class Routes {
      * @retruns coordinates of the lineroute
      */
     getLineRouteCoordinates(Id) {
-        this.lineroute = [];
+        this.lineroutecoordinates = [];
         for (var index = 0; index < this.route[Id - 1].route.coordinates.length; index++) {
-            this.lineroute.push({
+            this.lineroutecoordinates.push({
                 lat: this.route[Id - 1].route.coordinates[index][1],
                 lng: this.route[Id - 1].route.coordinates[index][0]
             })
         }
         console.log("route " + Id + " will be loeaded");
-        console.log("GeoJson points of the route " + this.lineroute.length);
-        return this.lineroute;
+        console.log("GeoJson points of the route " + this.lineroutecoordinates.length);
+        return this.lineroutecoordinates;
     }
 }

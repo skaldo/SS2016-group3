@@ -28,6 +28,7 @@
     </center>
     <ion-card>
         <ion-item>
+            <h2>Geschwindigkeit: {{busspeed}}</h2>
             <h2>Nächste Haltestelle: {{nextStop}} </h2>
         </ion-item>
     </ion-card>
@@ -36,6 +37,16 @@
             <ion-item>
                 <h2>Fahrplan</h2>
                 <ion-item *ngFor="let item of linestopsnames">
+                    <h2>{{item}}</h2>
+                </ion-item>
+            </ion-item>
+        </ion-list>
+    </ion-card>
+    <ion-card>
+        <ion-list>
+            <ion-item>
+                <h2>CustomStops</h2>
+                <ion-item *ngFor="let item of customstopsnames">
                     <h2>{{item}}</h2>
                 </ion-item>
             </ion-item>

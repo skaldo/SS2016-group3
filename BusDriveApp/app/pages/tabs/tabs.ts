@@ -6,6 +6,7 @@ import {StopsPage} from '../stops/stops';
 import {Geolocation} from 'ionic-native';
 import {BusDriveInterface} from '../../components/Services/busdriveinterface';
 import {language} from "../../components/languages/languages";
+import {SettingPage} from '../../components/setting/setting';
 
 @Page({
     templateUrl: 'build/pages/tabs/tabs.html'
@@ -16,8 +17,10 @@ export class TabsPage {
     private tab1Root;
     private tab2Root;
     private tab3Root;
-    private intervalID;
+    private sendintervalID;
+    private requestintervalID;
 
+    private serverURL;
     private linestopscoordinates = [];
     private lineroutecoordinates = [];
     private rootParams = [];
@@ -32,7 +35,7 @@ export class TabsPage {
     public drive;
     public stops;
 
-    constructor(nav: NavController, navParams: NavParams, private busdriveinterface: BusDriveInterface, private menu: MenuController, public events: Events) {
+    constructor(nav: NavController, navParams: NavParams, private busdriveinterface: BusDriveInterface, private menu: MenuController, public events: Events, private setting:SettingPage) {
         this.nav = nav;
         this.tab1Root = DrivePage;
         this.tab2Root = MapPage;
@@ -41,12 +44,14 @@ export class TabsPage {
 
         this.selectedbus = navParams.get("selectedbus");
         this.selectedline = navParams.get("selectedline");
+        this.serverURL = setting.getServerURL();
 
         this.updateBusStatus();
         this.getLineRouteCoordinates();
         this.getLineStopsCoordinates();
-        this.setRootParams();
-        this.intervalID = setInterval(this.sendrealTimeData.bind(this), 5000)
+        this.requestCustomStops();
+        this.sendintervalID = setInterval(this.sendrealTimeData.bind(this), 5000);
+        this.requestintervalID = setInterval(this.requestCustomStops.bind(this),15000);
 
         //-----Language-----
         this.map = language.mapTitle;
@@ -70,17 +75,10 @@ export class TabsPage {
     }
 
     /**
-     * sets rootParams
-     */
-    setRootParams() {
-        this.rootParams = [this.linestopscoordinates, this.lineroutecoordinates]
-    }
-
-    /**
      * updates the bus status and sends it to server iva services component
      */
     updateBusStatus() {
-        this.busdriveinterface.postBusStatus(this.selectedbus, this.selectedline)
+        this.busdriveinterface.postBusStatus(this.selectedbus, this.selectedline, this.serverURL)
     }
 
     /**
@@ -91,16 +89,25 @@ export class TabsPage {
         Geolocation.getCurrentPosition().then((resp) => {
             let latitude = resp.coords.latitude;
             let longitude = resp.coords.longitude;
+            let busspeed = resp.coords.speed;
             if ((this.distance(this.lat, this.lng, latitude, longitude) > 75) || (currenTime - this.lastSendTime > 56000)) {
-                this.busdriveinterface.postRealTimeData(this.selectedbus, longitude, latitude)
+                this.busdriveinterface.postRealTimeData(this.selectedbus, longitude, latitude, this.serverURL)
                 this.lat = latitude;
                 this.lng = longitude;
                 this.lastSendTime = new Date();
             }
-            this.events.publish("getPosition", latitude, longitude);
+            this.events.publish("getPosition", latitude, longitude, busspeed);
         });
         currenTime = new Date();
         console.log("passed time after last send: " + (currenTime - this.lastSendTime));
+    }
+
+    /**
+     * requests customstops
+     */
+    requestCustomStops(){
+        this.busdriveinterface.requestCustomStops(this.serverURL);
+        this.events.publish("customStop");
     }
 
     /**
@@ -142,7 +149,8 @@ export class TabsPage {
                     handler: () => {
                         console.log('alert confirmed');
                         this.nav.setRoot(HomePage);
-                        clearInterval(this.intervalID);
+                        clearInterval(this.sendintervalID);
+                        clearInterval(this.requestintervalID);
                     }
                 }]
         });

@@ -1,23 +1,19 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
-import {SettingPage} from '../../components/setting/setting';
 
 @Injectable()
 export class Stops {
     private stops = [];
     private linestops = [];
 
-    private serverURL;
-
-    constructor(private http: Http, private setting: SettingPage) {
-        this.serverURL = setting.getServerURL();
+    constructor(private http: Http) {
     }
 
     /**
       * requests stops from server
       */
-    requestStops() {
-        this.http.get(this.serverURL + "/stops").map(res => res.json()).subscribe(
+    requestStops(serverURL) {
+        this.http.get(serverURL + "/stops").map(res => res.json()).subscribe(
             data => {
                 this.stops = data["stops"];
             },

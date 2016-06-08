@@ -1,22 +1,18 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
-import {SettingPage} from '../../components/setting/setting';
 
 @Injectable()
 export class Lines {
     private lines = [];
 
-    private serverURL;
-
-    constructor(private http: Http, private setting: SettingPage) {
-        this.serverURL = setting.getServerURL();
+    constructor(private http: Http) {
     }
 
     /**
      * requests lines from server
      */
-    requestLines() {
-        this.http.get(this.serverURL + "/lines").map(res => res.json()).subscribe(
+    requestLines(serverURL) {
+        this.http.get(serverURL + "/lines").map(res => res.json()).subscribe(
             data => {
                 this.lines = data["lines"];
             },

@@ -2,6 +2,7 @@ import {Page, Platform, NavController} from 'ionic-angular';
 import {BusListPage} from '../buslist/buslist';
 import {language} from "../../components/languages/languages";
 import {BusDriveInterface} from '../../components/Services/busdriveinterface';
+import {SettingPage} from '../../components/setting/setting';
 
 @Page({
     templateUrl: 'build/pages/home/home.html',
@@ -12,13 +13,16 @@ export class HomePage {
     private nav;
     private os;
 
+    private serverURL;
+
     //-----Language-----
     public beginTour;
 
-    constructor(platform: Platform, nav: NavController, private busdriveinterface: BusDriveInterface) {
+    constructor(platform: Platform, nav: NavController, private busdriveinterface: BusDriveInterface, private setting:SettingPage) {
         this.platform = platform;
         this.nav = nav;
 
+        this.serverURL = setting.getServerURL();
         this.requestData();
 
         //-----Language-----
@@ -30,10 +34,10 @@ export class HomePage {
      * requests data from server via services component
      */
     requestData(){
-        this.busdriveinterface.requestBusses();
-        this.busdriveinterface.requestLines();
-        this.busdriveinterface.requestStops();
-        this.busdriveinterface.requestRoutes();
+        this.busdriveinterface.requestBusses(this.serverURL);
+        this.busdriveinterface.requestLines(this.serverURL);
+        this.busdriveinterface.requestStops(this.serverURL);
+        this.busdriveinterface.requestRoutes(this.serverURL);
     }
 
     /**

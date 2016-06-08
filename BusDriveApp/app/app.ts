@@ -12,11 +12,12 @@ import {Lines} from './components/services/lines';
 import {Stops} from './components/services/stops';
 import {Routes} from './components/services/routes';
 import {Provider} from './components/services/provider';
+import {CustomStops} from './components/services/customstops';
 
 
 @App({
   templateUrl: 'build/app.html',
-  providers: [BusDriveInterface, Busses, Lines, Stops, Routes, Provider, SettingPage],
+  providers: [BusDriveInterface, Busses, Lines, Stops, Routes, Provider, CustomStops, SettingPage],
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 
