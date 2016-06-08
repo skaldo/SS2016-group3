@@ -6,24 +6,39 @@
     <center>
         <table>
             <tr>
-               <td >
-                   <div class="buttonleft">
-                    <button large (click)="decrease()">
+                <td>
+                    <div class="buttonleft">
+                        <button large (click)="decrease()">
                         <ion-icon name="remove"></ion-icon>
                     </button>
                     </div>
                 </td>
                 <td class="text">
                     <h2>{{passengers}}<br> {{counter}}</h2>
-                </td>     
-                <td > 
+                </td>
+                <td>
                     <div class="buttonright">
-                    <button large (click)="increase()">
+                        <button large (click)="increase()">
                         <ion-icon name="add"></ion-icon>
                     </button>
                     </div>
                 </td>
-             </tr>
+            </tr>
         </table>
     </center>
+    <ion-card>
+        <ion-item>
+            <h2>Nächste Haltestelle: {{nextStop}} </h2>
+        </ion-item>
+    </ion-card>
+    <ion-card>
+        <ion-list>
+            <ion-item>
+                <h2>Fahrplan</h2>
+                <ion-item *ngFor="let item of linestopsnames">
+                    <h2>{{item}}</h2>
+                </ion-item>
+            </ion-item>
+        </ion-list>
+    </ion-card>
 </ion-content>

@@ -1,3 +1,4 @@
+import {Events} from 'ionic-angular';
 import {Component, ElementRef, AfterViewInit} from '@angular/core';
 import {Geolocation} from 'ionic-native';
 
@@ -10,7 +11,7 @@ export class Map implements AfterViewInit {
     private map: google.maps.Map;
     private mapElement;
 
-    constructor(private element: ElementRef) {
+    constructor(private element: ElementRef, public events: Events) {
 
     }
 
@@ -42,6 +43,7 @@ export class Map implements AfterViewInit {
             let geoloccontrol = new klokantech.GeolocationControl(this.map, 18);
 
             console.log("Karte erfolgreich geladen/ successfully loaded map");
+            this.events.publish("mapLoaded");
         },
             (error) => {
                 console.log("Karte konnte nicht geladen werden/ ap could not be loaded", error);
@@ -70,11 +72,10 @@ export class Map implements AfterViewInit {
      */
     loadStops(Stops) {
         for (var index = 0; index < Stops.length; index++) {
-            let stopLatLng = new google.maps.LatLng(Stops[index].location.coordinates[1], Stops[index].location.coordinates[0]);
+            let stopLatLng = new google.maps.LatLng(Stops[index][1], Stops[index][0]);
             let stopmarker = new google.maps.Marker({
                 position: stopLatLng,
-                map: this.map,
-                label: Stops[index].name
+                map: this.map
             });
         };
     }
@@ -83,6 +84,6 @@ export class Map implements AfterViewInit {
      * is called after map(component's) view, and its children's views, are created
      */
     ngAfterViewInit() {
-        this.loadMap();
+        this.loadMap();      
     }
 }

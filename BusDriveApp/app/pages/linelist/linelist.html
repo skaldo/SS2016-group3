@@ -6,12 +6,12 @@
 
 <ion-content class="linelist">
     <ion-list>
-        <ion-item ion-item *ngFor="let item of linelist" (click)="navigate(item)"> 
+        <ion-item *ngFor="let item of linesInfos" (click)="navigate(item)">
             <ion-thumbnail item-left>
                 <ion-icon name="git-compare" style="font-size:90px" ></ion-icon>
             </ion-thumbnail>
-            <h2>{{lineName}} {{item.id.toString()}}</h2>
-            <p>{{item.name.toString()}}</p>           
+            <h2>{{lineName}} {{item[0]}}</h2>
+            <p>{{item[1]}}</p>           
         </ion-item>
     </ion-list>
 </ion-content>

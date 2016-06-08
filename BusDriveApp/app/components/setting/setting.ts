@@ -1,11 +1,6 @@
 import {Page, Storage, LocalStorage, Events} from 'ionic-angular';
 import {language, de, en} from "../languages/languages";
 
-
-/*
- Created by ttmher
- */
-
 @Page({
   templateUrl: 'build/components//setting/setting.html'
 })
@@ -17,7 +12,8 @@ export class SettingPage {
   public lang;
 
   public settings;
-  //language support
+
+  //-----Language-----
   public langTrans;
   public cancelAlert;
   public serverAdressTrans;
@@ -30,12 +26,13 @@ export class SettingPage {
     this.lang = this.getLanguage();
     this.serverURLList = this.getServerURLList().split(",");
     this.serverURLListStorage = this.getServerURLList();
-    //---- Language Support-----
-    this.langTrans=language.langTrans;
-    this.cancelAlert=language.alertCancel;
-    this.serverAdressTrans=language.serveradressTrans;
-    this.newServerAdressTrans=language.newServerTrans;
-    this.settingTrans=language.settingTrans;
+
+    //-----Language-----
+    this.langTrans = language.langTrans;
+    this.cancelAlert = language.alertCancel;
+    this.serverAdressTrans = language.serveradressTrans;
+    this.newServerAdressTrans = language.newServerTrans;
+    this.settingTrans = language.settingTrans;
 
   }
 
@@ -101,11 +98,11 @@ export class SettingPage {
       this.setLanguage(lang);
     }
     this.events.publish("ChangeLanguage");
-    this.langTrans=language.langTrans;
-    this.cancelAlert=language.alertCancel;
-    this.serverAdressTrans=language.serveradressTrans;
-    this.newServerAdressTrans=language.newServerTrans;
-    this.settingTrans=language.settingTrans;
+    this.langTrans = language.langTrans;
+    this.cancelAlert = language.alertCancel;
+    this.serverAdressTrans = language.serveradressTrans;
+    this.newServerAdressTrans = language.newServerTrans;
+    this.settingTrans = language.settingTrans;
     console.log("ChangeLanguage: " + lang);
   }
 }
