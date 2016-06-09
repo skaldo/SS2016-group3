@@ -35,6 +35,7 @@
     "phantomjs-prebuilt": "^2.1.7",
     "run-sequence": "1.1.5",
     "traceur": "0.0.110",
+    "tsify": "^0.16.0",
     "watchify": "^3.7.0"
   },
   "name": "busdriveapp",
