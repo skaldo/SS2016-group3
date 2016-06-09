@@ -6,7 +6,6 @@ import {StopsPage} from '../stops/stops';
 import {Geolocation} from 'ionic-native';
 import {BusDriveInterface} from '../../components/Services/busdriveinterface';
 import {language} from "../../components/languages/languages";
-import {SettingPage} from '../../components/setting/setting';
 
 @Page({
     templateUrl: 'build/pages/tabs/tabs.html'
@@ -35,7 +34,7 @@ export class TabsPage {
     public drive;
     public stops;
 
-    constructor(nav: NavController, navParams: NavParams, private busdriveinterface: BusDriveInterface, private menu: MenuController, public events: Events, private setting:SettingPage) {
+    constructor(nav: NavController, navParams: NavParams, private busdriveinterface: BusDriveInterface, private menu: MenuController, public events: Events) {
         this.nav = nav;
         this.tab1Root = DrivePage;
         this.tab2Root = MapPage;
@@ -44,7 +43,6 @@ export class TabsPage {
 
         this.selectedbus = navParams.get("selectedbus");
         this.selectedline = navParams.get("selectedline");
-        this.serverURL = setting.getServerURL();
 
         this.updateBusStatus();
         this.getLineRouteCoordinates();
@@ -78,7 +76,7 @@ export class TabsPage {
      * updates the bus status and sends it to server iva services component
      */
     updateBusStatus() {
-        this.busdriveinterface.postBusStatus(this.selectedbus, this.selectedline, this.serverURL)
+        this.busdriveinterface.postBusStatus(this.selectedbus, this.selectedline)
     }
 
     /**
@@ -91,7 +89,7 @@ export class TabsPage {
             let longitude = resp.coords.longitude;
             let busspeed = resp.coords.speed;
             if ((this.distance(this.lat, this.lng, latitude, longitude) > 75) || (currenTime - this.lastSendTime > 56000)) {
-                this.busdriveinterface.postRealTimeData(this.selectedbus, longitude, latitude, this.serverURL)
+                this.busdriveinterface.postRealTimeData(this.selectedbus, longitude, latitude)
                 this.lat = latitude;
                 this.lng = longitude;
                 this.lastSendTime = new Date();
@@ -106,7 +104,7 @@ export class TabsPage {
      * requests customstops
      */
     requestCustomStops(){
-        this.busdriveinterface.requestCustomStops(this.serverURL);
+        this.busdriveinterface.requestCustomStops();
         this.events.publish("customStop");
     }
 

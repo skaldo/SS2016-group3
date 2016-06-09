@@ -79,11 +79,29 @@ export class DrivePage {
     }
 
     /**
-    * calculates the distance between two points (given the latitude/longitude of those points)
-    * @param lat1, lon1 = Latitude and Longitude of point 1 (in decimal degrees)
-    * @param lat2, lon2 = Latitude and Longitude of point 2 (in decimal degrees)
-    * @returns distance between two points
-    */
+     * switches to next stop
+     */
+    showNextStop() {
+        this.linestopsnames.push(this.linestopsnames.shift());
+        this.nextStop = this.linestopsnames[0];
+        console.log("next stop: " + this.linestopsnames[0]);
+    }
+
+    /**
+     * switches to previous stop
+     */
+    showPrevioustStop() {
+        this.linestopsnames.unshift(this.linestopsnames.pop());
+        this.nextStop = this.linestopsnames[0];
+        console.log("next stop: " + this.linestopsnames[0]);
+    }
+
+    /**
+     * calculates the distance between two points (given the latitude/longitude of those points)
+     * @param lat1, lon1 = Latitude and Longitude of point 1 (in decimal degrees)
+     * @param lat2, lon2 = Latitude and Longitude of point 2 (in decimal degrees)
+     * @returns distance between two points
+     */
     distance(lat1, lng1, lat2, lng2) {
         let radlat1 = Math.PI * lat1 / 180;
         let radlat2 = Math.PI * lat2 / 180;

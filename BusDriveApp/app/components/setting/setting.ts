@@ -59,6 +59,7 @@ export class SettingPage {
    */
   setServerURL(URL) {
     this.settings.setItem("serverURL", URL);
+    this.events.publish("newServerURL", URL);
     console.log("set new server url: " + this.serverURL);
   }
 

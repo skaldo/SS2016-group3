@@ -26,30 +26,48 @@
             </tr>
         </table>
     </center>
-    <ion-card>
-        <ion-item>
-            <h2>Geschwindigkeit: {{busspeed}}</h2>
-            <h2>Nächste Haltestelle: {{nextStop}} </h2>
-        </ion-item>
-    </ion-card>
+    <center>
+        <table>
+            <tr>
+                <td>
+                    <div class="buttonleft">
+                        <button large (click)="showPrevioustStop()">
+                        <ion-icon name="arrow-back"></ion-icon>
+                    </button>
+                    </div>
+                </td>
+                <td class="text">
+                    <h2>Nächste Haltestelle<br> {{nextStop}} </h2>
+                </td>
+                <td>
+                    <div class="buttonright">
+                        <button large (click)="showNextStop()">
+                        <ion-icon name="arrow-forward"></ion-icon>
+                    </button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </center>
     <ion-card>
         <ion-list>
-            <ion-item>
-                <h2>Fahrplan</h2>
-                <ion-item *ngFor="let item of linestopsnames">
+            <ion-item-sliding *ngFor="let item of customstopsnames">
+                <ion-item>
                     <h2>{{item}}</h2>
                 </ion-item>
-            </ion-item>
-        </ion-list>
-    </ion-card>
-    <ion-card>
-        <ion-list>
-            <ion-item>
-                <h2>CustomStops</h2>
-                <ion-item *ngFor="let item of customstopsnames">
-                    <h2>{{item}}</h2>
-                </ion-item>
-            </ion-item>
+                <ion-item-options side="right">
+                    <button primary>
+                        <ion-icon name="text"></ion-icon>
+                             Text
+                    </button>
+                </ion-item-options>
+                <ion-item-options side="left">
+                    <button primary>
+                        <ion-icon name="text"></ion-icon>
+                             Text
+                    </button>
+                </ion-item-options>
+            </ion-item-sliding>
         </ion-list>
     </ion-card>
 </ion-content>
