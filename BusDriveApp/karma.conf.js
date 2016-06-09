@@ -15,12 +15,13 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'node_modules/angular2/bundles/angular2-polyfills.js', // 'Uncaught reflect-metadata shim is required when using class decorators'
       'node_modules/traceur/bin/traceur-runtime.js',         // TypeError: undefined is not a constructor (evaluating 'new exports.Map()')
+      'node_modules/reflect-metadata/Reflect.js',
+      'node_modules/zone.js/dist/zone.js',
       'test/**/*Spec.ts',
-	  'app/*.ts',
-	  'typings/browser.d.ts',
-	  'app/**/*.ts'
+	    'app/*.ts',
+	    'typings/browser.d.ts',
+	    'app/**/*.ts'
     ],
 
 
