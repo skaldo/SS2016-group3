@@ -47,7 +47,7 @@ export class SettingPage {
   }
 
   /**
-   * @retruns List of URLs
+   * @retruns List of URLs from localStorage
    */
   getServerURLList() {
     return this.settings.getItem("serverURLList");
@@ -63,7 +63,7 @@ export class SettingPage {
   }
 
   /**
-   * @retruns url of the server
+   * @retruns url of the server from localStorage
    */
   getServerURL() {
     return this.settings.getItem("serverURL")
@@ -79,7 +79,7 @@ export class SettingPage {
   }
 
   /**
-   * @retruns language of GUI
+   * @retruns language of GUI from localStorage
    */
   getLanguage() {
     return this.settings.getItem("Language")
