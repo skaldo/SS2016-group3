@@ -1,6 +1,3 @@
-/**
- * Created by Sascha on 10.05.2016.
- */
 export class Language {
     //id: number;
     //name:string;

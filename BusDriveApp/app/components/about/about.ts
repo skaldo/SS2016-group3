@@ -3,10 +3,6 @@ import {AppAvailability} from 'ionic-native';
 import {language} from "../../components/languages/languages";
 import {LicensePage} from "../../components/about/license/license";
 
-/*
-  Created by ttmher
-*/
-
 @Page({
     templateUrl: 'build/components/about/about.html',
 })

@@ -1,15 +1,23 @@
 import {App, Platform, MenuController, Nav, Events} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {ViewChild} from '@angular/core';
+
 import {HomePage} from './pages/home/home';
-import {Lists} from './components/Services/lists';
 import {SettingPage} from './components/setting/setting';
 import {AboutPage} from './components/about/about';
 import {language} from "./components/languages/languages";
+import {BusDriveInterface} from './components/Services/busdriveinterface';
+import {Busses} from './components/services/busses';
+import {Lines} from './components/services/lines';
+import {Stops} from './components/services/stops';
+import {Routes} from './components/services/routes';
+import {Provider} from './components/services/provider';
+import {CustomStops} from './components/services/customstops';
+
 
 @App({
   templateUrl: 'build/app.html',
-  providers: [Lists, SettingPage],
+  providers: [BusDriveInterface, Busses, Lines, Stops, Routes, Provider, CustomStops, SettingPage],
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 

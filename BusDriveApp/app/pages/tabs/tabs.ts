@@ -1,16 +1,12 @@
-import {Page, Alert, NavController, NavParams, MenuController} from 'ionic-angular';
+import {Page, Alert, NavController, NavParams, MenuController, Events} from 'ionic-angular';
 import {HomePage} from '../home/home';
 import {DrivePage} from '../drive/drive';
 import {MapPage} from '../map/map';
 import {StopsPage} from '../stops/stops';
 import {Geolocation} from 'ionic-native';
-import {Lists} from '../../components/Services/lists';
+import {BusDriveInterface} from '../../components/Services/busdriveinterface';
 import {language} from "../../components/languages/languages";
-
-/*
- Created by ttmher
- Edited by Charel92  and saskl
- */
+import {SettingPage} from '../../components/setting/setting';
 
 @Page({
     templateUrl: 'build/pages/tabs/tabs.html'
@@ -18,31 +14,28 @@ import {language} from "../../components/languages/languages";
 
 export class TabsPage {
     private nav;
-    private intervalID;
+    private tab1Root;
+    private tab2Root;
+    private tab3Root;
+    private sendintervalID;
+    private requestintervalID;
 
-    private stoplist = [];
-    private linestops = [];
-    private route = [];
-    private lineroute = [];
+    private serverURL;
+    private linestopscoordinates = [];
+    private lineroutecoordinates = [];
     private rootParams = [];
-
     private selectedbus;
     private selectedline;
-    private serverURL;
-
     private lng = 0;
     private lat = 0;
     private lastSendTime = undefined;
 
-    private tab1Root;
-    private tab2Root;
-    private tab3Root;
-
+    //-----Language-----
     public map;
     public drive;
     public stops;
 
-    constructor(nav: NavController, navParams: NavParams, private lists: Lists, private menu: MenuController) {
+    constructor(nav: NavController, navParams: NavParams, private busdriveinterface: BusDriveInterface, private menu: MenuController, public events: Events, private setting:SettingPage) {
         this.nav = nav;
         this.tab1Root = DrivePage;
         this.tab2Root = MapPage;
@@ -51,87 +44,70 @@ export class TabsPage {
 
         this.selectedbus = navParams.get("selectedbus");
         this.selectedline = navParams.get("selectedline");
-        this.serverURL = navParams.get("URL");
+        this.serverURL = setting.getServerURL();
 
-        this.getStoplist();
-        this.getRoute();
-        this.setRootParams();
+        this.updateBusStatus();
+        this.getLineRouteCoordinates();
+        this.getLineStopsCoordinates();
+        this.requestCustomStops();
+        this.sendintervalID = setInterval(this.sendrealTimeData.bind(this), 5000);
+        this.requestintervalID = setInterval(this.requestCustomStops.bind(this),15000);
 
+        //-----Language-----
         this.map = language.mapTitle;
         this.drive = language.driveTitle;
         this.stops = language.stopTitle;
-
-        this.intervalID = setInterval(this.sendrealTimeData.bind(this), 5000)
-        this.lists.postBusStatus(this.serverURL, this.selectedbus.id, this.selectedline.id)
-
     }
 
     /**
-     * gets the stoplist from the server and removes stops which do not belong to the line
+     * gets the coordinates of linestops
      */
-    getStoplist() {
-        this.lists.getStops(this.serverURL).map(res => res.json()).subscribe(
-            data => {
-                this.stoplist = data["stops"];
-                for (let index = 0; index < this.stoplist.length; index++) {
-                    for (let jndex = 0; jndex < this.stoplist[index].lines.length; jndex++) {
-                        if (this.selectedline.id === parseInt(this.stoplist[index].lines[jndex].id)) {
-                            console.log("jetzt wird gepusht", this.stoplist[index].name)
-                            this.linestops.push(this.stoplist[index]);
-                        }
-                    }
-                }
-            },
-            err => console.error("getStops failed"),
-            () => console.log('getStops completed')
-        );
+    getLineStopsCoordinates() {
+        this.busdriveinterface.getLineStops(this.selectedline);
+        this.linestopscoordinates = this.busdriveinterface.getLineStopsCoordinates();
     }
 
     /**
-     * gets the routes from the server and removes routes which do not belong to the line
+     * gets the coordinates of lineroute
      */
-    getRoute() {
-        this.lists.getRoutes(this.serverURL).map(res => res.json()).subscribe(
-            data => {
-                this.route = data["routes"];
-                console.log("jetzt wird die Route geladen:", this.selectedline.id);
-                for (var index = 0; index < this.route[this.selectedline.id - 1].route.coordinates.length; index++) {
-                    this.lineroute.push({
-                        lat: this.route[this.selectedline.id - 1].route.coordinates[index][1],
-                        lng: this.route[this.selectedline.id - 1].route.coordinates[index][0]
-                    })
-                }
-                console.log("GeoJson points of the route " + this.lineroute.length)
-            },
-            err => console.error("getRoute failed"),
-            () => console.log('getRoute completed')
-        );
+    getLineRouteCoordinates() {
+        this.lineroutecoordinates = this.busdriveinterface.getLineRouteCoordinates(this.selectedline);
     }
 
     /**
-     * sets rootParams
+     * updates the bus status and sends it to server iva services component
      */
-    setRootParams() {
-        this.rootParams = [this.linestops, this.lineroute]
+    updateBusStatus() {
+        this.busdriveinterface.postBusStatus(this.selectedbus, this.selectedline, this.serverURL)
     }
 
     /**
-     * sends the current position, the id of the selected bus and the time to the server
+     * sends the current position, the id of the selected bus and the time to the server via services component
      */
     sendrealTimeData() {
         let currenTime = undefined;
         Geolocation.getCurrentPosition().then((resp) => {
             let latitude = resp.coords.latitude;
             let longitude = resp.coords.longitude;
+            let busspeed = resp.coords.speed;
             if ((this.distance(this.lat, this.lng, latitude, longitude) > 75) || (currenTime - this.lastSendTime > 56000)) {
-                this.lists.postRealTimeData(this.serverURL, this.selectedbus.id, longitude, latitude)
+                this.busdriveinterface.postRealTimeData(this.selectedbus, longitude, latitude, this.serverURL)
                 this.lat = latitude;
                 this.lng = longitude;
                 this.lastSendTime = new Date();
             }
+            this.events.publish("getPosition", latitude, longitude, busspeed);
         });
         currenTime = new Date();
         console.log("passed time after last send: " + (currenTime - this.lastSendTime));
+    }
+
+    /**
+     * requests customstops
+     */
+    requestCustomStops(){
+        this.busdriveinterface.requestCustomStops(this.serverURL);
+        this.events.publish("customStop");
     }
 
     /**
@@ -173,9 +149,8 @@ export class TabsPage {
                     handler: () => {
                         console.log('alert confirmed');
                         this.nav.setRoot(HomePage);
-                        clearInterval(this.intervalID);
-                        /* for (var i = 1; i < 99999; i++)
-                            window.clearInterval(i); */
+                        clearInterval(this.sendintervalID);
+                        clearInterval(this.requestintervalID);
                     }
                 }]
         });
