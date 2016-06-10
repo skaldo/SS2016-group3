@@ -1,8 +1,9 @@
 import {Page, NavParams, Platform} from 'ionic-angular';
+import {Component} from '@angular/core';
 import {language} from "../../components/languages/languages";
 import {BusDriveInterface} from '../../components/Services/busdriveinterface';
 
-@Page({
+@Component({
   templateUrl: 'build/pages/stops/stops.html',
 })
 

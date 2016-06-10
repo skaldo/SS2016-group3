@@ -1,7 +1,6 @@
-import {App, Platform, MenuController, Nav, Events} from 'ionic-angular';
+import {App, Platform, MenuController, Nav, Events, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
-import {ViewChild} from '@angular/core';
-
+import {Component, ViewChild} from '@angular/core';
 import {HomePage} from './pages/home/home';
 import {SettingPage} from './components/setting/setting';
 import {AboutPage} from './components/about/about';
@@ -15,10 +14,9 @@ import {Provider} from './components/services/provider';
 import {CustomStops} from './components/services/customstops';
 
 
-@App({
+@Component({
   templateUrl: 'build/app.html',
-  providers: [BusDriveInterface, Busses, Lines, Stops, Routes, Provider, CustomStops, SettingPage],
-  config: {} // http://ionicframework.com/docs/v2/api/config/Config/
+  providers: [BusDriveInterface, Busses, Lines, Stops, Routes, Provider, CustomStops, SettingPage]
 })
 
 export class MyApp {
@@ -30,6 +28,7 @@ export class MyApp {
   //---------Language Support-----
   public settingTrans;
   public about;
+  
   constructor(private platform: Platform, private menu: MenuController, public events: Events) {
     this.initializeApp();
     this.setPages();
@@ -74,7 +73,12 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 
+  /**
+   * exits the app
+   */
   exit() {
     this.platform.exitApp()
   }
 }
+
+ionicBootstrap(MyApp);

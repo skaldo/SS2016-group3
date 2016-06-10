@@ -1,9 +1,10 @@
 import {Page, NavController, NavParams, MenuController} from 'ionic-angular';
+import {Component} from '@angular/core';
 import {TabsPage} from '../tabs/tabs';
 import {BusDriveInterface} from '../../components/Services/busdriveinterface';
 import {language} from "../../components/languages/languages";
 
-@Page({
+@Component({
     templateUrl: 'build/pages/linelist/linelist.html'
 })
 

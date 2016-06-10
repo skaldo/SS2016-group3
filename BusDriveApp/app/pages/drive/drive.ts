@@ -1,10 +1,11 @@
 import {Page, NavParams, Events} from 'ionic-angular';
+import {Component} from '@angular/core';
 import {Geolocation} from 'ionic-native';
 import {language} from "../../components/languages/languages";
 import {BusDriveInterface} from '../../components/Services/busdriveinterface';
 
 
-@Page({
+@Component({
     templateUrl: 'build/pages/drive/drive.html',
 })
 export class DrivePage {

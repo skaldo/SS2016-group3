@@ -1,7 +1,8 @@
 import {Page, Storage, LocalStorage, Events} from 'ionic-angular';
+import {Component} from '@angular/core';
 import {language, de, en} from "../languages/languages";
 
-@Page({
+@Component({
   templateUrl: 'build/components//setting/setting.html'
 })
 

@@ -1,13 +1,15 @@
-import {Page, Alert, NavController, NavParams, MenuController, Events} from 'ionic-angular';
+import {Page, Alert, NavController, NavParams, MenuController, Events, Platform} from 'ionic-angular';
+import {Component} from '@angular/core';
 import {HomePage} from '../home/home';
 import {DrivePage} from '../drive/drive';
 import {MapPage} from '../map/map';
+import {NativeMapPage} from '../nativemap/map';
 import {StopsPage} from '../stops/stops';
 import {Geolocation} from 'ionic-native';
 import {BusDriveInterface} from '../../components/Services/busdriveinterface';
 import {language} from "../../components/languages/languages";
 
-@Page({
+@Component({
     templateUrl: 'build/pages/tabs/tabs.html'
 })
 
@@ -34,11 +36,11 @@ export class TabsPage {
     public drive;
     public stops;
 
-    constructor(nav: NavController, navParams: NavParams, private busdriveinterface: BusDriveInterface, private menu: MenuController, public events: Events) {
+    constructor(private platform: Platform,nav: NavController, navParams: NavParams, private busdriveinterface: BusDriveInterface, private menu: MenuController, public events: Events) {
         this.nav = nav;
         this.tab1Root = DrivePage;
-        this.tab2Root = MapPage;
         this.tab3Root = StopsPage;
+        this.setMapPage();
         this.menu.swipeEnable(false);
 
         this.selectedbus = navParams.get("selectedbus");
@@ -55,6 +57,24 @@ export class TabsPage {
         this.map = language.mapTitle;
         this.drive = language.driveTitle;
         this.stops = language.stopTitle;
+    }
+    
+    /**
+     * sets MapPage depending on platform
+     */
+    setMapPage(){
+        if (this.platform.is('ios')) {
+            this.tab2Root = MapPage;
+            console.log("MapPage");
+        }
+        else if (this.platform.is('android')) {
+            this.tab2Root = NativeMapPage;
+            console.log("NativeMapPage");
+        }
+        else {
+            this.tab2Root = MapPage;
+            console.log("MapPage");
+        }
     }
 
     /**
@@ -132,7 +152,7 @@ export class TabsPage {
     /**
      * alert when leaving, if you click "OK" GUI will change to HomePage and you will stop sending, if you click "Abbrechen" nothing will happen.
      */
-    onPageWillLeave() {
+    ionViewWillLeave() {
         let alert = Alert.create({
             title: language.alertTitle,
             buttons: [

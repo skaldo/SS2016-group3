@@ -1,11 +1,11 @@
 import {Page, NavParams, Events} from 'ionic-angular';
 import {Geolocation} from 'ionic-native';
-import {ViewChild} from  '@angular/core';
+import {Component, ViewChild} from  '@angular/core';
 import {Map} from '../../components/map/map';
 import {language} from "../../components/languages/languages";
 import {BusDriveInterface} from '../../components/Services/busdriveinterface';
 
-@Page({
+@Component({
     templateUrl: 'build/pages/map/map.html',
     directives: [Map]
 })
