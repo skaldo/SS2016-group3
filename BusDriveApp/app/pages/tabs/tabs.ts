@@ -3,7 +3,7 @@ import {Component} from '@angular/core';
 import {HomePage} from '../home/home';
 import {DrivePage} from '../drive/drive';
 import {MapPage} from '../map/map';
-import {NativeMapPage} from '../nativemap/map';
+import {NativeMapPage} from '../nativemap/nativemap';
 import {StopsPage} from '../stops/stops';
 import {Geolocation} from 'ionic-native';
 import {BusDriveInterface} from '../../components/Services/busdriveinterface';
@@ -89,7 +89,8 @@ export class TabsPage {
      * gets the coordinates of lineroute
      */
     getLineRouteCoordinates() {
-        this.lineroutecoordinates = this.busdriveinterface.getLineRouteCoordinates(this.selectedline);
+        this.busdriveinterface.getLineRoute(this.selectedline);
+        this.lineroutecoordinates = this.busdriveinterface.getLineRouteCoordinates();
     }
 
     /**

@@ -69,6 +69,7 @@ export class BusDriveInterface {
     }
 
     /**
+     * @param Id id of the selected line
      * @retruns stops of the line
      */
     getLineStops(Id) {
@@ -97,10 +98,25 @@ export class BusDriveInterface {
     }
 
     /**
+     * @param Id id of the selected line
      * @retruns route of the line
      */
-    getLineRouteCoordinates(Id) {
-        return this.routes.getLineRouteCoordinates(Id);
+    getLineRoute(Id) {
+        return this.routes.getLineRoute(Id);
+    }
+
+    /**
+     * @retruns route of the line
+     */
+    getLineRouteCoordinates() {
+        return this.routes.getLineRouteCoordinates();
+    }
+
+    /**
+     * @retruns coordinates of the lineroute
+     */
+    getLineRouteCoordinatesNative() {
+        return this.routes.getLineRouteCoordinatesNative();
     }
 
     /**
