@@ -54,8 +54,8 @@ export class Routes {
         let lineroutecoordinates = [];
         for (var index = 0; index < this.lineroute.length; index++) {
             lineroutecoordinates.push([
-                this.lineroute[index][1].toString(),
-                this.lineroute[index][0].toString()
+                this.lineroute[index][1],
+                this.lineroute[index][0]
             ])
         }
         console.log("GeoJson points of the route " + lineroutecoordinates.length);

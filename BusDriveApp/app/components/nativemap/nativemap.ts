@@ -46,7 +46,7 @@ export class NativeMap implements OnDestroy {
     loadRoute(route) {
         let routepath = [];
         for (let i = 0; i < route.length; i++) {
-            let latlng = new GoogleMapsLatLng(route[i][1], route[i][0]);
+            let latlng = new GoogleMapsLatLng(route[i][0].toString(), route[i][1].toString());
             routepath.push(latlng);
         };
         this.map.addPolyline({
@@ -56,7 +56,6 @@ export class NativeMap implements OnDestroy {
             'color': '#FF0000',
             'width': 4
         });
-        console.log("load route ");
     }
 
     /**
