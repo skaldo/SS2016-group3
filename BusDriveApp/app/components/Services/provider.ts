@@ -26,7 +26,7 @@ export class Provider {
         let senddata = new XMLHttpRequest();
         senddata.open('POST', serverURL + "/realTimeData");
         senddata.setRequestHeader('Content-Type', 'application/json');
-        senddata.send(realTimeData)
+        senddata.send(realTimeData);
         console.log("Senden: " + "Bus: " + busID, " Latitude: " + latitude, " Longitude: " + longitude);
     }
 
@@ -44,8 +44,25 @@ export class Provider {
         let senddata = new XMLHttpRequest();
         senddata.open('POST', serverURL + "/updateBusStatus");
         senddata.setRequestHeader("Content-Type", "application/json");
-        senddata.send(busStatus)
+        senddata.send(busStatus);
         console.log("Senden: " + "Bus: " + busID, " Line: " + lineID);
     }
 
+    /**
+     * posts CustomStopStatus
+     * @param customstopID ID of the customstop
+     * @param status status of the customstop 
+     */
+    postCustomStopStatus(customstopID, status, serverURL) {
+        let customStopStatus = JSON.stringify(
+            {
+                "customstopId": customstopID,
+                "status": status
+            })
+        let senddata = new XMLHttpRequest();
+        senddata.open('POST', serverURL + "/customStopStatus");
+        senddata.setRequestHeader("Content-Type", "application/json");
+        senddata.send(customStopStatus);
+        console.log("Senden: " + " CustomstopID: " + customstopID, "Status: " + status);
+    }
 }

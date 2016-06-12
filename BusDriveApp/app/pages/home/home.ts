@@ -35,6 +35,7 @@ export class HomePage {
         this.busdriveinterface.requestLines();
         this.busdriveinterface.requestStops();
         this.busdriveinterface.requestRoutes();
+        this.busdriveinterface.requestCustomStops();
     }
 
     /**

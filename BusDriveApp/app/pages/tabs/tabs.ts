@@ -22,8 +22,6 @@ export class TabsPage {
     private requestintervalID;
 
     private serverURL;
-    private linestopscoordinates = [];
-    private lineroutecoordinates = [];
     private rootParams = [];
     private selectedbus;
     private selectedline;
@@ -47,11 +45,10 @@ export class TabsPage {
         this.selectedline = navParams.get("selectedline");
 
         this.updateBusStatus();
-        this.getLineRouteCoordinates();
-        this.getLineStopsCoordinates();
-        this.requestCustomStops();
+        this.getLineRoute();
+        this.getLineStops();
+        this.requestintervalID = setInterval(this.getLineCustomStops.bind(this),15000);
         this.sendintervalID = setInterval(this.sendrealTimeData.bind(this), 5000);
-        this.requestintervalID = setInterval(this.requestCustomStops.bind(this),15000);
 
         //-----Language-----
         this.map = language.mapTitle;
@@ -78,19 +75,26 @@ export class TabsPage {
     }
 
     /**
-     * gets the coordinates of linestops
+     * gets the linestops
      */
-    getLineStopsCoordinates() {
+    getLineStops() {
         this.busdriveinterface.getLineStops(this.selectedline);
-        this.linestopscoordinates = this.busdriveinterface.getLineStopsCoordinates();
     }
 
     /**
-     * gets the coordinates of lineroute
+     * gets the lineroute
      */
-    getLineRouteCoordinates() {
+    getLineRoute() {
         this.busdriveinterface.getLineRoute(this.selectedline);
-        this.lineroutecoordinates = this.busdriveinterface.getLineRouteCoordinates();
+    }
+
+    /**
+     * gets linecustomstops
+     */
+    getLineCustomStops(){
+        this.busdriveinterface.requestCustomStops();
+        this.busdriveinterface.getLineCustomStops(this.selectedline);
+        this.events.publish("newCustomStops");
     }
 
     /**
@@ -115,18 +119,9 @@ export class TabsPage {
                 this.lng = longitude;
                 this.lastSendTime = new Date();
             }
-            this.events.publish("getPosition", latitude, longitude, busspeed);
         });
         currenTime = new Date();
         console.log("passed time after last send: " + (currenTime - this.lastSendTime));
-    }
-
-    /**
-     * requests customstops
-     */
-    requestCustomStops(){
-        this.busdriveinterface.requestCustomStops();
-        this.events.publish("customStop");
     }
 
     /**

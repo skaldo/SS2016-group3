@@ -2,72 +2,110 @@
     <ion-title>{{title}}</ion-title>
 </ion-navbar>
 
+<ion-toolbar>
+    <ion-segment [(ngModel)]="drive">
+        <ion-segment-button value="driving">
+            Drive
+        </ion-segment-button>
+        <ion-segment-button value="customstops" (click)="resetNewCustomStopsCounter()">
+            <ion-badge secondary>{{newcustomstopscounter}}</ion-badge>
+            New Custom Stops
+        </ion-segment-button>
+    </ion-segment>
+</ion-toolbar>
+
 <ion-content class="drive" padding>
-    <center>
-        <table>
-            <tr>
-                <td>
-                    <div class="buttonleft">
-                        <button large (click)="decrease()">
+    <div [ngSwitch]="drive">
+        <form *ngSwitchWhen="'driving'">
+            <center>
+                <table>
+                    <tr>
+                        <td>
+                            <div class="buttonleft">
+                                <button large (click)="decreasePassengers()">
                         <ion-icon name="remove"></ion-icon>
                     </button>
-                    </div>
-                </td>
-                <td class="text">
-                    <h2>{{passengers}}<br> {{counter}}</h2>
-                </td>
-                <td>
-                    <div class="buttonright">
-                        <button large (click)="increase()">
+                            </div>
+                        </td>
+                        <td class="text">
+                            <h2>{{passengers}}<br> {{counter}}</h2>
+                        </td>
+                        <td>
+                            <div class="buttonright">
+                                <button large (click)="increasePassengers()">
                         <ion-icon name="add"></ion-icon>
                     </button>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </center>
-    <center>
-        <table>
-            <tr>
-                <td>
-                    <div class="buttonleft">
-                        <button large (click)="showPrevioustStop()">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </center>
+            <center>
+                <table>
+                    <tr>
+                        <td>
+                            <div class="buttonleft">
+                                <button large (click)="showPrevioustStop()">
                         <ion-icon name="arrow-back"></ion-icon>
                     </button>
-                    </div>
-                </td>
-                <td class="text">
-                    <h2>Nächste Haltestelle<br> {{nextStop}} </h2>
-                </td>
-                <td>
-                    <div class="buttonright">
-                        <button large (click)="showNextStop()">
+                            </div>
+                        </td>
+                        <td class="text">
+                            <h2>Nächste Haltestelle:<br> {{nextStop}} </h2>
+                        </td>
+                        <td>
+                            <div class="buttonright">
+                                <button large (click)="showNextStop()">
                         <ion-icon name="arrow-forward"></ion-icon>
                     </button>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </center>
-    <ion-card>
-        <ion-list>
-            <ion-item-sliding *ngFor="let item of customstopsnames">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </center>
+            <ion-list>
+                <ion-item-sliding *ngFor="let item of acceptedcustomstops">
+                    <ion-item>
+                        <h2>Name: {{item[1]}}</h2>
+                        <p>Abholzeit: {{item[2]}} </p>
+                        <p>Anzahl: {{item[3]}}</p>
+                        <p>Adresse: {{item[4]}}</p>
+                        <p>Informaton: {{item[5]}}</p>
+                    </ion-item>
+                    <ion-item-options>
+                        <button primary (click)="completeAcceptedCustomStop(item)">
+                            <ion-icon name="done-all"></ion-icon>
+                                 Ausgeführt
+                        </button>
+                        <button primary (click)="noShowAcceptedCustomStop(item)">
+                            <ion-icon name="sad"></ion-icon>
+                                Kein Erscheinen
+                        </button>
+                    </ion-item-options>
+                </ion-item-sliding>
+            </ion-list>
+        </form>
+
+        <ion-list *ngSwitchWhen="'customstops'">
+            <ion-item-sliding *ngFor="let item of linecustomstopsall">
                 <ion-item>
-                    <h2>{{item}}</h2>
+                    <h2>Name: {{item[1]}}</h2>
+                    <p>Abholzeit: {{item[2]}} </p>
+                    <p>Anzahl: {{item[3]}}</p>
+                    <p>Adresse: {{item[4]}}</p>
+                    <p>Informaton: {{item[5]}}</p>
                 </ion-item>
-                <ion-item-options side="right">
-                    <button primary>
-                        <ion-icon name="text"></ion-icon>
-                             Text
-                    </button>
-                </ion-item-options>
-                <ion-item-options side="left">
-                    <button primary>
-                        <ion-icon name="text"></ion-icon>
-                             Text
-                    </button>
+                <ion-item-options>
+                    <button primary (click)="acceptCustomStop(item)">
+                            <ion-icon name="checkmark"></ion-icon>
+                                 Akzeptieren
+                        </button>
+                    <button primary (click)="rejecteCustomStop(item)">
+                            <ion-icon name="close"></ion-icon>
+                                Ablehnen
+                        </button>
                 </ion-item-options>
             </ion-item-sliding>
         </ion-list>
-    </ion-card>
+    </div>
 </ion-content>

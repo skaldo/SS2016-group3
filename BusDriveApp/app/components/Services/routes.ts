@@ -23,12 +23,13 @@ export class Routes {
     }
 
     /**
-     * @retruns route of the route
+     * @param id of the selected line
+     * @retruns route of the line
      */
-    getLineRoute(Id) {
+    getLineRoute(LineId) {
         this.lineroute = [];
-        this.lineroute = this.routes[Id - 1].route.coordinates;
-        console.log("route " + Id + " will be loeaded");
+        this.lineroute = this.routes[LineId - 1].route.coordinates;
+        console.log("route " + LineId + " will be loeaded");
         return this.lineroute;
     }
 

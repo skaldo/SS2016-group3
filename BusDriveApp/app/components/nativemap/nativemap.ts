@@ -24,29 +24,49 @@ export class NativeMap implements OnDestroy {
         this.mapElement = this.element.nativeElement.children[0];
         this.mapElement.setAttribute('id', this.mapElementId);
         this.map = new GoogleMap(this.mapElementId);
+        this.map.setOptions({
+            'backgroundColor': 'white',
+            'controls': {
+                'compass': true,
+                'myLocationButton': true,
+                'zoom': true // Only for Android
+            },
+            'gestures': {
+                'scroll': true,
+                'tilt': true,
+                'rotate': true,
+                'zoom': true
+            },
+        });
+        this.centerCamera();
+        console.log("successfully loaded map");
+    }
+
+    /**
+     * centers camera to own position
+     */
+    centerCamera() {
         let options = { timeout: 10000, enableHighAccuracy: true };
         Geolocation.getCurrentPosition(options).then((resp) => {
             let latitude = resp.coords.latitude;
             let longitude = resp.coords.longitude;
             this.map.animateCamera({
                 'target': new GoogleMapsLatLng(latitude.toString(), longitude.toString()),
-                'tilt': 0,
+                'tilt': 10,
                 'zoom': 18,
-                'bearing':0
+                'bearing': 0
             });
         })
-        this.map.setMyLocationEnabled(true);
-        console.log("successfully loaded map");
     }
 
     /**
      * loads the route and shows it on the map
-     * @param route list of coordinates of the lineroute
+     * @param lineroutecoordinates list of coordinates of the lineroute
      */
-    loadRoute(route) {
+    loadRoute(lineroutecoordinates) {
         let routepath = [];
-        for (let i = 0; i < route.length; i++) {
-            let latlng = new GoogleMapsLatLng(route[i][0].toString(), route[i][1].toString());
+        for (let i = 0; i < lineroutecoordinates.length; i++) {
+            let latlng = new GoogleMapsLatLng(lineroutecoordinates[i][0].toString(), lineroutecoordinates[i][1].toString());
             routepath.push(latlng);
         };
         this.map.addPolyline({

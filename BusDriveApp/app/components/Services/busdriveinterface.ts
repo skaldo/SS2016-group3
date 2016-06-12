@@ -69,11 +69,11 @@ export class BusDriveInterface {
     }
 
     /**
-     * @param Id id of the selected line
+     * @param LineId id of the selected line
      * @retruns stops of the line
      */
-    getLineStops(Id) {
-        return this.stops.getLineStops(Id);
+    getLineStops(LineId) {
+        return this.stops.getLineStops(LineId);
     }
 
     /**
@@ -98,11 +98,11 @@ export class BusDriveInterface {
     }
 
     /**
-     * @param Id id of the selected line
+     * @param LineId id of the selected line
      * @retruns route of the line
      */
-    getLineRoute(Id) {
-        return this.routes.getLineRoute(Id);
+    getLineRoute(LineId) {
+        return this.routes.getLineRoute(LineId);
     }
 
     /**
@@ -127,19 +127,68 @@ export class BusDriveInterface {
     }
 
     /**
-     * @retruns names of customstops
+     * @param LineId id of the selected line
+     * @retruns list of customstops of the line
      */
-    getCustomStopsNames() {
-        return this.customstops.getCustomStopsNames();
+    getLineCustomStops(LineId) {
+        return this.customstops.getLineCustomStops(LineId);
     }
 
     /**
-     * @returns coordinates of customstops
+     * @returns list of ids of linecustomstops
      */
-    getCustomStopsCoordinates() {
-        return this.customstops.getCustomStopsCoordinates();
+    getLineCustomStopsIds() {
+        return this.customstops.getLineCustomStopsIds();
+    }   
+
+    /**
+     * @returns list of names of linecustomstops
+     */
+    getLineCustomStopsNames() {
+        return this.customstops.getLineCustomStopsNames();
     }
 
+    /**
+     * @returns list of pick up times of the linecustomstops
+     */
+    getLineCustomStopPickUpTimes(){
+        return this.customstops.getLineCustomStopPickUpTimes();
+    }
+
+    /**
+     * @returns list coordinates of linecustomstops
+     */
+    getLineCustomStopsCoordinates() {
+        return this.customstops.getLineCustomStopsCoordinates();
+    }
+
+    /**
+     * @returns list of number of persons of the linecustomstops
+     */
+    getLineCustomStopsNumberOfPersons(){
+        return this.customstops.getLineCustomStopsNumberOfPersons();
+    }
+
+    /**
+     * @returns list of addresses of the linecustomstops
+     */
+    getLineCustomStopsAddresses(){
+        return this.customstops.getLineCustomStopsAddresses();
+    } 
+
+    /**
+     * @returns list of assistance of the linecustomstops
+     */
+    getLineCustomStopsAssistances(){
+        return this.customstops.getLineCustomStopsAssistances();
+    }       
+
+    /**
+     * @returns lits of all information of the linecustomstops
+     */
+    getLineCustomStopsAll(){
+        return this.customstops.getLineCustomStopsAll();
+    } 
     /**
      * posts realTimeData to server
      * @param busID ID of the selected bus
@@ -157,5 +206,14 @@ export class BusDriveInterface {
      */
     postBusStatus(busID, lineID) {
         this.provider.postBusStatus(busID, lineID, this.serverURL);
+    }
+
+    /**
+     * posts CustomStopStatus
+     * @param customstopID ID of the customstop
+     * @param status status of the customstop 
+     */
+    postCustomStopStatus(customstopID, status){
+        this.provider.postCustomStopStatus(customstopID, status, this.serverURL);
     }
 }

@@ -54,11 +54,11 @@ export class Map implements AfterViewInit {
 
     /**
      * loads the route and shows it on the map
-     * @param Route list of coordinates of the lineroute
+     * @param lineroutecoordinates list of coordinates of the lineroute
      */
-    loadRoute(Route) {
+    loadRoute(lineroutecoordinates) {
         let routepath = new google.maps.Polyline({
-            path: Route,
+            path: lineroutecoordinates,
             geodesic: true,
             strokeColor: '#FF0000',
             strokeOpacity: 1.0,

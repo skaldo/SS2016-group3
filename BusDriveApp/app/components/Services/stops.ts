@@ -24,13 +24,14 @@ export class Stops {
     }
 
     /**
+     * @param LineId id of the selected line
      * @retruns stops of the line
      */
-    getLineStops(Id) {
+    getLineStops(LineId) {
         this.linestops = [];
         for (let i = 0; i < this.stops.length; i++) {
             for (let j = 0; j < this.stops[i].lines.length; j++) {
-                if (Id === parseInt(this.stops[i].lines[j].id)) {
+                if (LineId === parseInt(this.stops[i].lines[j].id)) {
                     console.log("add stop to linestops:" + this.stops[i].name);
                     this.linestops.push(this.stops[i]);
                 }

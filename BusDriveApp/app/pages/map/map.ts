@@ -16,8 +16,8 @@ export class MapPage {
     private linestopscoordinates = [];
     private linestopsnames = [];
     private lineroutecoordinates = [];
-    private customstopscoordinates = [];
-    private customstopsnames = [];
+    private linecustomstopscoordinates = [];
+    private linecustomstopsnames = [];
 
     //-----Language-----
     public title;
@@ -26,10 +26,10 @@ export class MapPage {
         this.getLineRouteCoordinates();
         this.getLineStopsCoordinates();
         this.getLineStopsNames();
-        this.events.subscribe("customStop", () => {
-            this.getCustomStopsCoordinates();
-            this.getCustomStopsNames();
-            this.map.loadCustomStops(this.customstopscoordinates, this.customstopsnames);
+        this.events.subscribe("newCustomStops", () => {
+            this.getLineCustomStopsCoordinates();
+            this.getLineCustomStopsNames();
+            this.map.loadCustomStops(this.linecustomstopscoordinates, this.linecustomstopsnames);
         })
         this.events.subscribe("mapLoaded", () => {
             this.showLine();
@@ -56,15 +56,15 @@ export class MapPage {
     /**
      * gets the coordinates of customstops
      */
-    getCustomStopsCoordinates() {
-        this.customstopscoordinates = this.busdriveinterface.getCustomStopsCoordinates();
+    getLineCustomStopsCoordinates() {
+        this.linecustomstopscoordinates = this.busdriveinterface.getLineCustomStopsCoordinates();
     }
 
     /**
      * gets the names of customstops
      */
-    getCustomStopsNames() {
-        this.customstopsnames = this.busdriveinterface.getCustomStopsNames();
+    getLineCustomStopsNames() {
+        this.linecustomstopsnames = this.busdriveinterface.getLineCustomStopsNames();
     }
 
     /**

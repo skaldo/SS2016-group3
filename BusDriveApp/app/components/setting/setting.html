@@ -29,14 +29,19 @@
         <ion-icon name="add"></ion-icon>
       </button>
     </div>
-    <!--<ion-item>
+    <ion-item>
       <ion-label>Sendedistanz</ion-label>
-      <ion-select [(ngModel)]="distance" (ngModelChange)="setServerURL(serverURL)" okText="Ok" cancelText="Abbruch">
-        <ion-option value="50">50</ion-option>
-        <ion-option value="75">75</ion-option>
-        <ion-option value="100en">100</ion-option>
-        <ion-option value="125">125</ion-option>
-      </ion-select>
-    </ion-item>-->
+      <ion-range min="25" max="150" step="25" pin="true" snaps="true" [(ngModel)]="distance" secondary>
+        <ion-icon range-left small name="resize"></ion-icon>
+        <ion-icon range-right name="resize"></ion-icon>
+      </ion-range>
+    </ion-item>
+    <ion-item>
+      <ion-label>Sendeperiode</ion-label>
+      <ion-range min="30" max="120" step="15" pin="true" snaps="true" [(ngModel)]="periode" secondary>
+        <ion-icon range-left small name="clock"></ion-icon>
+        <ion-icon range-right name="clock"></ion-icon>
+      </ion-range>
+    </ion-item>
   </ion-list>
 </ion-content>
