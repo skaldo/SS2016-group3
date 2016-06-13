@@ -29,7 +29,7 @@ export class Routes {
     getLineRoute(LineId) {
         this.lineroute = [];
         this.lineroute = this.routes[LineId - 1].route.coordinates;
-        console.log("route " + LineId + " will be loeaded");
+        console.log("route " + LineId + " will be loaded");
         return this.lineroute;
     }
 

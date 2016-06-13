@@ -92,7 +92,7 @@
                     <h2>Name: {{item[1]}}</h2>
                     <p>Abholzeit: {{item[2]}} </p>
                     <p>Anzahl: {{item[3]}}</p>
-                    <p>Adresse: {{item[4]}}</p>
+                    <p (click)="showCustomStop(item)">Adresse: {{item[4]}}</p>
                     <p>Informaton: {{item[5]}}</p>
                 </ion-item>
                 <ion-item-options>

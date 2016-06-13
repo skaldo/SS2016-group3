@@ -39,7 +39,7 @@ export class BusListPage {
      * passes the selected bus and the url of the server to LineListPage and switches the GUI to LineListPage
      * @param bus element of the buslist
      */
-    navigate(bus) {
+    selectBus(bus) {
         console.log("-> LineListPage");
         for (var index = 0; index < this.bussesInfos.length; index++) {
             if (this.bussesInfos[index] == bus) {

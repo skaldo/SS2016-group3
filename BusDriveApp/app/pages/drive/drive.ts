@@ -3,6 +3,7 @@ import {Component} from '@angular/core';
 import {Geolocation} from 'ionic-native';
 import {language} from "../../components/languages/languages";
 import {BusDriveInterface} from '../../components/Services/busdriveinterface';
+import {CustomStopPage} from '../drive/customstop/customstop';
 
 
 @Component({
@@ -131,6 +132,20 @@ export class DrivePage {
             this.acceptedcustomstops.splice(posnumber, 1)
         }
         this.busdriveinterface.postCustomStopStatus(customstop[0],"noshow")
+    }
+
+    /**
+     * shows map fragment and all infromation of the customstop
+     */
+    showCustomStop(custom){
+        console.log("-> CustomStopPage");
+        for (let index = 0; index < this.linecustomstopsall.length; index++) {
+            if (this.linecustomstopsall[index] == custom) {
+                this.nav.push(CustomStopPage, {
+                    customcoordinates: custom,
+                });
+            }
+        }
     }
 
     /**
