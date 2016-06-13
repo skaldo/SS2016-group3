@@ -6,7 +6,7 @@
 
 <ion-content class="linelist">
     <ion-list>
-        <ion-item *ngFor="let item of linesInfos" (click)="navigate(item)">
+        <ion-item *ngFor="let item of linesInfos" (click)="selectLine(item)">
             <ion-thumbnail item-left>
                 <ion-icon name="git-compare" style="font-size:90px" ></ion-icon>
             </ion-thumbnail>

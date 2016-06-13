@@ -40,7 +40,7 @@ export class LineListPage {
      * passes the selected line, the selected bus and the url of the server to TabsPage and switches the GUI to DrivePage
      * @param line element of the linelist
      */    
-    navigate(line) {
+    selectLine(line) {
         console.log("-> DrivePage");
         for (var index = 0; index < this.linesInfos.length; index++) {
             if (this.linesInfos[index] == line) {
