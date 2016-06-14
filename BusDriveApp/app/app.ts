@@ -1,5 +1,5 @@
 import {App, Platform, MenuController, Nav, Events, ionicBootstrap} from 'ionic-angular';
-import {StatusBar, Insomnia} from 'ionic-native';
+import {StatusBar, Insomnia, LocalNotifications} from 'ionic-native';
 import {Component, ViewChild} from '@angular/core';
 import {HomePage} from './pages/home/home';
 import {SettingPage} from './components/setting/setting';
@@ -92,7 +92,8 @@ export class MyApp {
    * exits the app
    */
   exit() {
-    this.platform.exitApp()
+    this.platform.exitApp();
+    LocalNotifications.clear(1);
   }
 }
 
