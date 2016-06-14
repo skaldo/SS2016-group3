@@ -47,7 +47,7 @@ export class TabsPage {
         this.updateBusStatus();
         this.getLineRoute();
         this.getLineStops();
-        this.requestintervalID = setInterval(this.getLineCustomStops.bind(this),15000);
+        this.requestintervalID = setInterval(this.getLineCustomStops.bind(this),60000);
         this.sendintervalID = setInterval(this.sendrealTimeData.bind(this), 5000);
 
         //-----Language-----

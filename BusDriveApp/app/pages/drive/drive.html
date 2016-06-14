@@ -14,55 +14,68 @@
     </ion-segment>
 </ion-toolbar>
 
-<ion-content class="drive" padding>
+<ion-content class="drive">
     <div [ngSwitch]="drive">
         <form *ngSwitchWhen="'driving'">
-            <center>
-                <table>
+            
+                <table width="100%">
+               <colgroup>
+                    <col width="20%">
+                    <col width="60%">
+                    <col width="20%">
+                </colgroup>
+                    
                     <tr>
-                        <td>
+                        <td colspan="3" class="text" align="center">
+                            <h3>{{passengers}}</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
                             <div class="buttonleft">
-                                <button large (click)="decreasePassengers()">
-                        <ion-icon name="remove"></ion-icon>
-                    </button>
+                                <button large (click)="decreasePassengers()" class="button_drive">
+                                    <ion-icon name="remove"></ion-icon>
+                                </button>
                             </div>
                         </td>
                         <td class="text">
-                            <h2>{{passengers}}<br> {{counter}}</h2>
+                            <h2>{{counter}}</h2>
                         </td>
-                        <td>
+                        <td align="right">
                             <div class="buttonright">
-                                <button large (click)="increasePassengers()">
-                        <ion-icon name="add"></ion-icon>
-                    </button>
+                                <button large (click)="increasePassengers()" class="button_drive">
+                                     <ion-icon name="add"></ion-icon>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text">
+                            <h3>Nächste Haltestelle:</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            <div class="buttonleft">
+                                <button large (click)="showPrevioustStop()" class="button_drive">
+                                    <ion-icon name="arrow-back"></ion-icon>
+                                </button>
+                            </div>
+                        </td>
+                        <td class="text">
+                            <h2>{{nextStop}} </h2>
+                        </td>
+                        <td align="right">
+                            <div class="buttonright">
+                                <button large (click)="showNextStop()" class="button_drive">
+                                    <ion-icon name="arrow-forward"></ion-icon>
+                                </button>
                             </div>
                         </td>
                     </tr>
                 </table>
-            </center>
-            <center>
-                <table>
-                    <tr>
-                        <td>
-                            <div class="buttonleft">
-                                <button large (click)="showPrevioustStop()">
-                        <ion-icon name="arrow-back"></ion-icon>
-                    </button>
-                            </div>
-                        </td>
-                        <td class="text">
-                            <h2>Nächste Haltestelle:<br> {{nextStop}} </h2>
-                        </td>
-                        <td>
-                            <div class="buttonright">
-                                <button large (click)="showNextStop()">
-                        <ion-icon name="arrow-forward"></ion-icon>
-                    </button>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </center>
+            
+
             <ion-list>
                 <ion-item-sliding *ngFor="let item of acceptedcustomstops">
                     <ion-item>
@@ -84,8 +97,11 @@
                     </ion-item-options>
                 </ion-item-sliding>
             </ion-list>
+        
+        
+        
         </form>
-
+       
         <ion-list *ngSwitchWhen="'customstops'">
             <ion-item-sliding *ngFor="let item of linecustomstopsall">
                 <ion-item>
