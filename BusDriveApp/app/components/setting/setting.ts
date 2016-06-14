@@ -1,6 +1,6 @@
 import {Page, Storage, LocalStorage, Events} from 'ionic-angular';
 import {Component} from '@angular/core';
-import {Insomnia} from 'ionic-native';
+import {Insomnia, BackgroundMode} from 'ionic-native';
 import {language, de, en} from "../languages/languages";
 
 @Component({
@@ -13,6 +13,7 @@ export class SettingPage {
   public serverURLList = [];
   public lang;
   public insomnia = true;
+  public mode = true;
 
   public settings;
 
@@ -30,6 +31,7 @@ export class SettingPage {
     this.serverURLList = this.getServerURLList().split(",");
     this.serverURLListStorage = this.getServerURLList();
     this.insomnia = this.getInsomnia();
+    this.mode = this.getBackgroundMode();
 
     //-----Language-----
     this.langTrans = language.langTrans;
@@ -147,5 +149,35 @@ export class SettingPage {
     }
     console.log("prefent from falling asleep " + insomnia);
     this.setInsomnia(insomnia);
+  }
+
+  /**
+   * @param mode boolean
+   * sets BackgroundMode
+   */
+  setBackgroundMode(mode) {
+    this.settings.setItem("BackgroundMode", mode);
+  }
+
+  /**
+   * gets BackgroundMode
+   */
+  getBackgroundMode() {
+    return this.settings.getItem("BackgroundMode");
+  }
+
+  /**
+   * changes BackgroundMode
+   */
+  changeBackgroundMode(mode) {
+
+    if (mode === true) {
+      BackgroundMode.enable();
+    }
+    else if (mode === false) {
+      BackgroundMode.disable();
+    }
+    console.log("BackgroundMode " + mode);
+    this.setBackgroundMode(mode);
   }
 }

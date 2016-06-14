@@ -32,6 +32,10 @@
       </ion-item-options>
     </ion-item-sliding>
     <ion-item>
+      <ion-label>BackgroundMode</ion-label>
+      <ion-toggle [(ngModel)]="mode" (ngModelChange)="changeBackgroundMode(mode)"></ion-toggle>
+    </ion-item>
+    <ion-item>
       <ion-label>Prevent sleeping</ion-label>
       <ion-toggle [(ngModel)]="insomnia" (ngModelChange)="changeInsomnia(insomnia)"></ion-toggle>
     </ion-item>

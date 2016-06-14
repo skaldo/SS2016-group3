@@ -1,5 +1,5 @@
 import {App, Platform, MenuController, Nav, Events, ionicBootstrap} from 'ionic-angular';
-import {StatusBar, Insomnia, LocalNotifications} from 'ionic-native';
+import {StatusBar, Insomnia, LocalNotifications, BackgroundMode} from 'ionic-native';
 import {Component, ViewChild} from '@angular/core';
 import {HomePage} from './pages/home/home';
 import {SettingPage} from './components/setting/setting';
@@ -49,6 +49,7 @@ export class MyApp {
       settings.setItem("serverURL", "http://localhost:3000");
       settings.setItem("serverURLList", "http://localhost:3000");
       settings.setItem("insomnia","true");
+      settings.setItem("BackgroundMode", "true");
     }
     if(settings.getItem("insomnia") === "true"){
       Insomnia.keepAwake()
@@ -63,6 +64,14 @@ export class MyApp {
         () => console.log('allow the screen to fall asleep'),
         () => console.log('failed to allow the screen to fall asleep')
         );
+    }
+    if (settings.getItem("BackgroundMode") === "true") {
+      BackgroundMode.enable();
+      console.log("BackgroundMode " + settings.getItem("BackgroundMode"));
+    }
+    else if (settings.getItem("BackgroundMode") === "false") {
+      BackgroundMode.disable();
+      console.log("BackgroundMode " + settings.getItem("BackgroundMode"));
     }
   }
   

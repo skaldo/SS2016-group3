@@ -58,7 +58,8 @@
       "id": "plugin.google.maps"
     },
     "de.appplant.cordova.plugin.local-notification",
-    "cordova-plugin-insomnia"
+    "cordova-plugin-insomnia",
+    "cordova-plugin-background-mode"
   ],
   "cordovaPlatforms": []
 }
