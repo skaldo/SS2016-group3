@@ -51,7 +51,7 @@ export class NativeMap implements OnDestroy {
             let latitude = resp.coords.latitude;
             let longitude = resp.coords.longitude;
             this.map.animateCamera({
-                'target': new GoogleMapsLatLng(latitude.toString(), longitude.toString()),
+                'target': new GoogleMapsLatLng(latitude, longitude),
                 'tilt': 10,
                 'zoom': 18,
                 'bearing': 0
@@ -66,7 +66,7 @@ export class NativeMap implements OnDestroy {
     loadRoute(lineroutecoordinates) {
         let routepath = [];
         for (let i = 0; i < lineroutecoordinates.length; i++) {
-            let latlng = new GoogleMapsLatLng(lineroutecoordinates[i][0].toString(), lineroutecoordinates[i][1].toString());
+            let latlng = new GoogleMapsLatLng(lineroutecoordinates[i][0], lineroutecoordinates[i][1]);
             routepath.push(latlng);
         };
         this.map.addPolyline({
