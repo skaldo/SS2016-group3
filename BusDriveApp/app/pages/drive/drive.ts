@@ -56,29 +56,46 @@ export class DrivePage {
     }
 
     /**
-     * gets customstops and creates an alert
+     * gets customstops and creates a notification
      */
     getCustomStops() {
-        this.linecustomstopsall = this.busdriveinterface.getLineCustomStopsAll();
-        if (this.linecustomstopsall.length > 0) {
-            this.newcustomstopscounter = this.linecustomstopsall.length
-            LocalNotifications.schedule({
-                id: 1,
-                text: this.linecustomstopsall.length + ' new Custom Stops',
-            });
-            this.nav.present(ActionSheet.create({
-                title: this.linecustomstopsall.length + ' new Custom Stops',
-                buttons: [
-                    {
-                        text: 'Anzeigen',
-                        handler: () => {
-                            this.drive = "customstops";
-                            this.nav.parent.select(0);
-                            this.resetNewCustomStopsCounter();
-                            console.log('Anzeigen');
+        let newlinecustomstopsall = this.busdriveinterface.getLineCustomStopsAll();
+        if (newlinecustomstopsall.length > 0) {
+            if (this.linecustomstopsall.length > 0) {
+                for (let i = 0; i < newlinecustomstopsall.length; i++) {
+                    for (let j = 0; j < this.linecustomstopsall.length; j++) {
+                        if (newlinecustomstopsall[i][0] === this.linecustomstopsall[j][0]) {
+                            let posnumber = newlinecustomstopsall.indexOf(newlinecustomstopsall[i]);
+                            if (posnumber > -1) {
+                                newlinecustomstopsall.splice(posnumber, 1)
+                            }
                         }
-                    }]
-            }))
+                    }
+                }
+            }
+            for (let i = 0; i < newlinecustomstopsall.length; i++) {
+                this.linecustomstopsall.push(newlinecustomstopsall[i]);
+            }
+            if (newlinecustomstopsall.length > 0) {
+                this.newcustomstopscounter = newlinecustomstopsall.length
+                LocalNotifications.schedule({
+                    id: 1,
+                    text: this.newcustomstopscounter + ' new Custom Stops',
+                });
+                this.nav.present(ActionSheet.create({
+                    title: this.newcustomstopscounter + ' new Custom Stops',
+                    buttons: [
+                        {
+                            text: 'Anzeigen',
+                            handler: () => {
+                                this.drive = "customstops";
+                                this.nav.parent.select(0);
+                                this.resetNewCustomStopsCounter();
+                                console.log('Anzeigen');
+                            }
+                        }]
+                }))
+            }
         }
     }
 
