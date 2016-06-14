@@ -4,6 +4,21 @@
   </ion-title>
 </ion-navbar>
 
-<ion-content class="customstop">
-
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      {{customstop[1]}}
+    </ion-card-header>
+    <ion-card-content>
+      <p>Abholzeit: {{customstop[2]}} </p>
+      <p>Anzahl: {{customstop[3]}}</p>
+      <p>Adresse: {{customstop[4]}}</p>
+      <p>Informaton: {{customstop[5]}}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<ion-content>
+  <map></map>
+</ion-content>
+<ion-content>
 </ion-content>

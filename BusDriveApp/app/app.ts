@@ -1,5 +1,5 @@
 import {App, Platform, MenuController, Nav, Events, ionicBootstrap} from 'ionic-angular';
-import {StatusBar} from 'ionic-native';
+import {StatusBar, Insomnia, LocalNotifications, BackgroundMode} from 'ionic-native';
 import {Component, ViewChild} from '@angular/core';
 import {HomePage} from './pages/home/home';
 import {SettingPage} from './components/setting/setting';
@@ -47,7 +47,31 @@ export class MyApp {
     let settings = window.localStorage;
     if (!(settings["serverURL"])) {
       settings.setItem("serverURL", "http://localhost:3000");
-      settings.setItem("serverURLList", "http://localhost:3000")
+      settings.setItem("serverURLList", "http://localhost:3000");
+      settings.setItem("insomnia","true");
+      settings.setItem("BackgroundMode", "true");
+    }
+    if(settings.getItem("insomnia") === "true"){
+      Insomnia.keepAwake()
+        .then(
+        () => console.log('prevent the screen from falling asleep'),
+        () => console.log('failed to prevent the screen from falling asleep')
+        );
+    }
+    else if (settings.getItem("insomnia") === "false") {
+      Insomnia.allowSleepAgain()
+        .then(
+        () => console.log('allow the screen to fall asleep'),
+        () => console.log('failed to allow the screen to fall asleep')
+        );
+    }
+    if (settings.getItem("BackgroundMode") === "true") {
+      BackgroundMode.enable();
+      console.log("BackgroundMode " + settings.getItem("BackgroundMode"));
+    }
+    else if (settings.getItem("BackgroundMode") === "false") {
+      BackgroundMode.disable();
+      console.log("BackgroundMode " + settings.getItem("BackgroundMode"));
     }
   }
   
@@ -77,7 +101,8 @@ export class MyApp {
    * exits the app
    */
   exit() {
-    this.platform.exitApp()
+    this.platform.exitApp();
+    LocalNotifications.clear(1);
   }
 }
 

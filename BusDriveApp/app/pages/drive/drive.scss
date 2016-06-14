@@ -1,11 +1,17 @@
 .drive {
-   .buttonleft{
-      padding-right:50px;
-   }
-   .buttonright{
-       padding-left:50px;
-   }
+    .buttonleft{
+       padding-left:25px;       
+    }
+    .buttonright{
+        padding-right:25px;
+        
+    }
    .text{
        text-align:center;
    }
+  .button_drive{
+    width: 56px;
+    hight: 56px;
+  }
+
 }
