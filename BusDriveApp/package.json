@@ -56,7 +56,9 @@
       },
       "locator": "cordova-plugin-googlemaps",
       "id": "plugin.google.maps"
-    }
+    },
+    "de.appplant.cordova.plugin.local-notification",
+    "cordova-plugin-insomnia"
   ],
   "cordovaPlatforms": []
 }

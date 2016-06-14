@@ -1,6 +1,6 @@
-import {Page, NavParams, Events, Toast, Alert, NavController} from 'ionic-angular';
+import {Page, NavParams, Events, Toast, Alert, ActionSheet, NavController} from 'ionic-angular';
 import {Component} from '@angular/core';
-import {Geolocation} from 'ionic-native';
+import {LocalNotifications} from 'ionic-native';
 import {language} from "../../components/languages/languages";
 import {BusDriveInterface} from '../../components/Services/busdriveinterface';
 import {CustomStopPage} from '../drive/customstop/customstop';
@@ -28,7 +28,7 @@ export class DrivePage {
         this.events.subscribe("newCustomStops", () => {
             this.getCustomStops();
         })
-        
+
         //-----Language-----
         this.passengers = language.passengers;
         this.title = language.driveTitle;
@@ -62,15 +62,13 @@ export class DrivePage {
         this.linecustomstopsall = this.busdriveinterface.getLineCustomStopsAll();
         if (this.linecustomstopsall.length > 0) {
             this.newcustomstopscounter = this.linecustomstopsall.length
-            let alert = Alert.create({
+            LocalNotifications.schedule({
+                id: 1,
+                text: this.linecustomstopsall.length + ' new Custom Stops',
+            });
+            this.nav.present(ActionSheet.create({
                 title: this.linecustomstopsall.length + ' new Custom Stops',
                 buttons: [
-                    {
-                        text: "Ok",
-                        handler: () => {
-                            console.log('ok');
-                        }
-                    },
                     {
                         text: 'Anzeigen',
                         handler: () => {
@@ -80,8 +78,7 @@ export class DrivePage {
                             console.log('Anzeigen');
                         }
                     }]
-            });
-            this.nav.present(alert);
+            }))
         }
     }
 
@@ -89,60 +86,60 @@ export class DrivePage {
      * @param customStop custom stop
      * accepts a customStop
      */
-    acceptCustomStop(customStop) {
-        this.acceptedcustomstops.push(customStop);
-        let posnumber = this.linecustomstopsall.indexOf(customStop);
+    acceptCustomStop(customstop) {
+        this.acceptedcustomstops.push(customstop);
+        let posnumber = this.linecustomstopsall.indexOf(customstop);
         if (posnumber > -1) {
             this.linecustomstopsall.splice(posnumber, 1)
         }
-        this.busdriveinterface.postCustomStopStatus(customStop[0],"accepted")
+        this.busdriveinterface.postCustomStopStatus(customstop[0], "accepted")
     }
 
     /**
      * @param customStop custom stop
      * rejects a customStop
      */
-    rejecteCustomStop(customStop) {
-        let posnumber = this.linecustomstopsall.indexOf(customStop);
+    rejecteCustomStop(customstop) {
+        let posnumber = this.linecustomstopsall.indexOf(customstop);
         if (posnumber > -1) {
             this.linecustomstopsall.splice(posnumber, 1)
         }
-        this.busdriveinterface.postCustomStopStatus(customStop[0],"rejected")
+        this.busdriveinterface.postCustomStopStatus(customstop[0], "rejected")
     }
 
     /**
      * @param customstops accepted customstops
      * completes a acceptedcustomstop with complete
      */
-    completeAcceptedCustomStop(customstop){
+    completeAcceptedCustomStop(customstop) {
         let posnumber = this.acceptedcustomstops.indexOf(customstop);
         if (posnumber > -1) {
             this.acceptedcustomstops.splice(posnumber, 1)
         }
-        this.busdriveinterface.postCustomStopStatus(customstop[0],"completed")
+        this.busdriveinterface.postCustomStopStatus(customstop[0], "completed")
     }
 
     /**
      * @param acceptedcustomstops accepted customstops
      * completes a acceptedcustomstop with noshow
      */
-    noShowAcceptedCustomStop(customstop){
+    noShowAcceptedCustomStop(customstop) {
         let posnumber = this.acceptedcustomstops.indexOf(customstop);
         if (posnumber > -1) {
             this.acceptedcustomstops.splice(posnumber, 1)
         }
-        this.busdriveinterface.postCustomStopStatus(customstop[0],"noshow")
+        this.busdriveinterface.postCustomStopStatus(customstop[0], "noshow")
     }
 
     /**
      * shows map fragment and all infromation of the customstop
      */
-    showCustomStop(custom){
+    showCustomStop(customstop) {
         console.log("-> CustomStopPage");
         for (let index = 0; index < this.linecustomstopsall.length; index++) {
-            if (this.linecustomstopsall[index] == custom) {
+            if (this.linecustomstopsall[index] == customstop) {
                 this.nav.push(CustomStopPage, {
-                    customcoordinates: custom,
+                    showcustomstop: customstop,
                 });
             }
         }
@@ -151,8 +148,9 @@ export class DrivePage {
     /**
      * reset newcustomstops counter
      */
-    resetNewCustomStopsCounter(){
+    resetNewCustomStopsCounter() {
         this.newcustomstopscounter = undefined;
+        LocalNotifications.clear(1);
     }
 
     /**

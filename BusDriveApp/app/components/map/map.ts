@@ -11,6 +11,11 @@ export class Map implements AfterViewInit {
     private map: google.maps.Map;
     private mapElement;
     private customstopsmarkers = [];
+    private latlng: google.maps.LatLng;
+    private customstopposition: google.maps.LatLng;
+
+    directionsDisplay = new google.maps.DirectionsRenderer;
+    directionsService = new google.maps.DirectionsService;
 
     constructor(private element: ElementRef, public events: Events) {
 
@@ -20,12 +25,12 @@ export class Map implements AfterViewInit {
      * loads Google Maps and shows its own position ( after you clicked the button )
      */
     loadMap() {
-        console.log("Lade die Karte/ started loading map");
+        console.log("started loading map");
         let options = { timeout: 10000, enableHighAccuracy: true };
         navigator.geolocation.getCurrentPosition((position) => {
-            let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            this.latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             let mapOptions = {
-                center: latLng,
+                center: this.latlng,
                 zoom: 15,
                 mapTypeControl: true,
                 mapTypeControlOptions: {
@@ -43,11 +48,17 @@ export class Map implements AfterViewInit {
 
             let geoloccontrol = new klokantech.GeolocationControl(this.map, 18);
 
-            console.log("Karte erfolgreich geladen/ successfully loaded map");
+            console.log("successfully loaded map");
             this.events.publish("mapLoaded");
+
+            if (this.customstopposition) {
+                this.directionsDisplay.setMap(this.map);
+                this.calcCustomStopRoute(this.directionsService, this.directionsDisplay, this.customstopposition);
+            }
+
         },
             (error) => {
-                console.log("Karte konnte nicht geladen werden/ ap could not be loaded", error);
+                console.log("map could not be loaded", error);
             }, options
         );
     }
@@ -106,6 +117,33 @@ export class Map implements AfterViewInit {
             });
             this.customstopsmarkers.push(customstopmarker);
         };
+    }
+
+    /**
+     * calculates the route to a customstop 
+     */
+    calcCustomStopRoute(directionsService, directionsDisplay, customstopposition) {
+        let start = this.latlng;
+        let end = customstopposition;
+        let request = {
+            origin: start,
+            destination: end,
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        directionsService.route(request, function (response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+                let route = response.routes[0];
+            }
+        });
+    }
+
+    /**
+     * stest the customstopposition
+     * @param customstopposition position of a customstop
+     */
+    setCustomstopPosition(customstopposition) {
+        this.customstopposition = customstopposition;
     }
 
     /**

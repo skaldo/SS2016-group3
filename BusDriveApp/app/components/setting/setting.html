@@ -20,15 +20,21 @@
         <ion-option *ngFor="let url of serverURLList" value="{{url}}">{{url}}</ion-option>
       </ion-select>
     </ion-item>
-    <div class="item item-input-inset">
+    <ion-item-sliding>
       <ion-item>
-        <ion-label>{{newServerAdressTrans}} </ion-label>
+        <ion-label>{{newServerAdressTrans}}</ion-label>
         <ion-input [(ngModel)]="url" type="url" id="serverURL">{{serverURL}}</ion-input>
       </ion-item>
-      <button (click)="addToServerURLList(url)">
+      <ion-item-options>
+        <button (click)="addToServerURLList(url)">
         <ion-icon name="add"></ion-icon>
       </button>
-    </div>
+      </ion-item-options>
+    </ion-item-sliding>
+    <ion-item>
+      <ion-label>Prevent sleeping</ion-label>
+      <ion-toggle [(ngModel)]="insomnia" (ngModelChange)="changeInsomnia(insomnia)"></ion-toggle>
+    </ion-item>
     <ion-item>
       <ion-label>Sendedistanz</ion-label>
       <ion-range min="25" max="150" step="25" pin="true" snaps="true" [(ngModel)]="distance" secondary>
