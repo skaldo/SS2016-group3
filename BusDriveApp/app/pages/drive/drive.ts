@@ -97,9 +97,9 @@ export class DrivePage {
 
     /**
      * @param customStop custom stop
-     * rejects a customStop
+     * declines a customStop
      */
-    rejecteCustomStop(customstop) {
+    declineCustomStop(customstop) {
         let posnumber = this.linecustomstopsall.indexOf(customstop);
         if (posnumber > -1) {
             this.linecustomstopsall.splice(posnumber, 1)

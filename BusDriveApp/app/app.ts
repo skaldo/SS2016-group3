@@ -28,7 +28,7 @@ export class MyApp {
   //---------Language Support-----
   public settingTrans;
   public about;
-  
+
   constructor(private platform: Platform, private menu: MenuController, public events: Events) {
     this.initializeApp();
     this.setPages();
@@ -48,10 +48,10 @@ export class MyApp {
     if (!(settings["serverURL"])) {
       settings.setItem("serverURL", "http://localhost:3000");
       settings.setItem("serverURLList", "http://localhost:3000");
-      settings.setItem("insomnia","true");
+      settings.setItem("insomnia", "true");
       settings.setItem("BackgroundMode", "true");
     }
-    if(settings.getItem("insomnia") === "true"){
+    if (settings.getItem("insomnia") === "true") {
       Insomnia.keepAwake()
         .then(
         () => console.log('prevent the screen from falling asleep'),
@@ -68,13 +68,17 @@ export class MyApp {
     if (settings.getItem("BackgroundMode") === "true") {
       BackgroundMode.enable();
       console.log("BackgroundMode " + settings.getItem("BackgroundMode"));
+      BackgroundMode.setDefaults({
+        title: "BusDriveApp",
+        text: "sending real time data"
+      })
     }
     else if (settings.getItem("BackgroundMode") === "false") {
       BackgroundMode.disable();
       console.log("BackgroundMode " + settings.getItem("BackgroundMode"));
     }
   }
-  
+
   /**
    * sets the pages of menu
    */

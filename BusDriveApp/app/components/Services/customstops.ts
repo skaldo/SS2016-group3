@@ -117,7 +117,7 @@ export class CustomStops {
     }
 
     /**
-     * @returns lits of all information of the linecustomstops
+     * @returns list of all information of the linecustomstops
      */
     getLineCustomStopsAll() {
         let linecustomstopsall = [];
