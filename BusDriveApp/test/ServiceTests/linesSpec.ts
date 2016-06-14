@@ -4,24 +4,24 @@ import {Http, Response, ResponseOptions, Headers} from '@angular/http';
 import {Observable} from 'rxjs/RX';
 
 /**  
-    lines.ts service test
+*  lines.ts service test
 */
 
 describe("the process of getting available line entries from the server",function(){
     let testData = {lines: [
       {
-        "id": 1,
-        "name": "Pirmasens",
-        "routeRef": 1,
-        "busses": [
+        id: 1,
+        name: "Pirmasens",
+        routeRef: 1,
+        busses: [
           1
         ]
       },
       {
-        "id": 2,
-        "name": "Uni",
-        "routeRef": 2,
-        "busses": [
+        id: 2,
+        name: "Uni",
+        routeRef: 2,
+        busses: [
           2
         ]
       }

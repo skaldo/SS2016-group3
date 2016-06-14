@@ -14,6 +14,8 @@ export class Busses {
      * requests busses from server
      */
     requestBusses(serverURL) {
+        console.log("requestBusses called");
+        console.log(this.http)
         this.http.get(serverURL + "/busses").map(res => res.json()).subscribe(
             data => {
                 this.busses = data["busses"];
