@@ -28,11 +28,10 @@ export class BusListPage {
     }
 
     /**
-     * gets id and numberPlate of the busses as a list of tuples
+     * gets id, numberplate and number of total seats of the busses as a list
      */
     getBussesInfos() {
         this.bussesInfos = this.busdriveinterface.getBussesInfos();
-    
     }
 
     /**

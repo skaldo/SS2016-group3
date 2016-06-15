@@ -35,10 +35,18 @@ export class BusDriveInterface {
     }
 
     /**
-     * @returns id and numberPlate of the busses as a list of tuples
+     * @returns id, numberplate and number of total seats of the busses as a list
      */
     getBussesInfos() {
         return this.busses.getBussesInfos();
+    }
+
+    /**
+     * @param busId id of the selected bus
+     * @returns number of total seats of the selected busses
+     */
+    getBusSeatsNumber(busId){
+        return this.busses.getBusSeatsNumber(busId);
     }
 
     /**

@@ -43,6 +43,7 @@ export class TabsPage {
 
         this.selectedbus = navParams.get("selectedbus");
         this.selectedline = navParams.get("selectedline");
+        this.rootParams = [this.selectedbus, this.selectedline];
 
         this.updateBusStatus();
         this.getLineRoute();

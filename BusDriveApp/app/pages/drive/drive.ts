@@ -10,9 +10,11 @@ import {CustomStopPage} from '../drive/customstop/customstop';
     templateUrl: 'build/pages/drive/drive.html',
 })
 export class DrivePage {
+    private selectedbusid
     private counter: number = 0;
     private nextStop: string;
     private drive: string = "driving";
+    private totalbusseats: number;
     private newcustomstopscounter: number;
     private linestopsnames = [];
     private linecustomstopsall = [];
@@ -23,6 +25,9 @@ export class DrivePage {
     public title;
 
     constructor(private nav: NavController, navParams: NavParams, private busdriveinterface: BusDriveInterface, public events: Events) {
+        this.selectedbusid = navParams.data[0]
+
+        this.getBusSeatsNumber();
         this.getLineStopsNames();
         this.nextStop = this.linestopsnames[0];
         this.events.subscribe("newCustomStops", () => {
@@ -38,14 +43,31 @@ export class DrivePage {
      * increases the counter of the passengers
      */
     increasePassengers() {
-        this.counter++
+        if (this.counter < this.totalbusseats) {
+            this.counter++
+        }
+        else if (this.counter === this.totalbusseats) {
+            this.nav.present(Toast.create({
+                message: 'Maximale Anzahl erreicht',
+                duration: 1500
+            }))
+        }
     }
 
     /**
      * decreases the counter of the passengers
      */
     decreasePassengers() {
-        if (this.counter > 0) this.counter--
+        if (this.counter > 0) {
+            this.counter--;
+        }
+    }
+
+    /**
+     * gets number of total seats of the selected busses 
+     */
+    getBusSeatsNumber() {
+        this.totalbusseats = this.busdriveinterface.getBusSeatsNumber(this.selectedbusid)
     }
 
     /**

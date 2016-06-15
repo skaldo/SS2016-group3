@@ -5,13 +5,15 @@
         "id": 1,
         "numberPlate": "KL-AB345",
         "color": "green",
-        "picture": "http://www.tm4.com/wp-content/uploads/2014/08/Foton-bus-12-m-e1407525133477.png"
+        "picture": "http://www.tm4.com/wp-content/uploads/2014/08/Foton-bus-12-m-e1407525133477.png",
+        "totalSeats": 12
       },
       {
         "id": 2,
         "numberPlate": "KL-CD678",
         "color": "red",
-        "picture": "http://littlebabybum.com/wp-content/uploads/2015/01/wheels-on-the-bus-red.png"
+        "picture": "http://littlebabybum.com/wp-content/uploads/2015/01/wheels-on-the-bus-red.png",
+        "totalSeats": 16
       }
     ],
     "timestamp": 6
@@ -334,7 +336,7 @@
         "location": {
           "type": "Point",
           "coordinates": [
-             7.600365,
+            7.600365,
             49.209681
           ]
         },
