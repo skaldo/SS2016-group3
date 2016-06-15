@@ -5,17 +5,19 @@
 </ion-navbar>
 
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      {{customstop[1]}}
-    </ion-card-header>
-    <ion-card-content>
-      <p>Abholzeit: {{customstop[2]}} </p>
-      <p>Anzahl: {{customstop[3]}}</p>
-      <p>Adresse: {{customstop[4]}}</p>
-      <p>Informaton: {{customstop[5]}}</p>
-    </ion-card-content>
-  </ion-card>
+  <ion-item>
+    <h2>{{customstop[1]}}</h2>
+    <p>Abholzeit: {{customstop[2]}} </p>
+    <p>Anzahl: {{customstop[3]}}</p>
+    <p>Adresse: {{customstop[4]}}</p>
+    <p>
+      <img src="img/wheelchair.png" *ngIf="customstop[5][0]" width="10%" height="auto">
+      <img src="img/luggage.png" *ngIf="customstop[5][1]" width="10%" height="auto">
+      <img src="img/crutch.png" *ngIf="customstop[5][2]" width="10%" height="auto">
+      <img src="img/baby.png" *ngIf="customstop[5][3]" width="10%" height="auto">
+      <img src="img/child.png" *ngIf="customstop[5][4]" width="10%" height="auto">
+    </p>
+  </ion-item>
 </ion-content>
 <ion-content>
   <map></map>

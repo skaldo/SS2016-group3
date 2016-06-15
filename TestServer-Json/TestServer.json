@@ -303,7 +303,7 @@
           "name": "Sascha",
           "address": "Uni Ost",
           "assistance": [
-            "Help with luggage"
+            2
           ]
         }
       },
@@ -324,8 +324,8 @@
           "name": "Charel",
           "address": "Uni Sporthalle",
           "assistance": [
-            "Help with luggage",
-            "Bein gebrochen"
+            2,
+            1
           ]
         }
       },
@@ -346,8 +346,7 @@
           "name": "Patrick",
           "address": "Uni West",
           "assistance": [
-            "Help with luggage",
-            "Bein gebrochen"
+            4,5
           ]
         }
       }
