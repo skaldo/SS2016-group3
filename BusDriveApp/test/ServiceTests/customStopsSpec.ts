@@ -3,8 +3,11 @@ import {CustomStops} from '../../app/components/Services/customstops';
 import {Http, Response, ResponseOptions, Headers} from '@angular/http';
 import {Observable} from 'rxjs/RX';
 
-/**  
-    customstops.ts service test
+/** 
+ * Created by Erik
+ * Edited by Oliver
+ *  
+ * customstops.ts service test
 */
 
 describe("the process of getting available line entries from the server",function(){
@@ -89,7 +92,7 @@ describe("the process of getting available line entries from the server",functio
     it('should load customstops entries', function(done){
         let customStopsMock:CustomStops = new CustomStops(http);  //	TypeError: undefined is not a constructor
         customStopsMock.requestCustomStops("");
-        expect(customStopsMock.getCustomStops(1)).not.toEqual([]);
+        expect(customStopsMock.requestCustomStops(1)).not.toEqual([]);
 
     });
     /**  
@@ -100,7 +103,13 @@ describe("the process of getting available line entries from the server",functio
         customStopsMock.requestCustomStops("");
         expect(customStopsMock.getLineCustomStops(1)).not.toEqual([]);
 
-    })
+    });
+
+    it('should load the ID of linecustomstops', function(){
+      let customStopsMock:CustomStops = new CustomStops(http);
+      customStopsMock.requestCustomStops("");
+      expect(customStopsMock.getLineCustomStopsIds).not.toEqual([]);
+    });
 
 
 })
