@@ -1,5 +1,6 @@
 /**
   Created by Erik Gruener
+  Edited by Oliver Säger
   stops specs
 */
 
@@ -8,10 +9,10 @@ import {Http, ResponseOptions, Response} from '@angular/http';
 import {Observable} from 'rxjs/RX';
 
 
-describe('testing Stops', function(){
+describe('Stops', function(){
     
 let testData = {"stops": {
-    "stops": [
+    stops: [
       {
         "id": 5,
         "name": "Uni West",
@@ -145,11 +146,39 @@ let testData = {"stops": {
         }
     };
 
-    
-    
+    /**
+     * tests if requestStops() returns testData 
+     */
     it('should be requested', function(){
         let stopsMock = new Stops(http);
         stopsMock.requestStops("");
         expect(stopsMock.getLineStops(1)).toBe(testData);        
+    });
+
+    /**
+     * tests if getLineStop() does not return an empty list
+     */
+    it('should not return an empty linestops list', function(){
+        let stopsMock = new Stops(http);
+        stopsMock.requestStops("");
+        expect(stopsMock.getLineStops(1)).not.toBe([]);        
+    });
+
+    /**
+     * tests if getLineStopsNames() does not return an empty list
+     */
+    it('should not return an empty list of the names of linestops', function(){
+        let stopsMock = new Stops(http);
+        stopsMock.requestStops("");
+        expect(stopsMock.getLineStopsNames()).not.toBe([]);        
+    });
+
+    /**
+     * tests if getLineStopsNames() does not return an empty list
+     */
+    it('should not return an empty list of the coordinates of linestops', function(){
+        let stopsMock = new Stops(http);
+        stopsMock.requestStops("");
+        expect(stopsMock.getLineStopsCoordinates()).not.toBe([]);       
     });
 });
