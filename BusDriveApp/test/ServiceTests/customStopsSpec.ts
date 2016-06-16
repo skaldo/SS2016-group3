@@ -111,5 +111,45 @@ describe("the process of getting available line entries from the server",functio
       expect(customStopsMock.getLineCustomStopsIds).not.toEqual([]);
     });
 
+    it('should load the names of linecustomstops', function(){
+      let customStopsMock:CustomStops = new CustomStops(http);
+      customStopsMock.requestCustomStops("");
+      expect(customStopsMock.getLineCustomStopsNames).not.toEqual([]);
+    });
 
+    it('should load the pickuptimes of linecustomstops', function(){
+      let customStopsMock:CustomStops = new CustomStops(http);
+      customStopsMock.requestCustomStops("");
+      expect(customStopsMock.getLineCustomStopPickUpTimes()).not.toEqual([]);
+    });
+
+    it('should load the coordinates of linecustomstops', function(){
+      let customStopsMock:CustomStops = new CustomStops(http);
+      customStopsMock.requestCustomStops("");
+      expect(customStopsMock.getLineCustomStopsCoordinates()).not.toEqual([]);
+    });
+
+    it('should load the number of persons', function(){
+      let customStopsMock:CustomStops = new CustomStops(http);
+      customStopsMock.requestCustomStops("");
+      expect(customStopsMock.getLineCustomStopsNumberOfPersons()).not.toEqual([]);
+    });
+
+    it('should load the adresses of linecustomstops', function(){
+      let customStopsMock:CustomStops = new CustomStops(http);
+      customStopsMock.requestCustomStops("");
+      expect(customStopsMock.getLineCustomStopsAddresses()).not.toEqual([]);
+    });
+
+    it('should load the assistances of linecustomstops', function(){
+      let customStopsMock:CustomStops = new CustomStops(http);
+      customStopsMock.requestCustomStops("");
+      expect(customStopsMock.getLineCustomStopsAssistances()).not.toEqual([]);
+    });
+
+    it('should load the list of linecustomstops containing all information', function(){
+      let customStopsMock:CustomStops = new CustomStops(http);
+      customStopsMock.requestCustomStops("");
+      expect(customStopsMock.getLineCustomStopsAll()).not.toEqual([]);
+    });
 })
