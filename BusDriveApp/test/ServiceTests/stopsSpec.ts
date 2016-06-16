@@ -8,7 +8,7 @@ import {Http, ResponseOptions, Response} from '@angular/http';
 import {Observable} from 'rxjs/RX';
 
 
-describe('Stops', function(){
+describe('testing Stops', function(){
     
 let testData = {"stops": {
     "stops": [
