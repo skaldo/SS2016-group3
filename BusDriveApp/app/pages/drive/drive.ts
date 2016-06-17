@@ -46,12 +46,6 @@ export class DrivePage {
         if (this.counter < this.totalbusseats) {
             this.counter++
         }
-        else if (this.counter === this.totalbusseats) {
-            this.nav.present(Toast.create({
-                message: 'Maximale Anzahl erreicht',
-                duration: 1500
-            }))
-        }
     }
 
     /**
@@ -84,22 +78,32 @@ export class DrivePage {
         let newlinecustomstopsall = this.busdriveinterface.getLineCustomStopsAll();
         if (newlinecustomstopsall.length > 0) {
             if (this.linecustomstopsall.length > 0) {
-                for (let i = 0; i < newlinecustomstopsall.length; i++) {
-                    for (let j = 0; j < this.linecustomstopsall.length; j++) {
-                        if (newlinecustomstopsall[i][0] === this.linecustomstopsall[j][0]) {
-                            let posnumber = newlinecustomstopsall.indexOf(newlinecustomstopsall[i]);
-                            if (posnumber > -1) {
-                                newlinecustomstopsall.splice(posnumber, 1)
-                            }
+                let newcustomstopsid: number[] = [];
+                this.newcustomstopscounter = Math.abs(this.linecustomstopsall.length - newlinecustomstopsall.length);
+                if(this.newcustomstopscounter === 0){
+                    this.newcustomstopscounter = undefined;
+                }
+                this.linecustomstopsall.push(...newlinecustomstopsall);
+                for (let i = 0; i < this.linecustomstopsall.length; i++) {
+                    newcustomstopsid.push(this.linecustomstopsall[i][0])
+                }
+                newcustomstopsid = newcustomstopsid.filter(function (v, i, a) { return a.indexOf(v) === i });
+                let newcustomstops = [];
+                for (let i = 0; i < this.linecustomstopsall.length; i++) {
+                    for (let j = 0; j < newcustomstopsid.length; j++) {
+                        if (this.linecustomstopsall[i][0] === newcustomstopsid[j]) {
+                            newcustomstops.push(this.linecustomstopsall[i]);
+                            newcustomstopsid.splice(j,1);
                         }
                     }
                 }
+                this.linecustomstopsall = newcustomstops;
             }
-            for (let i = 0; i < newlinecustomstopsall.length; i++) {
-                this.linecustomstopsall.push(newlinecustomstopsall[i]);
+            else {
+                this.linecustomstopsall.push(...newlinecustomstopsall);
+                this.newcustomstopscounter = this.linecustomstopsall.length;
             }
-            if (newlinecustomstopsall.length > 0) {
-                this.newcustomstopscounter = newlinecustomstopsall.length
+            if (this.newcustomstopscounter > 0) {
                 LocalNotifications.schedule({
                     id: 1,
                     text: this.newcustomstopscounter + ' new Custom Stops',

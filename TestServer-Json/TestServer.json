@@ -349,6 +349,27 @@
             4,5
           ]
         }
+      },
+      {
+        "lineId": 1,
+        "id": 4,
+        "pickUpTime": 1730,
+        "location": {
+          "type": "Point",
+          "coordinates": [
+            7.600365,
+            49.209681
+          ]
+        },
+        "numberOfPersons": 5,
+        "deviceID": 8578547,
+        "info": {
+          "name": "Erik",
+          "address": "Uni Süd",
+          "assistance": [
+            1,2,3,4,5
+          ]
+        }
       }
     ],
     "timestamp": 2
