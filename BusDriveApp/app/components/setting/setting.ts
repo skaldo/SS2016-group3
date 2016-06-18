@@ -60,6 +60,15 @@ export class SettingPage {
   }
 
   /**
+   * clears List of URLs from localStorage
+   */
+  clearServerURLList() {
+    this.serverURLListStorage = this.serverURL;
+    this.settings.setItem("serverURLList", this.serverURL);
+    this.serverURLList = this.getServerURLList().split(",");
+  }
+
+  /**
    * sets the GUI select as server url
    * @param URL url of the server
    */

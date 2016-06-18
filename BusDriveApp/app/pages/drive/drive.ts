@@ -10,7 +10,7 @@ import {CustomStopPage} from '../drive/customstop/customstop';
     templateUrl: 'build/pages/drive/drive.html',
 })
 export class DrivePage {
-    private selectedbusid
+    private selectedbusid;
     private counter: number = 0;
     private nextStop: string;
     private drive: string = "driving";
@@ -61,7 +61,7 @@ export class DrivePage {
      * gets number of total seats of the selected busses 
      */
     getBusSeatsNumber() {
-        this.totalbusseats = this.busdriveinterface.getBusSeatsNumber(this.selectedbusid)
+        this.totalbusseats = this.busdriveinterface.getBusSeatsNumber(this.selectedbusid);
     }
 
     /**
@@ -80,7 +80,7 @@ export class DrivePage {
             if (this.linecustomstopsall.length > 0) {
                 let newcustomstopsid: number[] = [];
                 this.newcustomstopscounter = Math.abs(this.linecustomstopsall.length - newlinecustomstopsall.length);
-                if(this.newcustomstopscounter === 0){
+                if (this.newcustomstopscounter === 0) {
                     this.newcustomstopscounter = undefined;
                 }
                 this.linecustomstopsall.push(...newlinecustomstopsall);
@@ -93,7 +93,7 @@ export class DrivePage {
                     for (let j = 0; j < newcustomstopsid.length; j++) {
                         if (this.linecustomstopsall[i][0] === newcustomstopsid[j]) {
                             newcustomstops.push(this.linecustomstopsall[i]);
-                            newcustomstopsid.splice(j,1);
+                            newcustomstopsid.splice(j, 1);
                         }
                     }
                 }
@@ -135,9 +135,10 @@ export class DrivePage {
         if (posnumber > -1) {
             this.linecustomstopsall.splice(posnumber, 1)
         }
-        this.busdriveinterface.postCustomStopStatus(customstop[0], "accepted")
+        this.busdriveinterface.postCustomStopStatus(customstop[0], "accepted");
+        this.events.publish("acceptedCustomStops", this.acceptedcustomstops);
     }
-
+    
     /**
      * @param customStop custom stop
      * declines a customStop
@@ -147,7 +148,7 @@ export class DrivePage {
         if (posnumber > -1) {
             this.linecustomstopsall.splice(posnumber, 1)
         }
-        this.busdriveinterface.postCustomStopStatus(customstop[0], "rejected")
+        this.busdriveinterface.postCustomStopStatus(customstop[0], "rejected");
     }
 
     /**
@@ -159,7 +160,8 @@ export class DrivePage {
         if (posnumber > -1) {
             this.acceptedcustomstops.splice(posnumber, 1)
         }
-        this.busdriveinterface.postCustomStopStatus(customstop[0], "completed")
+        this.busdriveinterface.postCustomStopStatus(customstop[0], "completed");
+        this.events.publish("acceptedCustomStops", this.acceptedcustomstops);
     }
 
     /**
@@ -171,7 +173,8 @@ export class DrivePage {
         if (posnumber > -1) {
             this.acceptedcustomstops.splice(posnumber, 1)
         }
-        this.busdriveinterface.postCustomStopStatus(customstop[0], "noshow")
+        this.busdriveinterface.postCustomStopStatus(customstop[0], "noshow");
+        this.events.publish("acceptedCustomStops", this.acceptedcustomstops);
     }
 
     /**

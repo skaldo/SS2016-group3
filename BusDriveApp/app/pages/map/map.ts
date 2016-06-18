@@ -16,8 +16,7 @@ export class MapPage {
     private linestopscoordinates = [];
     private linestopsnames = [];
     private lineroutecoordinates = [];
-    private linecustomstopscoordinates = [];
-    private linecustomstopsnames = [];
+    private acceptedcustomstops= [];
 
     //-----Language-----
     public title;
@@ -26,10 +25,9 @@ export class MapPage {
         this.getLineRouteCoordinates();
         this.getLineStopsCoordinates();
         this.getLineStopsNames();
-        this.events.subscribe("newCustomStops", () => {
-            this.getLineCustomStopsCoordinates();
-            this.getLineCustomStopsNames();
-            this.map.loadCustomStops(this.linecustomstopscoordinates, this.linecustomstopsnames);
+        this.events.subscribe("acceptedCustomStops", acceptedcustomstops => {
+            this.acceptedcustomstops = acceptedcustomstops[0];      // warum wird die liste nochmals in eine liste gepackt ????
+            this.map.loadCustomStops(this.acceptedcustomstops);
         })
         this.events.subscribe("mapLoaded", () => {
             this.showLine();
@@ -54,26 +52,11 @@ export class MapPage {
     }
 
     /**
-     * gets the coordinates of customstops
-     */
-    getLineCustomStopsCoordinates() {
-        this.linecustomstopscoordinates = this.busdriveinterface.getLineCustomStopsCoordinates();
-    }
-
-    /**
-     * gets the names of customstops
-     */
-    getLineCustomStopsNames() {
-        this.linecustomstopsnames = this.busdriveinterface.getLineCustomStopsNames();
-    }
-
-    /**
      * gets the coordinates of lineroute
      */
     getLineRouteCoordinates() {
         this.lineroutecoordinates = this.busdriveinterface.getLineRouteCoordinates();
     }
-
 
     /**
      * shows the line ( stops and route ) on the map 

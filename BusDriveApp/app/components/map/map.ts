@@ -96,24 +96,19 @@ export class Map implements AfterViewInit {
 
     /**
      * loads the custumstops and shows them as a marker on the map
-     * @param customstopscoordinates list of coordinates of the customstops
-     * @param customstopsnames list of the names of the customstops
+     * @param acceptedcustomstops list of accepted customstops
      */
-    loadCustomStops(customstopscoordinates, customstopsnames) {
+    loadCustomStops(acceptedcustomstops) {
         for (let i = 0; i < this.customstopsmarkers.length; i++) {
             this.customstopsmarkers[i].setMap(null);
         }
         this.customstopsmarkers = [];
-        for (let index = 0; index < customstopscoordinates.length; index++) {
-            let customstopLatLng = new google.maps.LatLng(customstopscoordinates[index][1], customstopscoordinates[index][0]);
+        for (let index = 0; index < acceptedcustomstops.length; index++) {
+            let customstopLatLng = new google.maps.LatLng(acceptedcustomstops[index][6][1], acceptedcustomstops[index][6][0]);
             let customstopmarker = new google.maps.Marker({
                 position: customstopLatLng,
                 map: this.map,
-                icon: {
-                    path: google.maps.SymbolPath.CIRCLE,
-                    scale: 10
-                },
-                label: customstopsnames[index]
+                label: acceptedcustomstops[index][1]
             });
             this.customstopsmarkers.push(customstopmarker);
         };
